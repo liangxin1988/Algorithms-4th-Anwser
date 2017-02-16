@@ -5,20 +5,12 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-import Answer.BaseChapterTest;
+import Answer.BaseChapter;
 
 import edu.princeton.cs.algs4.StdRandom;
 import framework.Title;
 
-
-/*
- * 算法第四版第一章练习答案（自己做的，如果错误欢迎留言指正）
- * 每个题目以题号开头。有些题使用大括号括起来，是为了限制变量的作用域（避免多个题使用同名变量造成混乱）
- * 题目中要求从控制台输入的数据，这里都使用普通变量，可自行修改。
- * 项目中使用了原书主页中提供的代码库，需要引入项目才能运行。
- * */
-@Title("1.1")
-public class Chapter1_1NormalTest extends BaseChapterTest{
+public class Chapter1_1Exercises extends BaseChapter{
 
 	@Title("1.1.1")
 	public static void question1(){
