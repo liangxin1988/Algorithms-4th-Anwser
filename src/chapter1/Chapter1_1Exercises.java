@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import Answer.BaseChapter;
+import Answer.ChapterUtil;
 
 import edu.princeton.cs.algs4.StdRandom;
 import framework.Title;
@@ -98,12 +99,12 @@ public class Chapter1_1Exercises extends BaseChapter{
 	
 	@Title("1.1.9")
 	public static void question9(){
-		questionLue();
+		ChapterUtil.questionLue();
 	}
 	
 	@Title("1.1.10")
 	public static void question10(){
-		questionLue();
+		ChapterUtil.questionLue();
 	}
 	
 	@Title("1.1.11")
@@ -193,7 +194,7 @@ public class Chapter1_1Exercises extends BaseChapter{
 			num = Integer.parseInt(numStr);
 		}
 		int[] nums = new int[num * num];
-		initArray(nums, num);
+		ChapterUtil.initArray(nums, num);
 		int[] count = new int[num];
 		for(int i = 0;i<nums.length;i++){
 			count[nums[i]]++;
@@ -213,7 +214,7 @@ public class Chapter1_1Exercises extends BaseChapter{
 	
 	@Title("1.1.17")
 	public static void question17(){
-		questionLue();
+		ChapterUtil.questionLue();
 	}
 	
 	@Title("1.1.18")
@@ -287,7 +288,7 @@ public class Chapter1_1Exercises extends BaseChapter{
 	
 	@Title("1.1.25")
 	public static void question25(){
-		questionNo();
+		ChapterUtil.questionNo();
 	}
 	
 	@Title("1.1.26")
@@ -299,7 +300,7 @@ public class Chapter1_1Exercises extends BaseChapter{
 	}
 	
 	public static int gcd(int p,int q,int level){
-		println(getEmptyChar(level)+"p = "+p+",q = "+q);
+		println(ChapterUtil.getEmptyChar(level)+"p = "+p+",q = "+q);
 		if(q == 0) return p;
 		int r = p % q;
 		return gcd(q,r,level + 1);
@@ -318,7 +319,7 @@ public class Chapter1_1Exercises extends BaseChapter{
 	}
 	
 	public static int rankByLevel(int key,int[] a,int lo,int hi,int level){
-		println(getEmptyChar(level)+"lo = "+lo+",hi = "+hi);
+		println(ChapterUtil.getEmptyChar(level)+"lo = "+lo+",hi = "+hi);
 		if(lo > hi) return -1;
 		int mid = lo + (hi - lo) / 2;
 		if(key < a[mid]) return rankByLevel(key,a,lo,mid - 1,level + 1);
@@ -373,27 +374,5 @@ public class Chapter1_1Exercises extends BaseChapter{
 		return mystery2(a*a, b / 2) * a;
 	}
 	
-	private static void initArray(int[] ints,int x){
-		
-		for(int i = 0;i<ints.length;i++){
-			ints[i] = StdRandom.uniform(x);
-		}
-	}
 	
-	private static StringBuilder sb = new StringBuilder();
-	private static String getEmptyChar(int count){
-		sb.delete(0, sb.length());
-		for(int i = 0;i<count;i++){
-			sb.append(" ");
-		}
-		return sb.toString();
-	}
-	
-	private static void questionLue(){
-		println("原书中有，略");
-	}
-	
-	private static void questionNo(){
-		println("不会");
-	}
 }
