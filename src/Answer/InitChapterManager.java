@@ -2,6 +2,8 @@ package Answer;
 
 import chapter1.Chapter1_1Creative;
 import chapter1.Chapter1_1Exercises;
+import chapter1.Chapter1_1Experiments;
+import chapter1.Chapter1_2Exercises;
 import framework.ExerciseManager;
 
 /**
@@ -13,7 +15,9 @@ public class InitChapterManager {
 	
 	public void init(){
 		exerciseManager.regiestQuestion(new Chapter1_1Exercises());  //通过注册方法，将习题类中的习题通知给习题管理器
-		exerciseManager.regiestQuestion(new Chapter1_1Creative());  //通过注册方法，将习题类中的习题通知给习题管理器
+		exerciseManager.regiestQuestion(new Chapter1_1Creative()); 
+		exerciseManager.regiestQuestion(new Chapter1_1Experiments()); 
+		exerciseManager.regiestQuestion(new Chapter1_2Exercises()); 
 	}
 	
 	

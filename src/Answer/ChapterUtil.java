@@ -1,6 +1,9 @@
 package Answer;
 
 import static edu.princeton.cs.algs4.StdOut.println;
+
+import java.awt.Color;
+
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
@@ -42,5 +45,13 @@ public class ChapterUtil {
 	 * */
 	public static void questionNo(){
 		println("不会");
+	}
+	
+	/**
+	 * 获取一个随机的颜色，用来在界面上对每一组数据进行区分
+	 * */
+	public static Color getRandomColor(){
+		int a = StdRandom.uniform(256),b = StdRandom.uniform(256),c = StdRandom.uniform(256);
+		return new Color(a,b,c);
 	}
 }
