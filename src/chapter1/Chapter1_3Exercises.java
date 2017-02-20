@@ -154,34 +154,30 @@ public class Chapter1_3Exercises  extends BaseChapter{
 	@Title("1.3.9")
 	public static void question9(String str){  //这个题好难，做出来了但是没有充分测试也没啥把握，大家帮忙多给些用例测试一下吧
 		if(str == null){
-			str = "1+2)*3-4)*5-6)))";  //为了解析方便，所有数字为1位数
+			str = "1+2)*3-4)*5-6)))";  //为了解析方便，所有数字为1位数，中间不允许有空格（方便通过控制台传参）
 		}
-		Stack<Stack<String>> result = new Stack<>();  //用来保存结果，其中的每一个栈是一个运算因子（如数字3或者已经拼接好的算式（3 + 4））
+		Stack<String> result = new Stack<>();  //用来保存结果，其中的每一个元素是一个运算因子（如数字3或者已经拼接好的算式（3 + 4），或者单独的运算符）
 		for(char s : str.toCharArray()){
 			switch(s){
-			case ')':  //如果是右括号，要将之前的数据拼装为完整的算式
-				Stack<String> c1 = new Stack<>();
-				c1.push(")");
-				for(int i = 0;i<3;i++){  //取出最后入栈的3个因式（两个因式和一个运算符），入临时栈c1
-					Stack<String> c3 = result.pop();
-					while(!c3.isEmpty()){
-						c1.push(c3.pop());
-					}
+			case ')':  //如果是右括号，要将之前的数据拼装为带左右括号的完整的算式
+				String c1 = "(";
+				Stack<String> c3 = new Stack<>();  //用这个栈调整result中弹出的元素的顺序（由于第一次入栈是正序，导致弹出时为倒序，需要调整为正序后再入栈）
+				for(int i = 0;i<3;i++){  //取出最后入栈的3个因式（两个因式和一个运算符），拼接到c1中
+					c3.push(result.pop());
 				}
-				c1.push("(");  //加入左括号，拼接成完整的因式
-				Stack<String> c4 = new Stack<>();
-				c4.push(c1.toString());
-				result.push(c4);  //将拼接完整的因式封装为栈推入result栈
+				while(!c3.isEmpty()){
+					c1 += c3.pop();
+				}
+				c1 += ")";
+				result.push(c1);  //将拼接完整的因式封装为栈推入result栈
 				break;
 			default:  //如果是普通字符，将字符包装为栈存入result栈中
-				Stack<String> c2 = new Stack<>(); 
-				c2.push(s + "");
-				result.push(c2);
+				result.push(s + "");
 				break;
 			}
 //			println(result);  //打印轨迹
 		}
-		Stack<String> hehe = new Stack<>();  //由于隐式间是倒序排列的，所以需要定义另一个栈，使栈中的元素可以倒序排列
+		Stack<String> hehe = new Stack<>();  //由于因式间是倒序排列的，所以需要定义另一个栈，使栈中的元素可以倒序排列
 		while(!result.isEmpty()){
 			hehe.push(result.pop().toString());
 		}
