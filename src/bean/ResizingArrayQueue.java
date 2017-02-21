@@ -54,10 +54,10 @@ public class ResizingArrayQueue<Item> implements Iterable<Item>{
 	 * 出列
 	 * */
 	public Item dequeue(){
-		count--;
 		if(isEmpty()){
 			throw new RuntimeException("队列以空");
 		}
+		count--;
 		Item item = a[start++];  //为了避免内存泄漏，这里可以将其设置为null。
 		if(size() > 0 && size() <= a.length / 4){  //使用的空间太小，缩小数组
 			resize(a.length / 2);
