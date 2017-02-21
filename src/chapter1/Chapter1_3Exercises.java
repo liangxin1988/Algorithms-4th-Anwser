@@ -1,5 +1,9 @@
 package chapter1;
 
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.Stack;
 import framework.Title;
@@ -171,17 +175,157 @@ public class Chapter1_3Exercises  extends BaseChapter{
 				c1 += ")";
 				result.push(c1);  //将拼接完整的因式封装为栈推入result栈
 				break;
-			default:  //如果是普通字符，将字符包装为栈存入result栈中
+			default:  //如果是普通字符，直接存入result栈
 				result.push(s + "");
 				break;
 			}
 //			println(result);  //打印轨迹
 		}
-		Stack<String> hehe = new Stack<>();  //由于因式间是倒序排列的，所以需要定义另一个栈，使栈中的元素可以倒序排列
-		while(!result.isEmpty()){
-			hehe.push(result.pop().toString());
+//		Stack<String> hehe = new Stack<>();  //由于因式间是倒序排列的，所以需要定义另一个栈，使栈中的元素可以倒序排列。这个步骤其实没必要存在—_-!!
+//		while(!result.isEmpty()){
+//			hehe.push(result.pop().toString());
+//		}
+		println(result);
+	}
+	
+	@Title("1.3.10")
+	public static void question10(String str){
+		if(str == null){
+			str = "((1+2)*((3-4)*(5-6)))";  //与1.3.9要求一致
 		}
-		println(hehe);
+		println(new InfixToPostfix(str).execute());
+	}
+	
+	@Title("1.3.11")
+	public static void question11(){
+		ChapterUtil.questionNo(); //懒得做，改天再说
+	}
+	
+	@Title("1.3.12")
+	public static void question12(){
+		
+	}
+	
+	@Title("1.3.13")
+	public static void question13(){
+		queueTest(null);
+	}
+	
+	//与1.3.2用法一致，不过操作的是队列，- 和 * 表示出列。
+	private static void queueTest(String s){
+		if(s == null){
+			s = "it was - the best - of times - - - it was - the - -";
+		}
+		Queue<String> queue = new Queue<>();
+		String[] strs = s.split(" ");
+		for(String str : strs){
+			if(str.equals("-")){
+				queue.dequeue();
+			}else if(str.equals("*")){  //为了复用这段代码实现第3题增加*号标记。其含义是出栈并打印。
+				print(queue.dequeue()+"  ");
+			}else{
+				queue.enqueue(str);
+			}
+//			println(queue);  //打印轨迹
+		}
+		println(queue);
+	}
+	
+	public static class IteratorStack implements Iterable<String>{
+		
+		private String[] a;
+		
+		private int N = 0;
+		public IteratorStack(int size){
+			a = new String[size];
+		}
+		
+		public boolean isEmpty(){
+			return N == 0;
+		}
+		public int size(){
+			return N;
+		}
+		public void push(String item){
+			a[N++] = item;
+		}
+		public String pop(){
+			return a[--N];
+		}
+
+		@Override
+		public Iterator<String> iterator() {
+			return null;
+		}
+		
+		private class MyIterator<String> implements Iterator<String>{
+
+			@Override
+			public boolean hasNext() {
+				return false;
+			}
+
+			@Override
+			public String next() {
+				return null;
+			}
+		}
+		
+		public static IteratorStack copy(IteratorStack stack){
+			return stack;
+		}
+		
+	}
+	
+	/**
+	 * 将中序表达式转换为后序表达式的工具类（表达式必须拥有完整的括号）
+	 * */
+	public static class InfixToPostfix{
+		private String str;
+		public InfixToPostfix(String str){
+			this.str = str;
+		}
+		
+		public String execute(){
+			return getPostfix(str);
+		}
+		
+		/**
+		 * 给出一个两边带括号的中序表达式，返回一个两边带括号的后序表达式
+		 * */
+		private String getPostfix(String str){
+			if(!str.startsWith("(")){  //不是表达式，直接返回
+				return str;
+			}
+			
+			str = str.substring(1,str.length() - 1);//去掉首尾的括号，方便后续解析
+			String start,end;  //每个表达式都有唯一的运算符（子表达式中的运算符不算，如((1+2)*4)中，只有*号算运算符），将运算符前半部分和后半部分拆为start和end
+			int index = -1;  //保存当前表达式中运算符的位置
+
+			Stack<Integer> opt = new Stack<>();
+			char[] chars = str.toCharArray();
+			for(int i = 0;i<chars.length;i++){  //遇到符号入栈，遇到右括号出栈，这样保证循环完毕后栈中只有一个运算符，即表达式的运算符
+				switch (chars[i]) {
+				case '+':case '-':case '*':case '/':
+					opt.push(i);  
+					break;
+				case ')':
+					opt.pop();  
+					break;
+				default:
+					break;
+				}
+//				println("stack = "+opt);  //打印轨迹
+			}
+			index = opt.pop();  //注意：这里用了最容易理解的机制找index，缺点是每次递归都要遍历字符串。其实可以考虑用一次遍历找到所有符号位，有兴趣的小伙伴可以优化一下
+			start = str.substring(0,index);  //以运算符为分界，将左右部分进行切割
+			end= str.substring(index + 1,str.length());
+			
+			start = getPostfix(start);  //左右两部分有可能也是表达式，通过递归将子表达式拼接为后序表达式
+			end = getPostfix(end);
+			return "("+start+end+str.charAt(index)+")";  //将括号拼接回来，并将括号中的字符拼接为后序表达式。
+		}
+		
 	}
 	
 	public static class FixedCapacityStackOfStrings{
