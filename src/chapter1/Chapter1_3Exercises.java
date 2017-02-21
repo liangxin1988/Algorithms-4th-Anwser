@@ -5,6 +5,7 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 
 import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.ResizingArrayQueue;
 import edu.princeton.cs.algs4.Stack;
 import framework.Title;
 import Answer.BaseChapter;
@@ -48,29 +49,13 @@ public class Chapter1_3Exercises  extends BaseChapter{
 	@Title("1.3.3")
 	public static void question3(){
 		//通过题目2中的语法规则模拟出入栈规则（如果有）或者近似规则。其中数字表示入栈，*表示出栈并打印。
-		//a
-		FixedCapacityStackOfStrings a = new FixedCapacityStackOfStrings(10);
 		print("a可以实现    :  ");question2("0 1 2 3 4 * * * * * 5 6 7 8 9 * * * * *");
-		//b
-		FixedCapacityStackOfStrings b = new FixedCapacityStackOfStrings(10);
 		print("b无法实现    :  ");question2("0 1 2 3 4 * 5 6 * 7 8 * * * * * 9 * * *");  //0比1早入栈，所以0不能比1早出栈
-		//c
-		FixedCapacityStackOfStrings c = new FixedCapacityStackOfStrings(10);
 		print("c可以实现    :  ");question2("0 1 2 * 3 4 5 * 6 * 7 * * 8 * 9 * * * *");
-		//d
-		FixedCapacityStackOfStrings d = new FixedCapacityStackOfStrings(10);
 		print("d可以实现    :  ");question2("0 1 2 3 4 * * * * * 5 * 6 * 7 * 8 * 9 *");
-		//e
-		FixedCapacityStackOfStrings e = new FixedCapacityStackOfStrings(10);
 		print("e可以实现    :  ");question2("0 1 * 2 * 3 * 4 * 5 * 6 * 7 8 9 * * * *");
-		//f
-		FixedCapacityStackOfStrings f = new FixedCapacityStackOfStrings(10);
 		print("f无法实现    :  ");question2("0 * 1 2 3 4 * 5 6 * * * 7 8 * * * 9 * *");  //7比1晚入栈，所以7必须在1出栈前出栈
-		//g
-		FixedCapacityStackOfStrings g = new FixedCapacityStackOfStrings(10);
 		print("g无法实现    :  ");question2("0 1 * 2 3 4 * 5 6 7 * 8 9 * * * * * * *");  //与b类似
-		//h
-		FixedCapacityStackOfStrings h = new FixedCapacityStackOfStrings(10);
 		print("h可以实现    :  ");question2("0 1 2 * * 3 4 * * 5 6 * * 7 8 * * 9 * *");
 	}
 	
@@ -197,18 +182,27 @@ public class Chapter1_3Exercises  extends BaseChapter{
 	}
 	
 	@Title("1.3.11")
-	public static void question11(){
-		ChapterUtil.questionNo(); //懒得做，改天再说
+	public static void question11(String str){
+		if(str == null){
+			str = "((12+)((34-)(96-)*)*)";
+		}
+		println(EvaluatePostfix.execute(str));
 	}
 	
 	@Title("1.3.12")
 	public static void question12(){
-		
+		ChapterUtil.questionNo();  //不知道啥意思
 	}
 	
 	@Title("1.3.13")
 	public static void question13(){
-		queueTest(null);
+		print("a可以实现    ：    ");queueTest("0 1 2 3 4 5 6 7 8 9 * * * * * * * * * *"); 
+		println("剩下的都不能实现。队列出栈的结果只有可能为a一种情况");
+	}
+	
+	@Title("1.3.14")
+	public static void question14(){
+		println("参考ResizingArrayQueue代码");
 	}
 	
 	//与1.3.2用法一致，不过操作的是队列，- 和 * 表示出列。
@@ -231,50 +225,41 @@ public class Chapter1_3Exercises  extends BaseChapter{
 		println(queue);
 	}
 	
-	public static class IteratorStack implements Iterable<String>{
-		
-		private String[] a;
-		
-		private int N = 0;
-		public IteratorStack(int size){
-			a = new String[size];
-		}
-		
-		public boolean isEmpty(){
-			return N == 0;
-		}
-		public int size(){
-			return N;
-		}
-		public void push(String item){
-			a[N++] = item;
-		}
-		public String pop(){
-			return a[--N];
-		}
-
-		@Override
-		public Iterator<String> iterator() {
-			return null;
-		}
-		
-		private class MyIterator<String> implements Iterator<String>{
-
-			@Override
-			public boolean hasNext() {
-				return false;
+	/**
+	 * 对后序表达式进行求值
+	 * */
+	public static class EvaluatePostfix{
+		public static double execute(String str){
+			Stack<Double> num = new Stack<>();
+			
+			for(char c : str.toCharArray()){
+				double a = 0,b = 0;
+				switch (c) {
+				case '+':
+					num.push(num.pop() + num.pop());
+					break;
+				case'-':
+					a = num.pop();
+					b = num.pop();
+					num.push(b - a);
+					break;
+				case'*':
+					num.push(num.pop() * num.pop());
+					break;
+				case'/':
+					a = num.pop();
+					b = num.pop();
+					num.push(b / a);
+					break;
+				case ')':case ' ':case '(':
+					break;
+				default:
+					num.push(Double.parseDouble(c+""));
+					break;
+				}
 			}
-
-			@Override
-			public String next() {
-				return null;
-			}
+			return num.pop();
 		}
-		
-		public static IteratorStack copy(IteratorStack stack){
-			return stack;
-		}
-		
 	}
 	
 	/**
