@@ -46,7 +46,6 @@ public class Executer {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		println();
 		println("==============================================================");
 		println();
 	}
