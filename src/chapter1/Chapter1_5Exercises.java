@@ -17,40 +17,26 @@ public class Chapter1_5Exercises extends BaseChapter {
 
 	@Title("1.5.1")
 	public static void question1(){
-		int[] a = {9,3,5,7,2,5,0,4};
-		int[] b = {0,4,8,2,1,7,3,2};
-		
-		UF qf = new QuickFindUF(10);
-		for(int i = 0;i<a.length;i++){
-			qf.union(a[i], b[i]);
-		}
+		executeUF(new QuickFindUF(10));
 	}
 	
 	@Title("1.5.2")
 	public static void question2(){
-		int[] a = {9,3,5,7,2,5,0,4};
-		int[] b = {0,4,8,2,1,7,3,2};
-		
-		UF qf = new QuickUnionUF(10);
-		for(int i = 0;i<a.length;i++){
-			qf.union(a[i], b[i]);
-		}
+		executeUF(new QuickUnionUF(10));
 	}
 	
 	@Title("1.5.3")
 	public static void question3(){
+		executeUF(new WeightQuickUnionUF(10));
+	}
+	
+	private static void executeUF(UF uf){
 		int[] a = {9,3,5,7,2,5,0,4};
 		int[] b = {0,4,8,2,1,7,3,2};
 		
-		UF qf = new WeightQuickUnionUF(10);
 		for(int i = 0;i<a.length;i++){
-			qf.union(a[i], b[i]);
+			uf.union(a[i], b[i]);
 		}
-	}
-	
-	@Title("1.5.4")
-	public static void question4() throws IOException{
-		FileUtil.getDataFile();
 	}
 	
 	private abstract static class UF{
