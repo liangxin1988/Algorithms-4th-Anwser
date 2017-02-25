@@ -4,12 +4,13 @@ import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
+import util.ChapterUtil;
+
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.ResizingArrayQueue;
 import edu.princeton.cs.algs4.Stack;
 import framework.Title;
 import Answer.BaseChapter;
-import Answer.ChapterUtil;
 import static edu.princeton.cs.algs4.StdOut.*;
 
 /**

@@ -1,10 +1,11 @@
 package chapter1;
 
 import java.util.Iterator;
+
+import util.ChapterUtil;
 import static edu.princeton.cs.algs4.StdOut.*;
 import framework.Title;
 import Answer.BaseChapter;
-import Answer.ChapterUtil;
 
 public class Chapter1_3ListExercises extends BaseChapter {
 

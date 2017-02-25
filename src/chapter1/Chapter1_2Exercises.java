@@ -6,8 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 
+import util.ChapterUtil;
+
 import Answer.BaseChapter;
-import Answer.ChapterUtil;
 import edu.princeton.cs.algs4.Counter;
 import edu.princeton.cs.algs4.Interval1D;
 import edu.princeton.cs.algs4.Interval2D;

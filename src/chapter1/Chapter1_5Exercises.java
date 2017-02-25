@@ -5,10 +5,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream.GetField;
 import java.util.Arrays;
 
+import util.FileUtil;
+
 import edu.princeton.cs.algs4.Counter;
 import framework.Title;
 import Answer.BaseChapter;
-import Answer.FileUtil;
 
 import static edu.princeton.cs.algs4.StdOut.println;
 

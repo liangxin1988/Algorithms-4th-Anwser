@@ -5,8 +5,9 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
+import util.ChapterUtil;
+
 import Answer.BaseChapter;
-import Answer.ChapterUtil;
 
 import edu.princeton.cs.algs4.StdRandom;
 import framework.Title;
