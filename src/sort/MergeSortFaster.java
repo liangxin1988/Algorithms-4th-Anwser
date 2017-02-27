@@ -50,7 +50,7 @@ public class MergeSortFaster extends BaseSort{
 		if(end - start <= 5){
 			//使用插入排序加快小数组的排序速度
 			for(int i = start;i<=end;i++){
-				for(int j = i + 1;j<=end && less(a[j], a[j+1]);j++){
+				for(int j = i + 1;j<end && less(a[j], a[j+1]);j++){
 					exch(a, j, j+1);
 				}
 			}
