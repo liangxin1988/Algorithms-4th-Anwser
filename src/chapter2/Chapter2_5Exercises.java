@@ -3,15 +3,19 @@ package chapter2;
 import Answer.BaseChapter;
 import Answer.ChapterUtil;
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.Quick;
 import edu.princeton.cs.algs4.Selection;
 import edu.princeton.cs.algs4.StdRandom;
 import framework.Title;
 import static edu.princeton.cs.algs4.StdOut.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
 import javax.swing.text.html.HTMLDocument.HTMLReader.ParagraphAction;
+
+
 
 public class Chapter2_5Exercises extends BaseChapter {
 
@@ -56,9 +60,57 @@ public class Chapter2_5Exercises extends BaseChapter {
 		for(int i = 0;i < is.length;i++){
 			is[i] = i;
 		}
-
+		StdRandom.shuffle(is);
 		for(int i = 0;i<is.length;i++){
 			println(select(is, 0, is.length - 1, i));
+		}
+	}
+	
+	@Title("2.5.8")
+	public static void question8(String str){
+		if(str == null){
+			str = "a,b,c,d,d,d,e,e,d,a,d";
+		}
+		String[] strs = str.split(",");
+		
+		ArrayList<StringCounter> al = new ArrayList<>();
+		outer:
+		for(String s : strs){
+			for(StringCounter sc : al){
+				if(sc.str.equals(s)){
+					sc.count++;
+					continue outer;
+				}
+			}
+			al.add(new StringCounter(s));
+		}
+		StringCounter[] scs = new StringCounter[al.size()];
+		al.toArray(scs);
+		Quick.sort(scs);
+		println(Arrays.toString(scs));
+	}
+	
+	public static class StringCounter implements Comparable<StringCounter>{
+		String str;
+		int count;
+		
+		public StringCounter(String str){
+			this.str = str;
+			count = 1;
+		}
+
+		@Override
+		public int compareTo(StringCounter o) {
+			return o.count - this.count;
+		}
+		
+		@Override
+		public String toString() {
+			StringBuilder sb = ChapterUtil.getStringBuilder();
+			sb.append("str = ").append(str);
+			sb.append(",count = ").append(count);
+			sb.append("\n");
+			return sb.toString();
 		}
 	}
 	
