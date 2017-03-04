@@ -90,6 +90,40 @@ public class Chapter2_5Exercises extends BaseChapter {
 		println(Arrays.toString(scs));
 	}
 	
+	@Title("2.5.10")
+	public static void question10(){
+		Version v1 = new Version("115.1.1");
+		Version v2 = new Version("115.10.1");
+		println(less(v1,v2));
+	}
+	
+	public static class Version implements Comparable<Version>{
+		int first;
+		int secend;
+		int third;
+		
+		public Version(String version){
+			String[] str = version.split("\\.");
+			first = Integer.parseInt(str[0]);
+			secend = Integer.parseInt(str[1]);
+			third = Integer.parseInt(str[2]);
+		}
+
+		@Override
+		public int compareTo(Version o) {
+			if(this.first != o.first){
+				return this.first - o.first;
+			}
+			if(this.secend != o.secend){
+				return this.secend - o.secend;
+			}
+			
+			return this.third - o.third;
+		}
+		
+		
+	}
+	
 	public static class StringCounter implements Comparable<StringCounter>{
 		String str;
 		int count;
