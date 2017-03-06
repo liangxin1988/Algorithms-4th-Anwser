@@ -8,6 +8,7 @@ import chapter1.Chapter1_3Exercises;
 import chapter1.Chapter1_3ListExercises;
 import chapter1.Chapter1_4Exercises;
 import chapter1.Chapter1_5Exercises;
+import chapter2.Chapter2_5Exercises;
 import chapter2.Chapter2_1Exercises;
 import chapter2.Chapter2_2Creative;
 import chapter2.Chapter2_2Exercises;
@@ -30,6 +31,7 @@ public class InitChapterManager {
 		exerciseManager.regiestQuestion(new Chapter1_3ListExercises()); 
 		exerciseManager.regiestQuestion(new Chapter1_4Exercises()); 
 		exerciseManager.regiestQuestion(new Chapter1_5Exercises()); 
+		exerciseManager.regiestQuestion(new Chapter2_5Exercises()); 
 		
 		exerciseManager.regiestQuestion(new Chapter2_1Exercises()); 
 		exerciseManager.regiestQuestion(new Chapter2_2Exercises()); 

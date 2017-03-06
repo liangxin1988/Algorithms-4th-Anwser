@@ -12,7 +12,19 @@ import edu.princeton.cs.algs4.StdRandom;
 public class ChapterUtil {
 
 	//可复用的StringBuilder
-	private static StringBuilder sb = new StringBuilder();
+	private static StringBuilder sb;
+	
+	/**
+	 * 获取一个可用的StringBuilder
+	 * */
+	public static StringBuilder getStringBuilder(){
+		if(sb == null){
+			sb = new StringBuilder();
+		}else{
+			sb.delete(0, sb.length());
+		}
+		return sb;
+	}
 	/**
 	 * 用随机数初始化int类型数组（x为随机限制的最大int值）
 	 * */
@@ -26,7 +38,7 @@ public class ChapterUtil {
 	 * 在一些需要格式化的操作中，快速获得由count个空格组成的字符串
 	 * */
 	public static String getEmptyChar(int count){
-		sb.delete(0, sb.length());
+		StringBuilder sb = getStringBuilder();
 		for(int i = 0;i<count;i++){
 			sb.append(" ");
 		}
