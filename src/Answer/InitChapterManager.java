@@ -33,13 +33,12 @@ public class InitChapterManager {
 		exerciseManager.regiestQuestion(new Chapter1_3ListExercises()); 
 		exerciseManager.regiestQuestion(new Chapter1_4Exercises()); 
 		exerciseManager.regiestQuestion(new Chapter1_5Exercises()); 
-		exerciseManager.regiestQuestion(new Chapter2_5Exercises()); 
-		exerciseManager.regiestQuestion(new Chapter2_5Exercises()); 
 		
 		exerciseManager.regiestQuestion(new Chapter2_1Exercises()); 
 		exerciseManager.regiestQuestion(new Chapter2_2Exercises()); 
 		exerciseManager.regiestQuestion(new Chapter2_2Creative()); 
 		exerciseManager.regiestQuestion(new Chapter2_2Experiments()); 
+		exerciseManager.regiestQuestion(new Chapter2_5Exercises()); 
 
 		exerciseManager.regiestQuestion(new Chapter3_1Exercises()); 
 		
