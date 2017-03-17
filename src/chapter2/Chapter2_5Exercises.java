@@ -1,7 +1,6 @@
 package chapter2;
 
 import Answer.BaseChapter;
-import Answer.ChapterUtil;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Quick;
 import edu.princeton.cs.algs4.Selection;
@@ -14,6 +13,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 import javax.swing.text.html.HTMLDocument.HTMLReader.ParagraphAction;
+
+import util.ChapterUtil;
 
 
 

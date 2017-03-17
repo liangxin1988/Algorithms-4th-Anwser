@@ -14,6 +14,7 @@ import chapter2.Chapter2_1Exercises;
 import chapter2.Chapter2_2Creative;
 import chapter2.Chapter2_2Exercises;
 import chapter2.Chapter2_2Experiments;
+import chapter3.Chapter3_1Exercises;
 import framework.ExerciseManager;
 
 /**
@@ -39,6 +40,8 @@ public class InitChapterManager {
 		exerciseManager.regiestQuestion(new Chapter2_2Exercises()); 
 		exerciseManager.regiestQuestion(new Chapter2_2Creative()); 
 		exerciseManager.regiestQuestion(new Chapter2_2Experiments()); 
+
+		exerciseManager.regiestQuestion(new Chapter3_1Exercises()); 
 		
 	}
 	

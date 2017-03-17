@@ -25,6 +25,10 @@ public class ChapterUtil {
 		}
 		return sb;
 	}
+	
+	public static StringBuilder getStringBuilder(String str){
+		return getStringBuilder().append(str);
+	}
 	/**
 	 * 用随机数初始化int类型数组（x为随机限制的最大int值）
 	 * */
