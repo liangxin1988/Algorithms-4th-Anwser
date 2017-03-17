@@ -225,7 +225,7 @@ public class OrderedSequentialSearchST<Key extends Comparable<Key>,Value> extend
 	}
 
 	@Override
-	public Value get(Key key) {
+	public Value get(Key key) {   //没仔细考虑，但是链表有序，能否通过二分法实现get，put和delete？
 		if(isEmpty() || key == null){
 			return null;
 		}
