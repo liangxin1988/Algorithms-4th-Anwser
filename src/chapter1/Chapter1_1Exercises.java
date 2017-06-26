@@ -16,23 +16,23 @@ public class Chapter1_1Exercises extends BaseChapter{
 
 	@Title("1.1.1")
 	public static void question1(){
-		print((0 + 15) / 2);  println("  整数运算，得到的结果依然为整数。小数部分被舍弃（不是四舍五入）");
-		print(2.0e-6 * 100000000.1); println("  2.0e-6，表示2乘以10的-6次方，也就是2 * 0.000001");
-		println(true && false || true && false);
+		print((0 + 15) / 2);  println("  说明：整数运算，得到的结果依然为整数。小数部分被舍弃（不是四舍五入）");
+		print(2.0e-6 * 100000000.1); println("  说明：2.0e-6，表示2乘以10的-6次方，也就是2 * 0.000001。而默认的浮点型为double，足以处理最后的.1。如果使用f修饰两个浮点数，则结果为200");
+		print(true && false || true && false);  println("  说明：&&的优先级高于||");
 	}
 	
 	@Title("1.1.2")
 	public static void question2(){
-		println((1 + 2.236) / 2);
-		print(1 + 2 + 3 + 4.0);  println("  运算符运算结果的变量类型，与参与运算的所有变量中，等级最高的变量类型一致。所以这里的结果为10.0（double），而不是10（int）");
-		println(4.1 >= 4);
+		print((1 + 2.236) / 2);println("  说明：因为表达式中存在浮点数2.236，所以经过计算后，整个表达式中的所有数据都会自动提升为浮点数，结果也就是浮点数");
+		println(1 + 2 + 3 + 4.0);
+		print(4.1 >= 4);println("  说明：两个不同类型无法直接比较，不过编译器会自动将4提升为double，然后进行比较");
 		print(1 + 2 + "3");  println("  +运算符的运算顺序为从左到右，进行1 + 2时，得到结果3。将3 与 “3”相加时，会自动调用字符串连接方法，将两者拼接为字符串“33”");
 	}
 	
 	@Title("1.1.3")
 	public static void question3(String x,String y,String z){
 		int a = 2,b = 2,c = 2;
-		if(x != null){
+		if(x != null && y != null && z!= null){
 			a = Integer.parseInt(x);
 			b = Integer.parseInt(y);
 			c = Integer.parseInt(z);
@@ -42,16 +42,20 @@ public class Chapter1_1Exercises extends BaseChapter{
 
 	@Title("1.1.4")
 	public static void question4(){
-		println("if(a > b) then c = 0;   //java中没有then关键字，应该去掉");
-		println("if a > b {c = 0;}  //if后面的判断条件，需要括号");
+		int a = 0,b= 0,c = 0;
+		println("if(a > b) then c = 0;   //java中没有then关键字。应改为：if(a > b) c = 0;");
+		println("if a > b {c = 0;}  //if后面的判断条件，需要括号。应改为：if(a > b){c = 0;}");
 		println("if (a > b) c = 0;  //木有问题，if后面的代码块如果只有一句代码，则大括号可以省略");
-		println("if (a > b) c = 0 else b = 0;  //if后面的代码块中，c = 0是一条语句。java中的所有语句必须以“;”结尾");
+		println("if (a > b) c = 0 else b = 0;  //if后面的代码块中，c = 0是一条语句。java中的所有语句必须以“;”结尾。应改为：if (a > b) c = 0; else b = 0;");
 	}
 	
 	@Title("1.1.5")
 	public static void question5(String a,String b){
-		double num1 = Double.parseDouble(a);
-		double num2 = Double.parseDouble(b);
+		double num1 = 0,num2 = 0;
+		if(a != null && b != null){
+			num1 = Double.parseDouble(a);
+			num2 = Double.parseDouble(b);
+		}
 		println(num1 > 0 && num1 < 1 && num2 > 0 && num2 < 1);
 	}
 	
@@ -60,7 +64,7 @@ public class Chapter1_1Exercises extends BaseChapter{
 		int f = 0;
 		int g = 1;
 		for(int i = 0;i<=15;i++){
-			println(f);  //斐波那契数列的前N(N为循环次数)个数
+			println(f);  //斐波那契数列的前16(16为循环次数)个数
 			f = f + g;  //每次循环，得到的是当前数的下一个数
 			g = f - g;  //每次循环，得到的是上一次循环的f，也就是当前的数。
 		}
@@ -68,27 +72,35 @@ public class Chapter1_1Exercises extends BaseChapter{
 	
 	@Title("1.1.7")
 	public static void question7(){
-		double t = 9.0;
-		while(Math.abs(t - 9.0/t) > .001) //牛顿迭代法求平方根
-			t = (9.0/t + t)/2.0;
-		printf("%.5f\n",t);
-		
-		int sum1 = 0;
-		for(int i = 1;i<1000;i++){  //外层循环执行999次
-			for(int j = 0;j<i;j++){  //内层循环执行次数与i一致
-				sum1++;
-			}
+		{
+			println("a:");
+			double t = 9.0;
+			while(Math.abs(t - 9.0/t) > .001) //牛顿迭代法求平方根
+				t = (9.0/t + t)/2.0;
+			printf("%.5f\n",t);
 		}
-		println(sum1);  //执行次数为1，2，3...999的等差数列，使用等差数列求和公式可得答案
-		
-		int sum2 = 0;
-		for(int i = 1;i<1000;i*=2){  //外层循环执行10次（2的10次方为1024，从i=1(2^0)一直执行到i=512(2^9)，一共10次）
-			for(int j = 0;j<1000;j++){  //内层循环每次固定执行1000次。
-				sum2++;
+
+		{
+			println("b:");
+			int sum = 0;
+			for(int i = 1;i<1000;i++){  //外层循环执行999次
+				for(int j = 0;j<i;j++){  //内层循环执行次数与i一致
+					sum++;
+				}
 			}
+			println(sum);  //执行次数为1，2，3...999的等差数列，使用等差数列求和公式可得答案
 		}
-		println(sum2);  //内外层循环相乘，等于10000
-		
+
+		{
+			println("c:");
+			int sum = 0;
+			for(int i = 1;i<1000;i*=2){  //外层循环执行10次（2的10次方为1024，从i=1(2^0)一直执行到i=512(2^9)，一共10次）
+				for(int j = 0;j<1000;j++){  //内层循环每次固定执行1000次。
+					sum++;
+				}
+			}
+			println(sum);  //内外层循环相乘，等于10000
+		}
 	}
 	
 	@Title("1.1.8")
