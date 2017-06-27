@@ -202,18 +202,26 @@ public class Chapter1_1Exercises extends BaseChapter{
 	
 	@Title("1.1.15")
 	public static void question15(String numStr){
-		int num = 10;
+		int num = 5;
 		if(numStr != null){
 			num = Integer.parseInt(numStr);
 		}
-		int[] nums = new int[num * num];
+		int[] nums = new int[num * num];  //num * num没啥具体含义，就是想让元素个数多一些
 		ChapterUtil.initArray(nums, num);
-		int[] count = new int[num];
-		for(int i = 0;i<nums.length;i++){
-			count[nums[i]]++;
-		}
-		println(Arrays.toString(count));
+		println("打印原始数组：");
+		println(Arrays.toString(nums));
+		println("打印统计数组");
+		println(Arrays.toString(histogram(nums,num)));
 	}
+
+    /**1.1.15要求的方法*/
+	private static int[] histogram(int[] a,int m){
+	    int[] count = new int[m];
+        for(int i : a){
+            count[i]++;
+        }
+	    return count;
+    }
 	
 	@Title("1.1.16")
 	public static void question16(){
@@ -239,14 +247,13 @@ public class Chapter1_1Exercises extends BaseChapter{
 	@Title("1.1.19")
 	public static void question19(){
 		int x = 50;
-		fibonacci2Cache = new long[x + 1];
-		System.out.println("所需时间较长，请耐心等待");
+		println("所需时间较长，请耐心等待");
 		//粗略估算运行时间
 		long time = System.currentTimeMillis();
-		println(fibonacci1(x));
+		println(Fibonacci.F(x));
 		println("使用时间："+(System.currentTimeMillis() - time));
 		time = System.currentTimeMillis();
-		println(fibonacci2(x));
+		println(FibonacciFaster.F(x));
 		println("使用时间："+(System.currentTimeMillis() - time));
 	}
 	
@@ -342,23 +349,8 @@ public class Chapter1_1Exercises extends BaseChapter{
 		if(x == 1) return Math.log(1);
 		return lnFactorial(x - 1) + Math.log(x);  //由于乘积的对数等于对数的和（log(a * b) == log(a) + log(b)），所以原题可以简化为递归计算对数和
 	}
-	
-	//不带缓存的斐波那契数列
-	private static long fibonacci1(int n){
-		if(n == 0) return 0;
-		if(n == 1) return 1;
-		return fibonacci1(n - 1) + fibonacci1(n - 2);
-	}
-	
-	//带缓存的斐波那契数列
-	private static long[] fibonacci2Cache;
-	private static long fibonacci2(int n){
-		if(n == 0) return 0;
-		if(n == 1) return 1;
-		if(fibonacci2Cache[n] != 0) return fibonacci2Cache[n];  //如果之前保存过结果，则直接返回保存的结果，尽量避免进行递归运算。以空间换时间
-		return fibonacci2Cache[n] = fibonacci2(n - 1) + fibonacci2(n - 2);  //将结果进行保存。
-	}
-	
+
+	/**1.1.18题目中使用的方法*/
 	private static int mystery1(int a,int b){  //递归计算乘法
 		if(b == 0){
 			return 0;
@@ -366,9 +358,10 @@ public class Chapter1_1Exercises extends BaseChapter{
 		if(b % 2 == 0){
 			return mystery1(a+a, b / 2);  //将乘法转换为加法，将b的每一位取出，如果为0，不管。如果不为0，则计算当前位与a的乘积
 		}
-		return mystery1(a+a, b / 2) + a;  //每次返回的值中增加了a，a是此次递归时b的当前位与a的乘积，最后de结果就是所有不为0位的和。
+		return mystery1(a+a, b / 2) + a;  //每次返回的值中增加了a，a是此次递归时b的当前位与a的乘积，最后的结果就是所有不为0位的和。
 	}
-	
+
+    /**1.1.18题目中使用的方法的改版*/
 	private static int mystery2(int a,int b){
 		if(b == 0){
 			return 1;
@@ -378,6 +371,29 @@ public class Chapter1_1Exercises extends BaseChapter{
 		}
 		return mystery2(a*a, b / 2) * a;
 	}
-	
-	
+}
+
+/**1.1.19原题中的斐波那契计算类*/
+class Fibonacci{
+    static long F(int N){
+        if(N == 0) return 0;
+        if(N == 1) return 1;
+        return F(N - 1) + F(N - 2);
+    }
+}
+/**1.1.19中斐波那契计算类的优化版本通过数组缓存计算的中间结果*/
+class FibonacciFaster{
+    /**最为缓存使用的数组。为了简化操作，长度定为100*/
+    static long cache[] = new long[100];
+    static long F(int N){
+        if(N >= 100){
+            throw new RuntimeException("请输入0 ~ 99的整数");
+        }
+        if(N == 0) return 0;
+        if(N == 1) return 1;
+        if(cache[N] == 0){
+            cache[N] =  F(N - 1) + F(N - 2);
+        }
+        return cache[N];
+    }
 }
