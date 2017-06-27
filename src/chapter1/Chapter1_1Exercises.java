@@ -2,7 +2,6 @@ package chapter1;
 import static edu.princeton.cs.algs4.StdOut.*;
 
 import java.util.Arrays;
-import java.util.Random;
 import java.util.Scanner;
 
 import util.ChapterUtil;
@@ -11,7 +10,7 @@ import Answer.BaseChapter;
 
 import edu.princeton.cs.algs4.StdRandom;
 import framework.Title;
-
+//完成
 public class Chapter1_1Exercises extends BaseChapter{
 
 	@Title("1.1.1")
@@ -309,27 +308,34 @@ public class Chapter1_1Exercises extends BaseChapter{
 	}
 	
 	@Title("1.1.24")
-	public static void question24(){
-		println(gcd(1111111,1234567,0));
+	public static void question24(String x1,String x2){
+		int x = 1111111;
+		int y = 1234567;
+		if(x1 != null && x2 != null){
+			x = Integer.parseInt(x1);
+			y = Integer.parseInt(x2);
+		}
+		println(Euclid(x, y,0));
 	}
 	
 	@Title("1.1.25")
 	public static void question25(){
 		ChapterUtil.questionNo();
 	}
-	
-	public static int gcd(int p,int q,int level){
+
+	/**1.1.24要求使用的可以打印参数的欧几里得算法版本*/
+	private static int Euclid(int p, int q, int level){
 		println(ChapterUtil.getEmptyChar(level)+"p = "+p+",q = "+q);
 		if(q == 0) return p;
 		int r = p % q;
-		return gcd(q,r,level + 1);
+		return Euclid(q,r,level + 1);
 	}
 	
-	public static int rank(int key,int[] a){
+	private static int rank(int key,int[] a){
 		return rank(key,a,0,a.length - 1);
 	}
 	
-	public static int rank(int key,int[] a,int lo,int hi){
+	private static int rank(int key,int[] a,int lo,int hi){
 		if(lo > hi) return -1;
 		int mid = lo + (hi - lo) / 2;
 		if(key < a[mid]) return rank(key,a,lo,mid - 1);
@@ -338,7 +344,7 @@ public class Chapter1_1Exercises extends BaseChapter{
 	}
 
 	/**1.1.22题目要求的方法*/
-	public static int rankByLevel(int key,int[] a,int lo,int hi,int level){
+	private static int rankByLevel(int key,int[] a,int lo,int hi,int level){
 		println(ChapterUtil.getEmptyChar(level)+"lo = "+lo+",hi = "+hi);
 		if(lo > hi) return -1;
 		int mid = lo + (hi - lo) / 2;
@@ -347,7 +353,7 @@ public class Chapter1_1Exercises extends BaseChapter{
 		else return mid;
 	}
 	/**1.1.20中，計算阶乘的方法*/
-	public static long factorial(int x){
+	private static long factorial(int x){
 		if(x == 1) return 1;
 		return factorial(x - 1) * x;  //阶乘等于当前数乘以上一个数的阶乘
 	}
