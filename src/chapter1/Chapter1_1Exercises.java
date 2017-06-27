@@ -137,7 +137,7 @@ public class Chapter1_1Exercises extends BaseChapter{
 				if(i == -1){  //打印列号
 					printf(format,j == -1?" ":""+j);
 				}else if(j == -1){  //打印行号
-					printf(format,i == -1?" ":""+i);
+					printf(format,""+i);
 				}else{  //打印数组内容
 					printf(format,a[i][j]?"*":" ");
 				}
