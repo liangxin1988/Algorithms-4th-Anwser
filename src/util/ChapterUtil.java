@@ -42,9 +42,16 @@ public class ChapterUtil {
 	 * 在一些需要格式化的操作中，快速获得由count个空格组成的字符串
 	 * */
 	public static String getEmptyChar(int count){
+		return getMutChar(count,' ');
+	}
+
+	/**
+	 * 在一些需要格式化的操作中，快速获得由count个给定字符组成的字符串
+	 * */
+	public static String getMutChar(int count,char c){
 		StringBuilder sb = getStringBuilder();
 		for(int i = 0;i<count;i++){
-			sb.append(" ");
+			sb.append(c);
 		}
 		return sb.toString();
 	}

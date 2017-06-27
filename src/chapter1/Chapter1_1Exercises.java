@@ -268,7 +268,7 @@ public class Chapter1_1Exercises extends BaseChapter{
 	public static void question21(){
 		println("请输入数据\n");
 		Scanner scanner = new Scanner(System.in);
-		String format = "%5s%4d%4d%6.3f";
+		String format = "%10s%4d%4d%10.3f";
 		while(scanner.hasNextLine()){
 			String str = scanner.nextLine();
 			String[] strs = str.split(" ");
@@ -281,24 +281,31 @@ public class Chapter1_1Exercises extends BaseChapter{
 	@Title("1.1.22")
 	public static void question22(){
 		int a[] = {85,54,6,5,8,52,6,8,6,65,6,85,3};
-		Arrays.sort(a);
+		Arrays.sort(a);  //使用二分法查找前必须保证数组有序
 		rankByLevel(52, a, 0, a.length - 1, 0);
 	}
 	
 	@Title("1.1.23")
-	public static void question23(){
-		int a[] = {85,54,6,5,8,52,6,8,6,65,6,85,3};
-		int list[] = {85,54,6,35,8,52,26,8,6,365,6,85,3,56,654,6,46,5};
+	public static void question23(String str){
+		int a[] = {85,54,6,5,8,52,6,8,6,65,6,85,3};  //白名单
+		int list[] = {85,54,6,35,8,52,26,8,6,365,6,85,3,56,654,6,46,5};  //测试数据
 		char x = '-';
-		Arrays.sort(a);
+		if(str != null){
+			char cacheChar = str.charAt(0);
+			if(cacheChar == '-' || cacheChar == '+'){
+				x = cacheChar;
+			}
+		}
+		Arrays.sort(a);  //二分法查找前要保证数组有序
 		for(int integer : list){
 			int index = rank(integer,a);
-			if(x == '+' && index != -1){
+			if(x == '+' && index == -1){
 				print(integer + " ");
-			}else if(x == '-' && index == -1){
+			}else if(x == '-' && index != -1){
 				print(integer + " ");
 			}
 		}
+		println();
 	}
 	
 	@Title("1.1.24")
@@ -329,7 +336,8 @@ public class Chapter1_1Exercises extends BaseChapter{
 		else if(key > a[mid]) return rank(key,a,mid + 1,hi);
 		else return mid;
 	}
-	
+
+	/**1.1.22题目要求的方法*/
 	public static int rankByLevel(int key,int[] a,int lo,int hi,int level){
 		println(ChapterUtil.getEmptyChar(level)+"lo = "+lo+",hi = "+hi);
 		if(lo > hi) return -1;
@@ -338,14 +346,14 @@ public class Chapter1_1Exercises extends BaseChapter{
 		else if(key > a[mid]) return rankByLevel(key,a,mid + 1,hi,level + 1);
 		else return mid;
 	}
-	//递归计算阶乘
+	/**1.1.20中，計算阶乘的方法*/
 	public static long factorial(int x){
 		if(x == 1) return 1;
 		return factorial(x - 1) * x;  //阶乘等于当前数乘以上一个数的阶乘
 	}
 	
-	//递归计算阶乘对数
-	public static double lnFactorial(int x){
+	/**題目1.1.20中方法的另一個版本归计算阶乘对数*/
+	private static double lnFactorial(int x){
 		if(x == 1) return Math.log(1);
 		return lnFactorial(x - 1) + Math.log(x);  //由于乘积的对数等于对数的和（log(a * b) == log(a) + log(b)），所以原题可以简化为递归计算对数和
 	}
