@@ -1,6 +1,7 @@
 package chapter1;
 
 import static edu.princeton.cs.algs4.StdOut.print;
+import static edu.princeton.cs.algs4.StdOut.printf;
 import static edu.princeton.cs.algs4.StdOut.println;
 import Answer.BaseChapter;
 import framework.Title;
@@ -76,6 +77,35 @@ public class Chapter1_1Creative extends BaseChapter{
         }else{
             return mid;
         }
+    }
+
+    @Title("1.1.30")
+    public static void question30(String str){
+        int N = 10;
+        if(str != null){
+            N = Integer.parseInt(str);
+        }
+        boolean[][] a = new boolean[N][N];
+        for(int i = 0;i<N;i++){
+            for(int j = 0;j<N;j++){
+                a[i][j] = (gcd(i,j) == 1);
+            }
+        }
+
+        for(int i = 0;i<N;i++){
+            for(int j = 0;j<N;j++){
+                printf("%6s",a[i][j] ? "true":"false");
+            }
+            println();
+        }
+    }
+
+    /**1.1.30使用的辗转相除法算最大公约数*/
+    private static int gcd(int p,int q){
+        if(q == 0){
+            return p;
+        }
+        return gcd(q,p % q);
     }
 
     /**1.1.29中要求的count方法*/
