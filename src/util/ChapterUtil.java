@@ -3,6 +3,7 @@ package util;
 import static edu.princeton.cs.algs4.StdOut.println;
 
 import java.awt.Color;
+import java.util.Arrays;
 
 import edu.princeton.cs.algs4.StdRandom;
 
@@ -76,5 +77,19 @@ public class ChapterUtil {
 	public static Color getRandomColor(){
 		int a = StdRandom.uniform(256),b = StdRandom.uniform(256),c = StdRandom.uniform(256);
 		return new Color(a,b,c);
+	}
+
+	/**打印一个二维数组*/
+	public static void printArray(double[][] arr){
+		if(arr == null || arr.length == 0){
+			println("null");
+		}
+		for(int i = 0;i< arr.length;i++){
+			println(Arrays.toString(arr[i]));
+		}
+	}
+
+	public static void printArray(double[] arr){
+		println(Arrays.toString(arr));
 	}
 }

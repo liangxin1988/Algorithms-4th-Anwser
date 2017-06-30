@@ -100,6 +100,89 @@ public class Chapter1_1Creative extends BaseChapter{
         }
     }
 
+    @Title("1.1.31")
+    public static void question31(){
+        ChapterUtil.questionNo();
+    }
+
+    @Title("1.1.32")
+    public static void question32(){
+        ChapterUtil.questionNo();
+    }
+
+    @Title("1.1.33")
+    public static void question33(){
+        {
+            println("测试向量点乘");
+            double[] a = {1,2,3,4,5};
+            double[] b = {6,7,8,9,0};
+
+            println("a = "+Arrays.toString(a));
+            println("b = "+Arrays.toString(b));
+
+            println("a 与 b点乘："+Matrix.dot(a,b));
+        }
+        println("------------------------------------------------");
+        {
+            println("测试矩阵积");
+            double[][] a = {{1,2,3},{4,5,6}};
+            double[][] b = {{1,4},{2,5},{3,6}};
+
+            double[][] result = Matrix.mult(a,b);
+
+            println("矩阵1：");
+            ChapterUtil.printArray(a);
+            println("矩阵2：");
+            ChapterUtil.printArray(b);
+
+            println("乘积：");
+            ChapterUtil.printArray(result);
+        }
+
+        println("---------------------------------------------------");
+        {
+            println("测试矩阵转置");
+            double[][] a = {{1,2,3},{4,5,6}};
+            println("转置前");
+            ChapterUtil.printArray(a);
+            println("转置后");
+            ChapterUtil.printArray(Matrix.transpose(a));
+        }
+
+        println("---------------------------------------------------");
+        {
+            println("测试矩阵乘以向量");
+            double[][]a = { {0,0,0.2,0.3,0.5},
+                            {0.1,0.4,0.4,0.1,0},
+                            {0,0,0,0.5,0.5},
+                            {0.4,0.3,0.3,0,0}};
+            double[] b = {0.15,0.1,0.15,0.05,0.1};
+            double[] result = Matrix.mult(a,b);
+            println("矩阵:");
+            ChapterUtil.printArray(a);
+            println("向量：");
+            ChapterUtil.printArray(b);
+            println("矩阵与向量的乘积：");
+            ChapterUtil.printArray(result);
+        }
+        println("---------------------------------------------------");
+        {
+            println("测试向量乘以矩阵");
+            double[] a = {0.15,0.10,0.15,0.05};
+            double[][] b = {{0,0,0.2,0.3,0.5},
+                            {0.1,0.4,0.4,0.1,0},
+                            {0,0,0,0.5,0.5},
+                            {0.4,0.3,0.3,0,0}};
+            double[] result = Matrix.mult(a,b);
+            println("向量");
+            ChapterUtil.printArray(a);
+            println("矩阵：");
+            ChapterUtil.printArray(b);
+            println("向量与矩阵的乘积");
+            ChapterUtil.printArray(result);
+        }
+    }
+
     /**1.1.30使用的辗转相除法算最大公约数*/
     private static int gcd(int p,int q){
         if(q == 0){
@@ -152,4 +235,78 @@ public class Chapter1_1Creative extends BaseChapter{
 		}
 		return binomialFasterCache[N][k];
 	}
+}
+
+/**题目1.1.33要求的矩阵库*/
+class Matrix{
+    /**向量点乘*/
+    static double dot(double[] x,double[] y){
+        if(x == null || y == null ||x.length != y.length){
+            throw new RuntimeException("参数不合法");
+        }
+        int count = 0;
+        for(int i = 0;i<x.length;i++){
+            count += x[i] * y[i];
+        }
+        return count;
+    }
+
+    /**矩阵乘法*/
+    static double[][] mult(double[][] a,double[][] b){
+        if(a == null || b == null ||b[0] == null || a[0] == null || a[0].length != b.length){
+            throw new RuntimeException("参数不合法");
+        }
+        double[][] result = new double[a.length][b[0].length];
+        for(int i = 0;i<result.length;i++){
+            for(int j = 0;j<result[0].length;j++){
+                result[i][j] = 0;
+                for(int k = 0;k < b.length;k++){
+                    result[i][j] += a[i][k] * b[k][j];
+                }
+            }
+        }
+        return result;
+    }
+
+    /**矩阵转置*/
+    static double[][] transpose(double[][] a){
+        if(a == null){
+            throw new RuntimeException("参数不合法");
+        }
+        double[][] result = new double[a[0].length][a.length];
+        for(int i = 0;i<result.length;i++){
+            for(int j = 0;j<result[0].length;j++){
+                result[i][j] = a[j][i];
+            }
+        }
+        return result;
+    }
+
+    /**矩阵乘以向量*/
+    static double[] mult(double[][] a,double[] x){
+        if(a == null || x == null || a[0].length != x.length){
+            throw new RuntimeException("参数不合法");
+        }
+        double[] result = new double[a.length];
+        for(int i = 0;i<result.length;i++){
+            for(int j = 0;j<x.length;j++){
+                result[i] += a[i][j] * x[j];
+            }
+        }
+        return result;
+    }
+
+    /**向量乘以矩阵*/
+    static double[] mult(double[] y,double[][] a){
+        if(a == null || y == null || a.length != y.length){
+            throw new RuntimeException("参数不合法");
+        }
+        double[] result = new double[a[0].length];
+        for(int i = 0;i<result.length;i++){
+            for(int j = 0;j<a.length;j++){
+                result[i] += a[j][i] * y[j];
+            }
+        }
+        return result;
+    }
 }
