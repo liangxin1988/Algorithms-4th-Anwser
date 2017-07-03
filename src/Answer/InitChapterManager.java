@@ -1,13 +1,6 @@
 package Answer;
 
-import chapter1.Chapter1_1Creative;
-import chapter1.Chapter1_1Exercises;
-import chapter1.Chapter1_1Experiments;
-import chapter1.Chapter1_2Exercises;
-import chapter1.Chapter1_3Exercises;
-import chapter1.Chapter1_3ListExercises;
-import chapter1.Chapter1_4Exercises;
-import chapter1.Chapter1_5Exercises;
+import chapter1.*;
 import chapter2.Chapter2_5Exercises;
 import chapter2.Chapter2_5Exercises;
 import chapter2.Chapter2_1Exercises;
@@ -33,7 +26,8 @@ public class InitChapterManager {
 
 		//习题1.2
 		exerciseManager.regiestQuestion(new Chapter1_2Exercises());
-
+		exerciseManager.regiestQuestion(new Chapter1_2Creative());
+		//没有实验题
 
 		exerciseManager.regiestQuestion(new Chapter1_3Exercises()); 
 		exerciseManager.regiestQuestion(new Chapter1_3ListExercises()); 
