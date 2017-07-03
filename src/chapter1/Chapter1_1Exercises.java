@@ -206,7 +206,7 @@ public class Chapter1_1Exercises extends BaseChapter{
 			num = Integer.parseInt(numStr);
 		}
 		int[] nums = new int[num * num];  //num * num没啥具体含义，就是想让元素个数多一些
-		ChapterUtil.initArray(nums, num);
+		ChapterUtil.initRandomArray(nums, num);
 		println("打印原始数组：");
 		println(Arrays.toString(nums));
 		println("打印统计数组");

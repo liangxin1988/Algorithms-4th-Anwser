@@ -33,10 +33,29 @@ public class ChapterUtil {
 	/**
 	 * 用随机数初始化int类型数组（x为随机限制的最大int值）
 	 * */
-	public static void initArray(int[] ints,int x){
+	public static void initRandomArray(int[] ints, int x){
 		for(int i = 0;i<ints.length;i++){
 			ints[i] = StdRandom.uniform(x);
 		}
+	}
+
+	/**
+	 * 用随机数初始化double类型的数组
+	 * */
+	public static void initRandomArray(double[] doubles){
+		for(int i = 0;i<doubles.length;i++){
+			doubles[i] = StdRandom.uniform();
+		}
+	}
+
+	/**
+	 * 获取一个用随机数填充的数组
+	 * @param size 数组尺寸
+	 * */
+	public static double[] getRandomArray(int size){
+		double[] doubles = new double[size];
+		initRandomArray(doubles);
+		return doubles;
 	}
 	
 	/**

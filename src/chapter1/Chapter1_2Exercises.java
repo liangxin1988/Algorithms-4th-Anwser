@@ -2,19 +2,15 @@ package chapter1;
 
 import static edu.princeton.cs.algs4.StdOut.*;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Calendar;
 
 import util.ChapterUtil;
 
 import Answer.BaseChapter;
 import edu.princeton.cs.algs4.Counter;
 import edu.princeton.cs.algs4.Interval1D;
-import edu.princeton.cs.algs4.Interval2D;
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 import framework.Title;
 
@@ -151,7 +147,7 @@ public class Chapter1_2Exercises extends BaseChapter {
 	public static void question9() {
 		Counter counter = new Counter("次");
 		int[] x = new int[10000];
-		ChapterUtil.initArray(x, 10000);
+		ChapterUtil.initRandomArray(x, 10000);
 		Arrays.sort(x);
 		rank(5, x, counter); // 将counter传递给方法，相当于给方法传递地址。方法中通过地址修改的值，对所有对象的引用都起作用
 		println(counter.tally());
