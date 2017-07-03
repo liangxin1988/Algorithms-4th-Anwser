@@ -26,10 +26,15 @@ public class InitChapterManager {
 	private ExerciseManager exerciseManager = ExerciseManager.getInstence();
 	
 	public void init(){
+		//习题1.1
 		exerciseManager.regiestQuestion(new Chapter1_1Exercises());  //通过注册方法，将习题类中的习题通知给习题管理器
 		exerciseManager.regiestQuestion(new Chapter1_1Creative()); 
-		exerciseManager.regiestQuestion(new Chapter1_1Experiments()); 
-		exerciseManager.regiestQuestion(new Chapter1_2Exercises()); 
+		exerciseManager.regiestQuestion(new Chapter1_1Experiments());
+
+		//习题1.2
+		exerciseManager.regiestQuestion(new Chapter1_2Exercises());
+
+
 		exerciseManager.regiestQuestion(new Chapter1_3Exercises()); 
 		exerciseManager.regiestQuestion(new Chapter1_3ListExercises()); 
 		exerciseManager.regiestQuestion(new Chapter1_4Exercises()); 

@@ -4,15 +4,12 @@ import static edu.princeton.cs.algs4.StdOut.print;
 import static edu.princeton.cs.algs4.StdOut.printf;
 import static edu.princeton.cs.algs4.StdOut.println;
 import Answer.BaseChapter;
+import edu.princeton.cs.algs4.StdDraw;
 import framework.Title;
 import util.ChapterUtil;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class Chapter1_1Creative extends BaseChapter{
 	
@@ -196,7 +193,7 @@ public class Chapter1_1Creative extends BaseChapter{
         println("打印出所有数的平方和    //需要一个变量，用来保存累计的平方和");
         println("打印所有数的平均数  //需要两个变量，保存计数器和累计的数据和");
         println("剩余3个都想不到不保存完整数据的实现方案");
-//        double a[] = ChapterUtil.getRandomArray(20);
+//        double a[] = ChapterUtil.getRandomDoubleArray(20);
 //        Filter filter = new AverageFilter();
 //        for(Double x : a){
 //            filter.set(x);

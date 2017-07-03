@@ -52,7 +52,7 @@ public class ChapterUtil {
 	 * 获取一个用随机数填充的数组
 	 * @param size 数组尺寸
 	 * */
-	public static double[] getRandomArray(int size){
+	public static double[] getRandomDoubleArray(int size){
 		double[] doubles = new double[size];
 		initRandomArray(doubles);
 		return doubles;
