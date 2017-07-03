@@ -2,7 +2,6 @@ package chapter1;
 
 import static edu.princeton.cs.algs4.StdOut.*;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 
@@ -167,9 +166,9 @@ public class Chapter1_2Exercises extends BaseChapter {
 	
 	@Title("1.2.11")
 	public static void question11(){
-		println(new SmartData(2017, 1, 1));
+		println(new SmartDate(2017, 1, 1));
 		try{
-			println(new SmartData(2017, 2, 29));
+			println(new SmartDate(2017, 2, 29));
 		}catch(Exception e){
 			println(e.getMessage());
 		}
@@ -182,7 +181,7 @@ public class Chapter1_2Exercises extends BaseChapter {
 		int month = calendar.get(Calendar.MONTH) + 1;
 		int day = calendar.get(Calendar.DAY_OF_MONTH);
 		print("year = "+year+",month = "+month+",day = "+day);
-		println(new SmartData(year, month, day).dayOfTheWeek());
+		println(new SmartDate(year, month, day).dayOfTheWeek());
 		
 //		//以下为测试用例，用系统Calendar和getDayCountToFirstDay()方法的返回结果进行对比。如果出现不匹配的情况则打印日期。如果没有打印任何日期，说明测试通过
 //		StdOut.println("start");
@@ -191,7 +190,7 @@ public class Chapter1_2Exercises extends BaseChapter {
 //		int count = 36600; //测试时间为超过100年（完整覆盖整个21世纪。实测10000年也没有问题，不过比较慢）
 //		while(count--!=0){
 //			int a = calendar.get(Calendar.DAY_OF_WEEK);
-//			int b = new SmartData(calendar.get(Calendar.YEAR),1 + calendar.get(Calendar.MONTH),
+//			int b = new SmartDate(calendar.get(Calendar.YEAR),1 + calendar.get(Calendar.MONTH),
 //					calendar.get(Calendar.DAY_OF_MONTH)).getDayCountToFirstDay();
 //			if(a != b){
 //				StdOut.println(new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime()));
@@ -204,11 +203,27 @@ public class Chapter1_2Exercises extends BaseChapter {
 //		StdOut.println("over");
 
 	}
+
+	@Title("1.2.13")
+	public static void question13(){
+        println(new Transaction("java",new Date(1,1,1988),100).toString());
+    }
+    @Title("1.2.14")
+    public static void question14(){
+        Transaction t1 = new Transaction("java",new Date(1,1,1988),100);
+        Transaction t2 = new Transaction("java",new Date(1,1,1988),100);
+        Transaction t3 = new Transaction("kotlin",new Date(1,1,1988),100);
+
+        println("t1 == t2?"+t1.equals(t2));
+        println("t1 == t3?"+t1.equals(t3));
+    }
+
 	/**题目1.2.11和1.2.12中要求的日期对象*/
-	public static class SmartData {
+	public static class SmartDate extends Date{
 		int year, month, day;
 
-		public SmartData(int year, int month, int day) {
+		public SmartDate(int year, int month, int day) {
+			super(month,day,year);
 			this.year = year;
 			this.month = month;
 			this.day = day;
@@ -453,7 +468,7 @@ public class Chapter1_2Exercises extends BaseChapter {
 		} else
 			return mid;
 	}
-
+    /**1.2.7中给出的方法*/
 	private static String mystery(String s) {
 		int N = s.length();
 		if (N <= 1)
@@ -462,4 +477,64 @@ public class Chapter1_2Exercises extends BaseChapter {
 		String b = s.substring(N / 2, N);
 		return mystery(b) + mystery(a); // 这个方法是将字符串的前后两个部分倒置。递归以后每个字串也进行倒置，最后的结果就是整个字符串倒序排列。
 	}
+}
+
+/**1.2.13和1.2.14中要求的类*/
+class Transaction{
+    private String who;
+    private Date when;
+    private double amount;
+    Transaction(String who,Date when,double amount){
+        this.who = who;
+        this.when = when;
+        this.amount = amount;
+    }
+
+    public String who(){
+        return who;
+    }
+
+    public Date when(){
+        return when;
+    }
+
+    public double amount(){
+        return amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "who='" + who + '\'' +
+                ", when=" + when +
+                ", amount=" + amount +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) return true;
+        if(o == null) return false;
+        if(this.getClass() != o.getClass()) return false;
+        Transaction that = (Transaction) o;
+        if(that.amount != this.amount) return false;
+        if(!that.when.equals(this.when)) return false;
+        if(!that.who.equals(this.who)) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = who != null ? who.hashCode() : 0;
+        result = 31 * result + (when != null ? when.hashCode() : 0);
+        temp = Double.doubleToLongBits(amount);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    int compareTo(Transaction that){
+        return (int)(this.amount - that.amount);
+    }
 }
