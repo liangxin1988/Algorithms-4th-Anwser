@@ -2,16 +2,14 @@ package chapter1;
 
 import static edu.princeton.cs.algs4.StdOut.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 
+import edu.princeton.cs.algs4.*;
 import util.ChapterUtil;
 
 import Answer.BaseChapter;
-import edu.princeton.cs.algs4.Counter;
-import edu.princeton.cs.algs4.Interval1D;
-import edu.princeton.cs.algs4.Point2D;
-import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdRandom;
 import framework.Title;
 
 public class Chapter1_2Exercises extends BaseChapter {
@@ -179,8 +177,12 @@ public class Chapter1_2Exercises extends BaseChapter {
 	
 	@Title("1.2.12")
 	public static void question12(){
-		
-		println(new SmartData(2017, 2, 27).dayOfTheWeek());
+		Calendar calendar = Calendar.getInstance();
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH) + 1;
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		print("year = "+year+",month = "+month+",day = "+day);
+		println(new SmartData(year, month, day).dayOfTheWeek());
 		
 //		//以下为测试用例，用系统Calendar和getDayCountToFirstDay()方法的返回结果进行对比。如果出现不匹配的情况则打印日期。如果没有打印任何日期，说明测试通过
 //		StdOut.println("start");
@@ -189,7 +191,7 @@ public class Chapter1_2Exercises extends BaseChapter {
 //		int count = 36600; //测试时间为超过100年（完整覆盖整个21世纪。实测10000年也没有问题，不过比较慢）
 //		while(count--!=0){
 //			int a = calendar.get(Calendar.DAY_OF_WEEK);
-//			int b = new SmartData(calendar.get(Calendar.YEAR),1 + calendar.get(Calendar.MONTH), 
+//			int b = new SmartData(calendar.get(Calendar.YEAR),1 + calendar.get(Calendar.MONTH),
 //					calendar.get(Calendar.DAY_OF_MONTH)).getDayCountToFirstDay();
 //			if(a != b){
 //				StdOut.println(new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime()));
@@ -202,7 +204,7 @@ public class Chapter1_2Exercises extends BaseChapter {
 //		StdOut.println("over");
 
 	}
-
+	/**题目1.2.11和1.2.12中要求的日期对象*/
 	public static class SmartData {
 		int year, month, day;
 
@@ -336,6 +338,7 @@ public class Chapter1_2Exercises extends BaseChapter {
 		}
 	}
 
+	/**1.2.10中使用的计数类*/
 	private static class VisualCounter {
 
 		private int count = 0;
@@ -432,6 +435,7 @@ public class Chapter1_2Exercises extends BaseChapter {
 		}
 	}
 
+	/**1.2.9方法中使用的用来技术的二分法查找*/
 	private static int rank(int key, int[] a, Counter counter) {
 		return rank(key, a, 0, a.length - 1, counter);
 	}
