@@ -1,10 +1,11 @@
 package chapter1;
 
 import Answer.BaseChapter;
+import framework.Fixme;
 import framework.Title;
 import util.ChapterUtil;
 
-//未完成
+@Fixme
 public class Chapter1_1Experiments extends BaseChapter {
 
     /**1.1.35中初始化骰子概率方法*/
