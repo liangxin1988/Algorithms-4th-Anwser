@@ -4,7 +4,9 @@ import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
+import edu.princeton.cs.algs4.StdRandom;
 import framework.Fixme;
+import queue.ResizingArrayQueueOfStrings;
 import stack.FixedCapacityStackOfStrings;
 import util.ChapterUtil;
 
@@ -221,9 +223,18 @@ public class Chapter1_3Exercises  extends BaseChapter{
 	}
 	
 	@Title("1.3.14")
-    @Fixme
 	public static void question14(){
-		ChapterUtil.questionNo();
+        ResizingArrayQueueOfStrings resizingArrayQueueOfStrings = new ResizingArrayQueueOfStrings();
+        for(int i = 0;i<10;i++){
+            boolean bool = StdRandom.bernoulli();
+            println(bool?"入列:"+i:"出列");
+            if(bool){
+                resizingArrayQueueOfStrings.enqueue(""+i);
+            }else if(!resizingArrayQueueOfStrings.isEmpty()){
+                resizingArrayQueueOfStrings.dequeue();
+            }
+            println(resizingArrayQueueOfStrings);
+        }
 	}
 	
 	//1.3.13中使用的方法。与1.3.2用法一致，不过操作的是队列，- 和 * 表示出列。
