@@ -192,7 +192,24 @@ public class Chapter1_3Exercises  extends BaseChapter{
 	
 	@Title("1.3.12")
 	public static void question12(){
-		ChapterUtil.questionNo();  //不知道啥意思
+        FixedCapacityStackOfStrings stack = new FixedCapacityStackOfStrings(100);
+        stack.push("java");
+        stack.push("kotlin");
+        stack.push("c++");
+        stack.push("hehe");
+
+        FixedCapacityStackOfStrings copy = FixedCapacityStackOfStrings.copy(stack);
+
+        println("原栈:");
+        for(String str : stack){
+            print( str + "  ");
+        }
+        println();
+        println("复制的栈:");
+        for(String str : copy){
+            print( str + "  ");
+        }
+        println();
 	}
 	
 	@Title("1.3.13")
@@ -230,8 +247,12 @@ public class Chapter1_3Exercises  extends BaseChapter{
 
 
 }
-/**题目1.3.1中要求的，带有isfull方法的栈，并提供了1.3.7中要求的peek方法*/
-class FixedCapacityStackOfStrings{
+/**
+ * 题目1.3.1中要求的，带有isfull方法的栈。
+ * 提供了1.3.7中要求的peek方法
+ * 提供了1.3.12中的迭代器和copy方法
+ * */
+class FixedCapacityStackOfStrings implements Iterable<String>{
 	private String[] a;
 	private int N;
 	public FixedCapacityStackOfStrings(int cap){
@@ -274,6 +295,36 @@ class FixedCapacityStackOfStrings{
 		sb.replace(sb.length()-1, sb.length(), "");
 		return sb.toString();
 	}
+
+	public static FixedCapacityStackOfStrings copy(FixedCapacityStackOfStrings fixedCapacityStackOfStrings){
+	    FixedCapacityStackOfStrings cache = new FixedCapacityStackOfStrings(100);
+	    for(String str : fixedCapacityStackOfStrings){
+	        cache.push(""+str);
+        }
+        FixedCapacityStackOfStrings result = new FixedCapacityStackOfStrings(100);
+        for(String str : cache){
+            result.push(str);
+        }
+        return result;
+	}
+
+    @Override
+    public Iterator<String> iterator() {
+        return new FixedCapacityStackOfStringsIterator();
+    }
+
+    private class FixedCapacityStackOfStringsIterator implements Iterator<String>{
+        private int index = N - 1;
+        @Override
+        public boolean hasNext() {
+            return index >= 0;
+        }
+
+        @Override
+        public String next() {
+            return a[index--];
+        }
+    }
 }
 
 
