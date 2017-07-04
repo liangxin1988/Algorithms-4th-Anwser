@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 
 import edu.princeton.cs.algs4.StdRandom;
 import framework.Fixme;
+import queue.FixedLengthQueue;
 import queue.ResizingArrayQueueOfStrings;
 import stack.FixedCapacityStackOfStrings;
 import util.ChapterUtil;
@@ -235,6 +236,28 @@ public class Chapter1_3Exercises  extends BaseChapter{
             }
             println(resizingArrayQueueOfStrings);
         }
+	}
+
+	@Title("1.3.15")
+	public static void question15(String args1,String args2){
+		int count = 5;
+		String[] array = new String[20];
+		if(args1 != null){
+			count = Integer.parseInt(args1);
+		}
+		if(args2 != null){
+			array = args2.split(",");
+		}else{
+			for(int i = 0;i<array.length;i++){
+				array[i] = i + "";
+			}
+		}
+		FixedLengthQueue<String> fixedLengthQueue = new FixedLengthQueue<String>(count);
+		for(String s : array){
+			fixedLengthQueue.enqueue(s);
+//			println(fixedLengthQueue);  //打印轨迹
+		}
+		println("倒数第"+count+"的元素为："+fixedLengthQueue.dequeue());
 	}
 	
 	//1.3.13中使用的方法。与1.3.2用法一致，不过操作的是队列，- 和 * 表示出列。
