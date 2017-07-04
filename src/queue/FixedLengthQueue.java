@@ -46,6 +46,7 @@ public class FixedLengthQueue<Item> implements Queue<Item> {
         if(start == contents.length){
             start = 0;
         }
+        count--;
         return item;
     }
 
