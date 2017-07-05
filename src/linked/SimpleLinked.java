@@ -1,4 +1,4 @@
-package list;
+package linked;
 
 import com.sun.istack.internal.NotNull;
 import util.ChapterUtil;
@@ -8,7 +8,7 @@ import java.util.Iterator;
 /**
  * 演示用链表。
  */
-public class SimpleList<Item extends Comparable<Item>> implements Iterable<Item> {
+public class SimpleLinked<Item extends Comparable<Item>> implements Iterable<Item> {
 
     /**链表的首节点*/
     private Node first;
