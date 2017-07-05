@@ -100,6 +100,25 @@ public class SimpleList<Item extends Comparable<Item>> implements Iterable<Item>
             first = first.next;
     }
 
+    /**
+     * 通过递归实现获取链表中的最大值
+     * 题目1.3.28
+     * */
+    public Item max(Node node){
+        if(node == null){
+            return null;
+        }
+        if(node.next == null){
+            return node.item;
+        }
+        Item max = max(node.next);
+        return node.item.compareTo(max) > 0 ? node.item : max;
+    }
+
+    /**
+     * 获取链表中的最大元素
+     * 题目1.3.27
+     * */
     public Item max(){
         if(first == null){
             return null;

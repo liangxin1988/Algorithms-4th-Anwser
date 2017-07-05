@@ -145,4 +145,16 @@ public class Chapter1_3ListExercises extends BaseChapter {
 		println();
 		println("最大值："+simpleList.max());
 	}
+
+    @Title("1.3.28")
+    public static void question28(){
+        SimpleList<Integer> simpleList = new SimpleList<>();
+        for(int i = 0;i<10;i++){
+            int rand = StdRandom.uniform(20);
+            print(rand + "  ");
+            simpleList.addFirst(rand);
+        }
+        println();
+        println("最大值："+simpleList.max(simpleList.getFirst()));
+    }
 }
