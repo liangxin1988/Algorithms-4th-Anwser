@@ -20,9 +20,7 @@ public class SimpleList<Item> implements Iterable<Item> {
      * 1.3.20题目
      * */
     public void deleteForIndex(int k){
-        if(k < 0 || k >= size()){
-            throw new RuntimeException("编号异常");
-        }
+        indexCheck(k);
         if(k == 0){  //针对删除第一个元素进行特殊处理
             deleteFirst();
             return;
@@ -46,6 +44,55 @@ public class SimpleList<Item> implements Iterable<Item> {
         if(isEmpty()){
             throw new RuntimeException("空链表无法删除");
         }
+    }
+
+    /**对传入的索引的有效性进行验证*/
+    private void indexCheck(int k){
+        if(k < 0 || k >= size()){
+            throw new RuntimeException("编号异常");
+        }
+    }
+
+    /**
+     * 从以node为首节点的链表中尝试查找item。并返回链表中是否包含对应的数据
+     * 1,3,21题目
+     * */
+    public boolean find(NodeBox<Item> nodeBox,Item item){
+        Node<Item> node = nodeBox.node;
+        if(node == null || item == null){  //空列表不可能包含item;
+            return false;
+        }
+        for(Node index = node;index != null;index = index.next){
+            if(item.equals(index.item)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 删除给定节点的所有后续节点
+     * 1.3.24题
+     * */
+    public void removeAfter(NodeBox<Item> nodeBox){
+        Node node = nodeBox.node;
+        if(node != null){
+            for(Node index = node.next;index != null;index = index.next){
+                count--;
+            }
+            node.next = null;
+        }
+    }
+    /**
+     * 获取第k个节点
+     * */
+    public NodeBox<Item> getItemForIndex(int k){
+        indexCheck(k);
+        Node<Item> node = first;
+        for(int i = 0;i<k;i++){
+            node = node.next;
+        }
+        return new NodeBox<>(node);
     }
 
     /**删除第一个元素*/
@@ -102,6 +149,7 @@ public class SimpleList<Item> implements Iterable<Item> {
             sb.delete(sb.length()-1,sb.length());
         }
         sb.append("]");
+        sb.append("  ").append("count = ").append(count);
         return sb.toString();
     }
 
@@ -129,9 +177,15 @@ public class SimpleList<Item> implements Iterable<Item> {
     }
 
     /**获取链表的首节点*/
-    public Node getFirst(){
-        return first;
+    public NodeBox<Item> getFirst(){
+        return new NodeBox<>(first);
     }
 
-
+    /**用来包裹Node对象，禁止外部通过Node对象修改链表*/
+    private static class NodeBox<Item>{
+        public NodeBox(Node<Item> node){
+            this.node = node;
+        }
+        private Node<Item> node;
+    }
 }
