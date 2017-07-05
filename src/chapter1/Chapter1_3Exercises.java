@@ -21,6 +21,7 @@ import static edu.princeton.cs.algs4.StdOut.*;
 /**
  * 1.3小节测试题
  * */
+@Fixme
 public class Chapter1_3Exercises  extends BaseChapter{
 
 	@Title("1.3.1")

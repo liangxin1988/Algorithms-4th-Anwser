@@ -1,4 +1,4 @@
-package util;
+package util.canvas;
 
 import edu.princeton.cs.algs4.StdDraw;
 

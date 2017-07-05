@@ -2,6 +2,7 @@ package chapter1;
 
 import java.util.Iterator;
 
+import list.SimpleList;
 import util.ChapterUtil;
 import static edu.princeton.cs.algs4.StdOut.*;
 import framework.Title;
@@ -16,7 +17,15 @@ public class Chapter1_3ListExercises extends BaseChapter {
 	
 	@Title("1.3.19")
 	public static void question19(){
-		
+		SimpleList<Integer> simpleList = new SimpleList<>();
+		for(int i = 0;i<3;i++){
+			simpleList.addFirst(i);
+		}
+		println(simpleList);
+		for(int i = 0;i<3;i++){
+			simpleList.deleteLast();
+			println(simpleList);
+		}
 	}
 
 }

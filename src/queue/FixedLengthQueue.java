@@ -23,7 +23,7 @@ public class FixedLengthQueue<Item> implements Queue<Item> {
     @Override
     public void enqueue(Item item) {
         contents[end] = item;
-        if(end == start && count != 0){
+        if(end == start && count != 0){  //如果覆盖了第一个元素
             start++;  //相当于将第一个元素出列
             if(start == contents.length){
                 start = 0;
