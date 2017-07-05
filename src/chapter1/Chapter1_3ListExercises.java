@@ -2,6 +2,7 @@ package chapter1;
 
 import edu.princeton.cs.algs4.StdRandom;
 import linked.SimpleLinked;
+import queue.CircularLinkedQueue;
 import util.ChapterUtil;
 import static edu.princeton.cs.algs4.StdOut.*;
 import framework.Title;
@@ -156,5 +157,16 @@ public class Chapter1_3ListExercises extends BaseChapter {
         }
         println();
         println("最大值："+ simpleLinked.max(simpleLinked.getFirst()));
+    }
+
+    @Title("1.3.29")
+    public static void question29(){
+        CircularLinkedQueue<Integer> circularLinkedQueue = new CircularLinkedQueue<>();
+        for(int i = 0;i<20;i++){
+            circularLinkedQueue.enqueue(i);
+            if(StdRandom.bernoulli())
+                println("出列:"+circularLinkedQueue.dequeue());
+            println(circularLinkedQueue);  //打印轨迹
+        }
     }
 }
