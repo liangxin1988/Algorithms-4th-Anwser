@@ -1,13 +1,8 @@
 package list;
 
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
 import util.ChapterUtil;
 
 import java.util.Iterator;
-
-import static edu.princeton.cs.algs4.StdOut.println;
 
 /**
  * 演示用链表。
@@ -15,7 +10,7 @@ import static edu.princeton.cs.algs4.StdOut.println;
 public class SimpleList<Item> implements Iterable<Item> {
 
     /**链表的首节点*/
-    private Node first;
+    private Node<Item> first;
 
     /**对节点个数技术*/
     private int count;
@@ -32,7 +27,7 @@ public class SimpleList<Item> implements Iterable<Item> {
             deleteFirst();
             return;
         }
-        Node node = first;
+        Node<Item> node = first;
         for(int i = 1;i<k;i++){  //找到第k - 1个元素
             node = node.next;
         }
@@ -42,7 +37,7 @@ public class SimpleList<Item> implements Iterable<Item> {
 
     /**从头部插入数据*/
     public void addFirst(Item item){
-        first = new Node(item,first);
+        first = new Node<>(item,first);
         count++;
     }
 
@@ -118,7 +113,7 @@ public class SimpleList<Item> implements Iterable<Item> {
     /**链表通用的遍历器*/
     private class SimpleListIterator implements Iterator<Item>{
 
-        private Node index = first;
+        private Node<Item> index = first;
 
         @Override
         public boolean hasNext() {
@@ -133,18 +128,10 @@ public class SimpleList<Item> implements Iterable<Item> {
         }
     }
 
-    /**链表中的节点*/
-    private class Node{
-        private Item item;
-        private Node next;
-
-        //构造函数为了简化对链表的操作。
-        Node(Item item){
-            this.item = item;
-        }
-        Node(Item item,Node next){
-            this(item);
-            this.next = next;
-        }
+    /**获取链表的首节点*/
+    public Node getFirst(){
+        return first;
     }
+
+
 }

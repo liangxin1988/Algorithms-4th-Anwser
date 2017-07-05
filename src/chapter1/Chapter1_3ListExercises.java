@@ -2,6 +2,7 @@ package chapter1;
 
 import java.util.Iterator;
 
+import list.ListUtil;
 import list.SimpleList;
 import util.ChapterUtil;
 import static edu.princeton.cs.algs4.StdOut.*;
@@ -46,5 +47,21 @@ public class Chapter1_3ListExercises extends BaseChapter {
 		simpleList.deleteForIndex(0);
 		println(simpleList);
 	}
+
+	@Title("1.3.21")
+	public static void question21(){
+	    SimpleList<Integer> simpleList = new SimpleList<>();
+	    for(int i = 0;i<5;i++){
+	        simpleList.addFirst(i);
+        }
+        println(simpleList);
+        int curr = 4;
+        println("链表中"+(ListUtil.find(simpleList.getFirst(),curr)?"存在":"不存在")+curr);
+        curr = 6;
+        println("链表中"+(ListUtil.find(simpleList.getFirst(),curr)?"存在":"不存在")+curr);
+        curr = 0;
+        println("链表中"+(ListUtil.find(simpleList.getFirst(),curr)?"存在":"不存在")+curr);
+
+    }
 
 }
