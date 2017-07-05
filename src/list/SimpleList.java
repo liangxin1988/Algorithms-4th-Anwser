@@ -183,6 +183,28 @@ public class SimpleList<Item> implements Iterable<Item> {
     }
 
     /**
+     * 从给定节点表示的链表中，删除所有数据为item的节点
+     * */
+    public void removeForKey(Item item){
+        Node preNode = null;
+        for(Node index = first;index != null;index = index.next){
+            if(!index.item.equals(item)){
+                if(preNode == null){
+                    first = preNode = index;
+                }else{
+                    preNode.next = index;
+                    preNode = index;
+                }
+            }
+        }
+        if(preNode == null){
+            first = null;
+        }else{
+            preNode.next = null;
+        }
+    }
+
+    /**
      * 清除链表中的所有数据
      * */
     public void clearLink(){

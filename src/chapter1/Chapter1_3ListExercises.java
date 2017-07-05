@@ -109,4 +109,27 @@ public class Chapter1_3ListExercises extends BaseChapter {
         simpleList.insertAfter(simpleList.getItemForIndex(3),simpleList2.getFirst());
         println(simpleList);
     }
+
+    @Title("1.3.26")
+    public static void question26(){
+		SimpleList<Integer> simpleList = new SimpleList<>();
+		for(int i = 0;i<11;i++){
+			if(i % 2 == 0){
+				simpleList.addFirst(1);
+			}else{
+				simpleList.addFirst(i / 2);
+			}
+		}
+		println(simpleList);
+		simpleList.removeForKey(1);
+		println(simpleList);
+
+		simpleList.clearLink();
+		for(int i = 0;i<10;i++){
+			simpleList.addFirst(1);
+		}
+		println(simpleList);
+		simpleList.removeForKey(1);
+		println(simpleList);
+	}
 }
