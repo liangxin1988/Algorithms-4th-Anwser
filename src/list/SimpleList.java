@@ -20,10 +20,44 @@ public class SimpleList<Item> implements Iterable<Item> {
     /**对节点个数技术*/
     private int count;
 
+    /**
+     * 删除第k位的数据
+     * 1.3.20题目
+     * */
+    public void deleteForIndex(int k){
+        if(k < 0 || k >= size()){
+            throw new RuntimeException("编号异常");
+        }
+        if(k == 0){  //针对删除第一个元素进行特殊处理
+            deleteFirst();
+            return;
+        }
+        Node node = first;
+        for(int i = 1;i<k;i++){  //找到第k - 1个元素
+            node = node.next;
+        }
+        node.next = node.next.next;
+        count--;
+    }
+
     /**从头部插入数据*/
     public void addFirst(Item item){
         first = new Node(item,first);
         count++;
+    }
+
+    /**删除前通过这个方法检查链表是否为空*/
+    private void deleteCheck(){
+        if(isEmpty()){
+            throw new RuntimeException("空链表无法删除");
+        }
+    }
+
+    /**删除第一个元素*/
+    public void deleteFirst(){
+        deleteCheck();
+        first = first.next;
+        count--;
     }
 
     /**
@@ -31,9 +65,7 @@ public class SimpleList<Item> implements Iterable<Item> {
      * 练习1.3.19
      * */
     public void deleteLast(){
-        if(isEmpty()){
-            throw new RuntimeException("空链表无法删除");
-        }
+        deleteCheck();
         count--;
         if(first.next == null){  //只有一个元素，直接删除
             first = null;
@@ -52,11 +84,7 @@ public class SimpleList<Item> implements Iterable<Item> {
     }
 
     public static void main(String[] args){
-        SimpleList<Integer> simpleList = new SimpleList<>();
-        simpleList.addFirst(1);
-        simpleList.deleteLast();
-        println(simpleList);
-        simpleList.deleteLast();
+
     }
 
     /**获取链表元素个数*/

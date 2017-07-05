@@ -28,4 +28,23 @@ public class Chapter1_3ListExercises extends BaseChapter {
 		}
 	}
 
+	@Title("1.3.20")
+	public static void question20(){
+		SimpleList<Integer> simpleList = new SimpleList<>();
+		for(int i = 0;i<5;i++){
+			simpleList.addFirst(i);
+		}
+		println(simpleList);
+		simpleList.deleteForIndex(4);
+		println(simpleList);
+		simpleList.deleteForIndex(0);
+		println(simpleList);
+		simpleList.deleteForIndex(1);
+		println(simpleList);
+		simpleList.deleteForIndex(1);
+		println(simpleList);
+		simpleList.deleteForIndex(0);
+		println(simpleList);
+	}
+
 }
