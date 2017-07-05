@@ -1,5 +1,6 @@
 package list;
 
+import com.sun.istack.internal.NotNull;
 import util.ChapterUtil;
 
 import java.util.Iterator;
@@ -10,55 +11,37 @@ import java.util.Iterator;
 public class SimpleList<Item> implements Iterable<Item> {
 
     /**链表的首节点*/
-    private Node<Item> first;
-
-    /**对节点个数技术*/
-    private int count;
+    private Node first;
 
     /**
      * 删除第k位的数据
      * 1.3.20题目
      * */
     public void deleteForIndex(int k){
-        indexCheck(k);
-        if(k == 0){  //针对删除第一个元素进行特殊处理
+        if(k == 0 || first == null){  //针对删除第一个元素进行特殊处理
             deleteFirst();
             return;
         }
-        Node<Item> node = first;
+        Node node = first;
         for(int i = 1;i<k;i++){  //找到第k - 1个元素
             node = node.next;
+            if(node == null || node.next == null){
+                return;
+            }
         }
         node.next = node.next.next;
-        count--;
     }
 
     /**从头部插入数据*/
     public void addFirst(Item item){
-        first = new Node<>(item,first);
-        count++;
-    }
-
-    /**删除前通过这个方法检查链表是否为空*/
-    private void deleteCheck(){
-        if(isEmpty()){
-            throw new RuntimeException("空链表无法删除");
-        }
-    }
-
-    /**对传入的索引的有效性进行验证*/
-    private void indexCheck(int k){
-        if(k < 0 || k >= size()){
-            throw new RuntimeException("编号异常");
-        }
+        first = new Node(item,first);
     }
 
     /**
      * 从以node为首节点的链表中尝试查找item。并返回链表中是否包含对应的数据
      * 1,3,21题目
      * */
-    public boolean find(NodeBox<Item> nodeBox,Item item){
-        Node<Item> node = nodeBox.node;
+    public boolean find(Node node,Item item){
         if(node == null || item == null){  //空列表不可能包含item;
             return false;
         }
@@ -74,32 +57,47 @@ public class SimpleList<Item> implements Iterable<Item> {
      * 删除给定节点的所有后续节点
      * 1.3.24题
      * */
-    public void removeAfter(NodeBox<Item> nodeBox){
-        Node node = nodeBox.node;
+    public void removeAfter(Node node){
         if(node != null){
-            for(Node index = node.next;index != null;index = index.next){
-                count--;
-            }
             node.next = null;
+        }
+    }
+    /**
+     * 将Node2的整条链表追加到node1后面。
+     * 题目1.3.25
+     * */
+    public void insertAfter(Node node1,Node node2){
+        if(node1 == null || node2 == null){
+            return;
+        }
+        Node nextNode = node1.next;
+        node1.next = node2;
+        for(Node index = node2;index != null;index = index.next){
+            if(index.next == null){
+                index.next = nextNode;
+                return;
+            }
         }
     }
     /**
      * 获取第k个节点
      * */
-    public NodeBox<Item> getItemForIndex(int k){
-        indexCheck(k);
-        Node<Item> node = first;
+    @NotNull
+    public Node getItemForIndex(int k){
+        Node node = first;
         for(int i = 0;i<k;i++){
             node = node.next;
+            if(node == null){
+                break;
+            }
         }
-        return new NodeBox<>(node);
+        return node;
     }
 
     /**删除第一个元素*/
     public void deleteFirst(){
-        deleteCheck();
-        first = first.next;
-        count--;
+        if(first != null)
+            first = first.next;
     }
 
     /**
@@ -107,9 +105,7 @@ public class SimpleList<Item> implements Iterable<Item> {
      * 练习1.3.19
      * */
     public void deleteLast(){
-        deleteCheck();
-        count--;
-        if(first.next == null){  //只有一个元素，直接删除
+        if(first == null || first.next == null){  //只有一个元素，直接删除
             first = null;
             return;
         }
@@ -129,27 +125,18 @@ public class SimpleList<Item> implements Iterable<Item> {
 
     }
 
-    /**获取链表元素个数*/
-    public int size(){
-        return count;
-    }
-
-    /**判断链表是否为空*/
-    public boolean isEmpty(){
-        return count == 0;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = ChapterUtil.getStringBuilder("[");
+        boolean isEmpty = true;
         for(Item item : this){
+            isEmpty = false;
             sb.append(item).append(",");
         }
-        if(!isEmpty()){
+        if(!isEmpty){
             sb.delete(sb.length()-1,sb.length());
         }
         sb.append("]");
-        sb.append("  ").append("count = ").append(count);
         return sb.toString();
     }
 
@@ -161,7 +148,7 @@ public class SimpleList<Item> implements Iterable<Item> {
     /**链表通用的遍历器*/
     private class SimpleListIterator implements Iterator<Item>{
 
-        private Node<Item> index = first;
+        private Node index = first;
 
         @Override
         public boolean hasNext() {
@@ -177,15 +164,45 @@ public class SimpleList<Item> implements Iterable<Item> {
     }
 
     /**获取链表的首节点*/
-    public NodeBox<Item> getFirst(){
-        return new NodeBox<>(first);
+    @NotNull
+    public Node getFirst(){
+        return first;
     }
 
-    /**用来包裹Node对象，禁止外部通过Node对象修改链表*/
-    private static class NodeBox<Item>{
-        public NodeBox(Node<Item> node){
-            this.node = node;
+    /**获取最后一个元素*/
+    public Node getLast(){
+        if(first == null){
+            return null;
         }
-        private Node<Item> node;
+        for(Node index = first;index != null;index = index.next){
+            if(index.next == null){
+                return index;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 清除链表中的所有数据
+     * */
+    public void clearLink(){
+        first = null;
+    }
+
+    /**
+     * 链表中的节点
+     * */
+    private class Node{
+        private Item item;
+        private Node next;
+
+        //构造函数为了简化对链表的操作。
+        Node(Item item){
+            this.item = item;
+        }
+        Node(Item item, Node next){
+            this(item);
+            this.next = next;
+        }
     }
 }

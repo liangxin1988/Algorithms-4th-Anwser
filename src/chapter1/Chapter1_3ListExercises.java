@@ -1,8 +1,5 @@
 package chapter1;
 
-import java.util.Iterator;
-
-import list.ListUtil;
 import list.SimpleList;
 import util.ChapterUtil;
 import static edu.princeton.cs.algs4.StdOut.*;
@@ -48,12 +45,6 @@ public class Chapter1_3ListExercises extends BaseChapter {
 		println(simpleList);
 	}
 
-	/*
-	* 注意：
-	* 从此题开始，题目中要求方法直接操作Node对象。
-	* 不过将Node直接暴露出来，可能导致链表被不受控制的修改，所以此处将Node对象打包为NodeBox
-	* 链表外部无法通过NodeBox操作链表，增强安全性。阅读代码的时候请注意。
-	* */
 	@Title("1.3.21")
 	public static void question21(){
 	    SimpleList<Integer> simpleList = new SimpleList<>();
@@ -91,4 +82,31 @@ public class Chapter1_3ListExercises extends BaseChapter {
 		simpleList.removeAfter(simpleList.getFirst());  //把除first的元素都删除
 		println(simpleList);
 	}
+
+	/**创建链表并填充测试数据*/
+	private static SimpleList<Integer> createSimpleList(int start,int end){
+        SimpleList<Integer> simpleList = new SimpleList<>();
+        for(int i = start;i<=end;i++){
+            simpleList.addFirst(i);
+        }
+        return simpleList;
+    }
+
+	@Title("1.3.25")
+	public static void question25(){
+        SimpleList<Integer> simpleList = createSimpleList(0,5);
+        SimpleList<Integer> simpleList2 = createSimpleList(6,10);
+        simpleList.insertAfter(simpleList.getFirst(),simpleList2.getFirst());
+        println(simpleList);
+
+        simpleList = createSimpleList(0,5);
+        simpleList2 = createSimpleList(6,10);
+        simpleList.insertAfter(simpleList.getLast(),simpleList2.getFirst());
+        println(simpleList);
+
+        simpleList = createSimpleList(0,5);
+        simpleList2 = createSimpleList(6,10);
+        simpleList.insertAfter(simpleList.getItemForIndex(3),simpleList2.getFirst());
+        println(simpleList);
+    }
 }
