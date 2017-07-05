@@ -8,7 +8,7 @@ import java.util.Iterator;
 /**
  * 演示用链表。
  */
-public class SimpleList<Item> implements Iterable<Item> {
+public class SimpleList<Item extends Comparable<Item>> implements Iterable<Item> {
 
     /**链表的首节点*/
     private Node first;
@@ -98,6 +98,19 @@ public class SimpleList<Item> implements Iterable<Item> {
     public void deleteFirst(){
         if(first != null)
             first = first.next;
+    }
+
+    public Item max(){
+        if(first == null){
+            return null;
+        }
+        Item max = first.item;
+        for(Node index = first;index != null;index = index.next){
+            if(index.item.compareTo(max) > 0){
+                max = index.item;
+            }
+        }
+        return max;
     }
 
     /**

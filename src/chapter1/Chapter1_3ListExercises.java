@@ -1,5 +1,6 @@
 package chapter1;
 
+import edu.princeton.cs.algs4.StdRandom;
 import list.SimpleList;
 import util.ChapterUtil;
 import static edu.princeton.cs.algs4.StdOut.*;
@@ -131,5 +132,17 @@ public class Chapter1_3ListExercises extends BaseChapter {
 		println(simpleList);
 		simpleList.removeForKey(1);
 		println(simpleList);
+	}
+
+	@Title("1.3.27")
+	public static void question27(){
+		SimpleList<Integer> simpleList = new SimpleList<>();
+		for(int i = 0;i<10;i++){
+			int rand = StdRandom.uniform(20);
+			print(rand + "  ");
+			simpleList.addFirst(rand);
+		}
+		println();
+		println("最大值："+simpleList.max());
 	}
 }
