@@ -30,7 +30,10 @@ public class InitChapterManager {
 		//没有实验题
 
 		exerciseManager.regiestQuestion(new Chapter1_3Exercises()); 
-		exerciseManager.regiestQuestion(new Chapter1_3ListExercises()); 
+		exerciseManager.regiestQuestion(new Chapter1_3ListExercises());
+		exerciseManager.regiestQuestion(new Chapter1_3Creative());
+		//没有实验题
+
 		exerciseManager.regiestQuestion(new Chapter1_4Exercises()); 
 		exerciseManager.regiestQuestion(new Chapter1_5Exercises()); 
 		
