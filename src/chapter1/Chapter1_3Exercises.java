@@ -1,19 +1,17 @@
 package chapter1;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.*;
 import framework.Fixme;
 import queue.FixedLengthQueue;
 import queue.ResizingArrayQueueOfStrings;
 import stack.FixedCapacityStackOfStrings;
 import util.ChapterUtil;
 
-import edu.princeton.cs.algs4.Queue;
-import edu.princeton.cs.algs4.ResizingArrayQueue;
-import edu.princeton.cs.algs4.Stack;
 import framework.Title;
 import Answer.BaseChapter;
 import static edu.princeton.cs.algs4.StdOut.*;
@@ -21,7 +19,6 @@ import static edu.princeton.cs.algs4.StdOut.*;
 /**
  * 1.3小节测试题
  * */
-@Fixme
 public class Chapter1_3Exercises  extends BaseChapter{
 
 	@Title("1.3.1")
@@ -281,9 +278,28 @@ public class Chapter1_3Exercises  extends BaseChapter{
 		println(queue);
 	}
 
+	@Title("1.3.16")
+	public static void question16(String dataStr){
+		if(dataStr == null){
+			dataStr = "1/1/2016,1/2/2016,1/3/2016";
+		}
+		String[] dataStrs = dataStr.split(",");
+		Queue<Date> queue = new Queue<>();
+		for(String s : dataStrs){
+			queue.enqueue(new Date(s));
+		}
+		Date[] dates = new Date[queue.size()];
+		for(int i = 0;i<dates.length;i++){
+			dates[i] = queue.dequeue();
+		}
 
-	
+		println(Arrays.toString(dates));
+	}
 
+	@Title("1.3.17")
+	public static void question17(String str){
+		ChapterUtil.questionNo();  //嫌麻烦，先不做了
+	}
 
 
 }
