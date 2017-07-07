@@ -1,5 +1,7 @@
 package stack;
 
+import util.ChapterUtil;
+
 import java.util.Iterator;
 
 /**
@@ -36,19 +38,9 @@ public class FixedCapacityStackOfStrings implements Stack<String>{
     public String peek(){
         return a[N - 1];  //与pop相比，不修改N的值，即可实现不弹出
     }
-
     @Override
     public String toString() {
-        if(isEmpty()){
-            return "";
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append("");
-        for(int i = 0;i<N;i++){
-            sb.append(a[i]).append(",");
-        }
-        sb.replace(sb.length()-1, sb.length(), "");
-        return sb.toString();
+        return ChapterUtil.iterableToString(this);
     }
 
     public static FixedCapacityStackOfStrings copy(FixedCapacityStackOfStrings fixedCapacityStackOfStrings){

@@ -78,23 +78,11 @@ public class ResizingArrayDeque<Item> implements Deque<Item> {
     private boolean isFull(){
         return count == contents.length;
     }
+
     @Override
     public String toString() {
-        StringBuilder sb = ChapterUtil.getStringBuilder();
-        sb.append("[");
-        boolean isEmpty = true;
-        for(Item item : this){
-            isEmpty = false;
-            sb.append(item).append(",");
-        }
-        if(!isEmpty){
-            sb.delete(sb.length() - 1,sb.length());
-        }
-        sb.append("]");
-        return sb.toString();
+        return ChapterUtil.iterableToString(this);
     }
-
-
     @Override
     public Iterator<Item> iterator() {
         return new ResizingArrayDequeIterator();

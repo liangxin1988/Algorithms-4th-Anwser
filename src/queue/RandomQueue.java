@@ -1,43 +1,54 @@
-package bag;
+package queue;
 
 import edu.princeton.cs.algs4.StdRandom;
 import util.ChapterUtil;
 
-import java.util.Arrays;
 import java.util.Iterator;
 
 /**
- * 随机背包
- * 1.3.34
+ * 随机队列
+ * 1.3.35
  */
-public class RandomBag<Item> implements Bag<Item> {
+public class RandomQueue<Item> implements Queue<Item> {
 
     private Item[] contents;
-    private int count = 0;
+    private int count;
+
+    /**随机返回一个数据，但不出列*/
+    public Item sample(){
+        if(isEmpty()){
+            throw new RuntimeException("没有数据");
+        }
+        return contents[StdRandom.uniform(count)];
+    }
 
     @Override
-    public void add(Item item) {
+    public void enqueue(Item item) {
         if(isFull()){
             resize(2 * contents.length);
         }
         contents[count++] = item;
     }
 
-    /**判断背包是否以满*/
+    @Override
+    public Item dequeue() {
+        swap(count - 1,StdRandom.uniform(count));
+        return contents[--count];
+    }
+
+    /**
+     * 交换数组中的两个元素
+     * */
+    private void swap(int i,int j){
+        Item temp = contents[i];
+        contents[i] = contents[j];
+        contents[j] = temp;
+    }
+
+    /**判断队列是否以满*/
     private boolean isFull(){
         return count == contents.length;
     }
-
-    @Override
-    public boolean isEmpty() {
-        return count == 0;
-    }
-
-    @Override
-    public int size() {
-        return count;
-    }
-
     @Override
     public String toString() {
         return ChapterUtil.iterableToString(this);
@@ -45,15 +56,15 @@ public class RandomBag<Item> implements Bag<Item> {
 
     @Override
     public Iterator<Item> iterator() {
-        return new RandomBagIterator();
+        return new RandomQueueIterator();
     }
 
-    private class RandomBagIterator implements Iterator<Item>{
+    private class RandomQueueIterator implements Iterator<Item>{
 
         private Item[] cache = (Item[]) new Object[count];
         private int index = 0;
 
-        public RandomBagIterator(){
+        public RandomQueueIterator(){
             for(int i = 0;i<count;i++){
                 cache[i] = contents[i];
             }
@@ -71,16 +82,27 @@ public class RandomBag<Item> implements Bag<Item> {
         }
     }
 
-    public RandomBag(){
+    public RandomQueue(){
         contents = (Item[]) new Object[2];
     }
 
-    /**调整数组尺寸*/
+    /**动态调整数组尺寸*/
     private void resize(int size){
         Item[] cache = (Item[]) new Object[size];
         for(int i = 0;i<count;i++){
             cache[i] = contents[i];
         }
         contents = cache;
+    }
+
+
+    @Override
+    public boolean isEmpty() {
+        return count == 0;
+    }
+
+    @Override
+    public int size() {
+        return count;
     }
 }

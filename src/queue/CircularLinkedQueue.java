@@ -49,20 +49,10 @@ public class CircularLinkedQueue<Item> implements Queue<Item> {
     public int size() {
         return count;
     }
-
     @Override
     public String toString() {
-        StringBuilder sb = ChapterUtil.getStringBuilder("[");
-        for(Item item : this){
-            sb.append(item).append(",");
-        }
-        if(!isEmpty()){
-            sb.delete(sb.length() - 1,sb.length());
-        }
-        sb.append("]");
-        return sb.toString();
+        return ChapterUtil.iterableToString(this);
     }
-
     @Override
     public Iterator<Item> iterator() {
         return new CircularLinkedQueueIterator();

@@ -83,17 +83,8 @@ public class ResizingArrayQueueOfStrings implements Queue<String> {
             return contents[((index++) + start) % contents.length];
         }
     }
-
     @Override
     public String toString() {
-        StringBuilder sb = ChapterUtil.getStringBuilder();
-        sb.append("[");
-        for(String s : this){
-            sb.append(s).append(",");
-        }
-        if(!isEmpty())
-            sb.delete(sb.length() - 1,sb.length());
-        sb.append("]");
-        return sb.toString();
+        return ChapterUtil.iterableToString(this);
     }
 }

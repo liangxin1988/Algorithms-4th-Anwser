@@ -111,4 +111,21 @@ public class ChapterUtil {
 	public static void printArray(double[] arr){
 		println(Arrays.toString(arr));
 	}
+
+	/**
+	 * 以固定格式打印Iterable对象
+	 * */
+	public static <Item> String iterableToString(Iterable<Item> it){
+		StringBuilder sb = getStringBuilder("[");
+		boolean isEmpty = true;
+		for(Item item : it){
+			isEmpty = false;
+			sb.append(item).append(",");
+		}
+		if(!isEmpty){
+			sb.delete(sb.length() - 1,sb.length());
+		}
+		sb.append("]");
+		return sb.toString();
+	}
 }

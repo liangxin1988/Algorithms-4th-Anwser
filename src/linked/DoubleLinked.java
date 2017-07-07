@@ -141,17 +141,6 @@ public class DoubleLinked<Item> implements Iterable<Item> {
     }
     @Override
     public String toString() {
-        StringBuilder sb = ChapterUtil.getStringBuilder("[");
-        boolean isEmpty = true;
-        for(Item item : this){
-            isEmpty = false;
-            sb.append(item).append(",");
-        }
-        if(!isEmpty){
-            sb.delete(sb.length() - 1,sb.length());
-        }
-        sb.append("]");
-
         //反向遍历，测试从后往前的链接是否正常
 //        sb.append("  [");
 //        DoubleNode index = last;
@@ -164,7 +153,7 @@ public class DoubleLinked<Item> implements Iterable<Item> {
 //        }
 //        sb.append("]");
         //反向遍历结束
-        return sb.toString();
+        return ChapterUtil.iterableToString(this);
     }
 
     @Override
