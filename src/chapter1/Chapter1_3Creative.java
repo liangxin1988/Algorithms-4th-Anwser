@@ -1,6 +1,8 @@
 package chapter1;
 
 import Answer.BaseChapter;
+import bag.Bag;
+import bag.RandomBag;
 import deque.Deque;
 import deque.DoubleLinkedDeque;
 import deque.ResizingArrayDeque;
@@ -77,5 +79,15 @@ public class Chapter1_3Creative extends BaseChapter {
             }
             printf(format,str);println(deque);
         }
+    }
+
+    @Title("1.3.34")
+    public static void question34(){
+        Bag<Integer> bag = new RandomBag<>();
+        for(int i = 0;i<10;i++){
+            bag.add(i);
+        }
+        println("bag.size = "+bag.size());
+        println(bag);
     }
 }
