@@ -59,6 +59,10 @@ public class RandomQueue<Item> implements Queue<Item> {
         return new RandomQueueIterator();
     }
 
+    /**
+     * 随机迭代器
+     * 1.3.36
+     * */
     private class RandomQueueIterator implements Iterator<Item>{
 
         private Item[] cache = (Item[]) new Object[count];

@@ -9,6 +9,7 @@ import deque.ResizingArrayDeque;
 import edu.princeton.cs.algs4.StdRandom;
 import framework.Title;
 import linked.LinkedSteque;
+import queue.JsephusQueue;
 import queue.RandomQueue;
 import util.ChapterUtil;
 
@@ -120,6 +121,32 @@ public class Chapter1_3Creative extends BaseChapter {
         }
     }
 
+    @Title("1.3.36")
+    public static void question36(){
+        RandomQueue<Integer> randomQueue = new RandomQueue<>();
+        for(int i = 0;i<10;i++){
+            randomQueue.enqueue(i);
+        }
+        println(randomQueue);
+    }
+
+    @Title("1.3.37")
+    public static void question37(String M,String N){
+        int m = 2,n = 7;
+        if(M != null && N != null){
+            m = Integer.parseInt(M);
+            n = Integer.parseInt(N);
+        }
+
+        JsephusQueue<Integer> jsephusQueue = new JsephusQueue<>(m);
+        for(int i = 0;i < n;i++){  //将n个人入列（按顺序排好）
+            jsephusQueue.enqueue(i);
+        }
+        while(!jsephusQueue.isEmpty()){  //将所有人出列，出列的顺序即为被杀死的人的顺序
+            print(jsephusQueue.dequeue()+"  ");
+        }
+        println();
+    }
 }
 
 /**
