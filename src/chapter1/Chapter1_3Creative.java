@@ -10,10 +10,7 @@ import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdRandom;
 import framework.Title;
 import linked.LinkedSteque;
-import queue.CircularLinkedQueue;
-import queue.JsephusQueue;
-import queue.Queue;
-import queue.RandomQueue;
+import queue.*;
 import stack.LinkedStack;
 import util.ChapterUtil;
 
@@ -151,6 +148,30 @@ public class Chapter1_3Creative extends BaseChapter {
             print(jsephusQueue.dequeue()+"  ");
         }
         println();
+    }
+
+    @Title("1.3.38")
+    public static void question38(){
+        testGeneralizedQueue(new ArrayGeneralizedQueue<>());
+        println("----------------------------");
+        testGeneralizedQueue(new LinkedGeneralizedQueue<>());
+    }
+
+    private static void testGeneralizedQueue(GeneralizedQueue<Integer> queue){
+        for(int i = 0;i<10;i++){
+            queue.insert(i);
+        }
+        println(queue);
+        print("删除:"+queue.delete(3)+" : ");
+        println(queue);
+        print("删除:"+queue.delete(3)+" : ");
+        println(queue);
+        print("删除:"+queue.delete(5)+" : ");
+        println(queue);
+        print("删除:"+queue.delete(0)+" : ");
+        println(queue);
+        print("删除:"+queue.delete(5)+" : ");
+        println(queue);
     }
 
     @Title("1.3.42")
