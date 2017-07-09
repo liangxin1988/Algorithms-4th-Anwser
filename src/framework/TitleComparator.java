@@ -6,6 +6,11 @@ import java.util.function.ToDoubleFunction;
 import java.util.function.ToIntFunction;
 import java.util.function.ToLongFunction;
 
+/**
+ * 用来比较两个标准题号的比较器
+ *
+ * 比较规则为，章数不同，则章数越大题目越大，章数一致则比较小节数，最后比较题号。
+ * */
 public class TitleComparator implements Comparator<String> {
 
 	@Override

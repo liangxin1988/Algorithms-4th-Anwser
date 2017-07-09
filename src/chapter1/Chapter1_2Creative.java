@@ -1,9 +1,7 @@
 package chapter1;
 
-import Answer.BaseChapter;
 import edu.princeton.cs.algs4.Accumulator;
 import edu.princeton.cs.algs4.Date;
-import framework.Title;
 import util.ChapterUtil;
 
 import static edu.princeton.cs.algs4.StdOut.print;
@@ -12,14 +10,12 @@ import static edu.princeton.cs.algs4.StdOut.println;
 /**
  * Created by liangxin on 2017/7/3.
  */
-public class Chapter1_2Creative extends BaseChapter {
+public class Chapter1_2Creative {
 
-    @Title("1.2.15")
     public static void question15(){
         ChapterUtil.questionLue();
     }
 
-    @Title("1.2.16")
     public static void question16(){
         print("测试加法：");println("4 / 9 + 2 / 8 = " + new Rational(4,9).plus(new Rational(2,8)));
         print("测试减法：");println("2 / 8 - 4 / 9 = " + new Rational(2,8).minus(new Rational(4,9)));
@@ -27,12 +23,10 @@ public class Chapter1_2Creative extends BaseChapter {
         print("测试除法：");println("(2 / 5) / (1 / 4) = " + new Rational(2,5).divides(new Rational(1,4)));
     }
 
-    @Title("1.2.17")
     public static void question17(){
         ChapterUtil.questionNo();
     }
 
-    @Title("1.2.18")
     public static void question18(){
         double[] nums = ChapterUtil.getRandomDoubleArray(10);
         Accumulator accumulator = new Accumulator();
@@ -45,7 +39,6 @@ public class Chapter1_2Creative extends BaseChapter {
         println("count = "+accumulator.count());
     }
 
-    @Title("1.2.19")
     public static void question19(){
         println(new Transaction("Turing 5/22/1939 11.99").toString());
     }

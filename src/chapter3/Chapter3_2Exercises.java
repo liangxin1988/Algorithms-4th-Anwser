@@ -1,13 +1,10 @@
 package chapter3;
 
 import edu.princeton.cs.algs4.StdRandom;
-import framework.Title;
 import st.BST;
-import Answer.BaseChapter;
 
-public class Chapter3_2Exercises extends BaseChapter {
+public class Chapter3_2Exercises {
 
-	@Title("3.2.2")
 	public static void question2(){
 		
 		String example = "AXCSERH";
@@ -25,7 +22,6 @@ public class Chapter3_2Exercises extends BaseChapter {
 		System.out.println("test5's height is"+getHeight(test5));
 	}
 	
-	@Title("3.2.3")
 	public static void question3(){
 		String test1 = "HCSAERX";
 		System.out.println("test1's height is"+getHeight(test1));
@@ -39,7 +35,6 @@ public class Chapter3_2Exercises extends BaseChapter {
 		System.out.println("test5's height is"+getHeight(test5));
 	}
 	
-	@Title("3.2.6")
 	public static void question6(){
 		int[] cs = {1,2,3,4,5,6,7,8,9,0};
 		for(int i = 0;i<100;i++){

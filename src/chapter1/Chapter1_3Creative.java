@@ -1,15 +1,12 @@
 package chapter1;
 
-import Answer.BaseChapter;
 import bag.Bag;
 import bag.RandomBag;
 import deque.Deque;
 import deque.DoubleLinkedDeque;
 import deque.ResizingArrayDeque;
-import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdRandom;
 import framework.Fixme;
-import framework.Title;
 import linked.LinkedSteque;
 import linked.MoveToFront;
 import queue.*;
@@ -17,8 +14,6 @@ import stack.LinkedStack;
 import util.ChapterUtil;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.TreeSet;
 
 import static edu.princeton.cs.algs4.StdOut.print;
@@ -30,9 +25,8 @@ import static util.ChapterUtil.iterableToString;
  * 1.3提高题
  */
 @Fixme
-public class Chapter1_3Creative extends BaseChapter {
+public class Chapter1_3Creative {
 
-    @Title("1.3.32")
     public static void question32(){
         LinkedSteque<Integer> steque = new LinkedSteque<>();
         println("入栈测试:");
@@ -55,7 +49,6 @@ public class Chapter1_3Creative extends BaseChapter {
         println();
     }
 
-    @Title("1.3.33")
     public static void question33(){
         println("双向链表实现的双向队列测试：");
         randomTestDeque(new DoubleLinkedDeque<Integer>());
@@ -94,7 +87,6 @@ public class Chapter1_3Creative extends BaseChapter {
         }
     }
 
-    @Title("1.3.34")
     public static void question34(){
         Bag<Integer> bag = new RandomBag<>();
         for(int i = 0;i<10;i++){
@@ -104,7 +96,6 @@ public class Chapter1_3Creative extends BaseChapter {
         println(bag);
     }
 
-    @Title("1.3.35")
     public static void question35(){
         RandomQueue<Card> randomQueue = new RandomQueue<>();
         //初始化52张牌
@@ -126,7 +117,6 @@ public class Chapter1_3Creative extends BaseChapter {
         }
     }
 
-    @Title("1.3.36")
     public static void question36(){
         RandomQueue<Integer> randomQueue = new RandomQueue<>();
         for(int i = 0;i<10;i++){
@@ -135,7 +125,6 @@ public class Chapter1_3Creative extends BaseChapter {
         println(randomQueue);
     }
 
-    @Title("1.3.37")
     public static void question37(String M,String N){
         int m = 2,n = 7;
         if(M != null && N != null){
@@ -153,20 +142,17 @@ public class Chapter1_3Creative extends BaseChapter {
         println();
     }
 
-    @Title("1.3.38")
     public static void question38(){
         testGeneralizedQueue(new ArrayGeneralizedQueue<>());
         println("----------------------------");
         testGeneralizedQueue(new LinkedGeneralizedQueue<>());
     }
 
-    @Title("1.3.39")
     @Fixme
     public static void question39(){
         ChapterUtil.questionNo();
     }
 
-    @Title("1.3.40")
     public static void question40(){
         MoveToFront<Integer> moveToFront = new MoveToFront<>();
         for(int i = 0;i<20;i++){
@@ -194,7 +180,6 @@ public class Chapter1_3Creative extends BaseChapter {
         println(queue);
     }
 
-    @Title("1.3.41")
     public static void question41(){
         CircularLinkedQueue<Integer> circularLinkedQueue = new CircularLinkedQueue<Integer>();
         for(int i = 0;i<10;i++){
@@ -205,7 +190,6 @@ public class Chapter1_3Creative extends BaseChapter {
         print("新队列:");println(newQueue);
     }
 
-    @Title("1.3.42")
     public static void question42(){
         LinkedStack<Integer> linkedStack = new LinkedStack<>();
         for(int i = 0;i<20;i++){
@@ -223,7 +207,6 @@ public class Chapter1_3Creative extends BaseChapter {
         println("复制的栈："+new LinkedStack<Integer>(linkedStack));
     }
 
-    @Title("1.3.43")
     public static void question43(String fileName){
         if(fileName == null){
             fileName = "d:\\";
@@ -256,7 +239,6 @@ public class Chapter1_3Creative extends BaseChapter {
         }
     }
 
-    @Title("1.3.44")
     public static void question44(){
         Buffer buffer = new Buffer();
         buffer.insert("My name is java");

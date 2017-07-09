@@ -8,12 +8,8 @@ import java.util.Calendar;
 import edu.princeton.cs.algs4.*;
 import util.ChapterUtil;
 
-import Answer.BaseChapter;
-import framework.Title;
+public class Chapter1_2Exercises {
 
-public class Chapter1_2Exercises extends BaseChapter {
-
-	@Title("1.2.1")
 	public static void question1(String n) {
 		int count = 5;
 		if (n != null) {
@@ -54,7 +50,6 @@ public class Chapter1_2Exercises extends BaseChapter {
 		}
 	}
 
-	@Title("1.2.2")
 	public static void question2(String n, String interval1dStr) {
 		int count = 5;
 		if (n != null) {
@@ -96,12 +91,10 @@ public class Chapter1_2Exercises extends BaseChapter {
 		}
 	}
 
-	@Title("1.2.3")
 	public static void question3(String N, String minStr, String maxStr) {
 		ChapterUtil.questionNo(); // 实在懒得做了
 	}
 
-	@Title("1.2.4")
 	public static void question4() {
 		String str1 = "hello";
 		String str2 = str1;
@@ -110,12 +103,10 @@ public class Chapter1_2Exercises extends BaseChapter {
 		println(str2);
 	}
 
-	@Title("1.2.5")
 	public static void question5() {
 		ChapterUtil.questionLue();
 	}
 
-	@Title("1.2.6")
 	public static void question6(String s1, String s2) {
 		String str1 = "ACTGACG";
 		String str2 = "TGACGAC";
@@ -127,7 +118,6 @@ public class Chapter1_2Exercises extends BaseChapter {
 				&& str1.length() == str2.length()); // 看了代码应该就理解了，不需要注释
 	}
 
-	@Title("1.2.7")
 	public static void question7(String str) {
 		if (str == null) {
 			str = "123456789";
@@ -135,12 +125,10 @@ public class Chapter1_2Exercises extends BaseChapter {
 		println(mystery(str));
 	}
 
-	@Title("1.2.8")
 	public static void question8() {
 		ChapterUtil.questionLue();
 	}
 
-	@Title("1.2.9")
 	public static void question9() {
 		Counter counter = new Counter("次");
 		int[] x = new int[10000];
@@ -150,7 +138,6 @@ public class Chapter1_2Exercises extends BaseChapter {
 		println(counter.tally());
 	}
 
-	@Title("1.2.10")
 	public static void question10() {
 		int count = 10;
 		VisualCounter visuCounter = new VisualCounter(count, 10);
@@ -164,7 +151,6 @@ public class Chapter1_2Exercises extends BaseChapter {
 		}
 	}
 	
-	@Title("1.2.11")
 	public static void question11(){
 		println(new SmartDate(2017, 1, 1));
 		try{
@@ -174,7 +160,6 @@ public class Chapter1_2Exercises extends BaseChapter {
 		}
 	}
 	
-	@Title("1.2.12")
 	public static void question12(){
 		Calendar calendar = Calendar.getInstance();
 		int year = calendar.get(Calendar.YEAR);
@@ -204,11 +189,9 @@ public class Chapter1_2Exercises extends BaseChapter {
 
 	}
 
-	@Title("1.2.13")
 	public static void question13(){
         println(new Transaction("java",new Date(1,1,1988),100).toString());
     }
-    @Title("1.2.14")
     public static void question14(){
         Transaction t1 = new Transaction("java",new Date(1,1,1988),100);
         Transaction t2 = new Transaction("java",new Date(1,1,1988),100);

@@ -6,40 +6,20 @@ import java.util.Scanner;
 
 import util.ChapterUtil;
 
-import Answer.BaseChapter;
-
 import edu.princeton.cs.algs4.StdRandom;
-import framework.Title;
+
 //完成
-public class Chapter1_1Exercises extends BaseChapter{
+public class Chapter1_1Exercises {
 
-	@Title("1.1.1")
 	public static void question1(){
-		print((0 + 15) / 2);  println("  说明：整数运算，得到的结果依然为整数。小数部分被舍弃（不是四舍五入）");
-		print(2.0e-6 * 100000000.1); println("  说明：2.0e-6，表示2乘以10的-6次方，也就是2 * 0.000001。而默认的浮点型为double，足以处理最后的.1。如果使用f修饰两个浮点数，则结果为200");
-		print(true && false || true && false);  println("  说明：&&的优先级高于||");
 	}
 	
-	@Title("1.1.2")
 	public static void question2(){
-		print((1 + 2.236) / 2);println("  说明：因为表达式中存在浮点数2.236，所以经过计算后，整个表达式中的所有数据都会自动提升为浮点数，结果也就是浮点数");
-		println(1 + 2 + 3 + 4.0);
-		print(4.1 >= 4);println("  说明：两个不同类型无法直接比较，不过编译器会自动将4提升为double，然后进行比较");
-		print(1 + 2 + "3");  println("  +运算符的运算顺序为从左到右，进行1 + 2时，得到结果3。将3 与 “3”相加时，会自动调用字符串连接方法，将两者拼接为字符串“33”");
-	}
-	
-	@Title("1.1.3")
-	public static void question3(String x,String y,String z){
-		int a = 2,b = 2,c = 2;
-		if(x != null && y != null && z!= null){
-			a = Integer.parseInt(x);
-			b = Integer.parseInt(y);
-			c = Integer.parseInt(z);
 		}
-		println(a == b && b == c?"equal":"not equal");
-	}
+	
+	public static void question3(String x,String y,String z){
+		}
 
-	@Title("1.1.4")
 	public static void question4(){
 		int a = 0,b= 0,c = 0;
 		println("if(a > b) then c = 0;   //java中没有then关键字。应改为：if(a > b) c = 0;");
@@ -48,7 +28,6 @@ public class Chapter1_1Exercises extends BaseChapter{
 		println("if (a > b) c = 0 else b = 0;  //if后面的代码块中，c = 0是一条语句。java中的所有语句必须以“;”结尾。应改为：if (a > b) c = 0; else b = 0;");
 	}
 	
-	@Title("1.1.5")
 	public static void question5(String a,String b){
 		double num1 = 0,num2 = 0;
 		if(a != null && b != null){
@@ -58,7 +37,6 @@ public class Chapter1_1Exercises extends BaseChapter{
 		println(num1 > 0 && num1 < 1 && num2 > 0 && num2 < 1);
 	}
 	
-	@Title("1.1.6")
 	public static void question6(){
 		int f = 0;
 		int g = 1;
@@ -69,7 +47,6 @@ public class Chapter1_1Exercises extends BaseChapter{
 		}
 	}
 	
-	@Title("1.1.7")
 	public static void question7(){
 		{
 			println("a:");
@@ -102,24 +79,20 @@ public class Chapter1_1Exercises extends BaseChapter{
 		}
 	}
 	
-	@Title("1.1.8")
 	public static void question8(){
 		println('b');
 		println('b'+'c');  //字符型变量，在java编译器中也是按照int类型来看待的，所以两个char相加，等价于两个char的ascii码相加，即98(b)+99(c)=197
 		println((char)('a'+4));  //同上，char也可以直接与int相加，得到的结果再转为char，则表示了该结果通过ascii反查到的char
 	}
 	
-	@Title("1.1.9")
 	public static void question9(){
 		ChapterUtil.questionLue();
 	}
 	
-	@Title("1.1.10")
 	public static void question10(){
 		ChapterUtil.questionLue();
 	}
 	
-	@Title("1.1.11")
 	public static void question11(){
 		int line = 10;
 		int column = 10;
@@ -146,7 +119,6 @@ public class Chapter1_1Exercises extends BaseChapter{
 		
 	}
 	
-	@Title("1.1.12")
 	public static void question12(){
 		int[] a = new int[10];
 		for(int i = 0;i<10;i++)
@@ -158,7 +130,6 @@ public class Chapter1_1Exercises extends BaseChapter{
 		}
 	}
 	
-	@Title("1.1.13")
 	public static void question13(){
 		String format = "%2d";
 		int line = 3,column = 5;
@@ -185,7 +156,6 @@ public class Chapter1_1Exercises extends BaseChapter{
 		
 	}
 
-	@Title("1.1.14")
 	public static void question14(String num){
 //		int a = StdRandom.uniform(100);
 		int a = 9;
@@ -199,7 +169,6 @@ public class Chapter1_1Exercises extends BaseChapter{
 		println(count-1);
 	}
 	
-	@Title("1.1.15")
 	public static void question15(String numStr){
 		int num = 5;
 		if(numStr != null){
@@ -222,7 +191,6 @@ public class Chapter1_1Exercises extends BaseChapter{
 	    return count;
     }
 	
-	@Title("1.1.16")
 	public static void question16(){
 		println(exR1(6));  //311361142246
 	}
@@ -232,18 +200,15 @@ public class Chapter1_1Exercises extends BaseChapter{
 		return exR1(n - 3) + n + exR1(n - 2) + n;
 	}
 	
-	@Title("1.1.17")
 	public static void question17(){
 		ChapterUtil.questionLue();
 	}
 	
-	@Title("1.1.18")
 	public static void question18(){
 		println(mystery1(2,25));  //计算乘法
 		println(mystery2(2,4));  //计算次方
 	}
 	
-	@Title("1.1.19")
 	public static void question19(){
 		int x = 50;
 		println("所需时间较长，请耐心等待");
@@ -256,14 +221,12 @@ public class Chapter1_1Exercises extends BaseChapter{
 		println("使用时间："+(System.currentTimeMillis() - time));
 	}
 	
-	@Title("1.1.20")
 	public static void question20(){
 		int x = 10;
 		println(Math.log(factorial(x)));
 		println(lnFactorial(x));
 	}
 	
-	@Title("1.1.21")
 	public static void question21(){
 		println("请输入数据\n");
 		Scanner scanner = new Scanner(System.in);
@@ -277,14 +240,12 @@ public class Chapter1_1Exercises extends BaseChapter{
 		}
 	}
 	
-	@Title("1.1.22")
 	public static void question22(){
 		int a[] = {85,54,6,5,8,52,6,8,6,65,6,85,3};
 		Arrays.sort(a);  //使用二分法查找前必须保证数组有序
 		rankByLevel(52, a, 0, a.length - 1, 0);
 	}
 	
-	@Title("1.1.23")
 	public static void question23(String str){
 		int a[] = {85,54,6,5,8,52,6,8,6,65,6,85,3};  //白名单
 		int list[] = {85,54,6,35,8,52,26,8,6,365,6,85,3,56,654,6,46,5};  //测试数据
@@ -307,7 +268,6 @@ public class Chapter1_1Exercises extends BaseChapter{
 		println();
 	}
 	
-	@Title("1.1.24")
 	public static void question24(String x1,String x2){
 		int x = 1111111;
 		int y = 1234567;
@@ -318,7 +278,6 @@ public class Chapter1_1Exercises extends BaseChapter{
 		println(Euclid(x, y,0));
 	}
 	
-	@Title("1.1.25")
 	public static void question25(){
 		ChapterUtil.questionNo();
 	}

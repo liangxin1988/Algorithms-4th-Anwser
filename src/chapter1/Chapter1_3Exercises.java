@@ -1,27 +1,20 @@
 package chapter1;
 
 import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 import edu.princeton.cs.algs4.*;
-import framework.Fixme;
 import queue.FixedLengthQueue;
 import queue.ResizingArrayQueueOfStrings;
 import stack.FixedCapacityStackOfStrings;
 import util.ChapterUtil;
 
-import framework.Title;
-import Answer.BaseChapter;
 import static edu.princeton.cs.algs4.StdOut.*;
 
 /**
  * 1.3小节测试题
  * */
-public class Chapter1_3Exercises  extends BaseChapter{
+public class Chapter1_3Exercises {
 
-	@Title("1.3.1")
 	public static void question1(){
 		FixedCapacityStackOfStrings fixedCapacityStackOfStrings = new FixedCapacityStackOfStrings(5);  //最多存储5个
 		while(!fixedCapacityStackOfStrings.isFull()){  //通过isFull标记，将数据存满
@@ -30,7 +23,6 @@ public class Chapter1_3Exercises  extends BaseChapter{
 		println("size = "+fixedCapacityStackOfStrings.size());  //打印size，看是否与设置的5一致。
 	}
 	
-	@Title("1.3.2")
 	public static void question2(String s){
 		if(s == null){
 			s = "it was - the best - of times - - - it was - the - -";
@@ -50,7 +42,6 @@ public class Chapter1_3Exercises  extends BaseChapter{
 		println(fixedCapacityStackOfStrings);
 	}
 	
-	@Title("1.3.3")
 	public static void question3(){
 		//通过题目2中的语法规则模拟出入栈规则（如果有）或者近似规则。其中数字表示入栈，*表示出栈并打印。
 		print("a可以实现    :  ");question2("0 1 2 3 4 * * * * * 5 6 7 8 9 * * * * *");
@@ -63,7 +54,6 @@ public class Chapter1_3Exercises  extends BaseChapter{
 		print("h可以实现    :  ");question2("0 1 2 * * 3 4 * * 5 6 * * 7 8 * * 9 * *");
 	}
 	
-	@Title("1.3.4")
 	public static void question4(String str){
 		if(str == null){
 			str = "[()]{}{[()()]()}";
@@ -103,12 +93,10 @@ public class Chapter1_3Exercises  extends BaseChapter{
 		println(result);
 	}
 	
-	@Title("1.3.5")
 	public static void question5(){
 		ChapterUtil.questionLue();
 	}
 	
-	@Title("1.3.6")
 	public static void question6(){
 		println("倒序排列");
 		Stack<String> stack = new Stack<String>();
@@ -126,7 +114,6 @@ public class Chapter1_3Exercises  extends BaseChapter{
 		println("操作后："+q);
 	}
 	
-	@Title("1.3.7")
 	public static void question7(){
 		FixedCapacityStackOfStrings fixedCapacityStackOfStrings = new FixedCapacityStackOfStrings(5);
 		fixedCapacityStackOfStrings.push("1");
@@ -138,13 +125,11 @@ public class Chapter1_3Exercises  extends BaseChapter{
 		println(fixedCapacityStackOfStrings);  //pop后元素变少了
 	}
 	
-	@Title("1.3.8")
 	public static void question8(){
 		//DoublingStackOfStrings 是什么鬼?书里有么？
 		ChapterUtil.questionNo();
 	}
 	
-	@Title("1.3.9")
 	public static void question9(String str){
 		if(str == null){
 			str = "1+2)*3-4)*5-6)))";  //为了解析方便，所有数字为1位数，中间不允许有空格（方便通过控制台传参）
@@ -177,7 +162,6 @@ public class Chapter1_3Exercises  extends BaseChapter{
 		println(result);
 	}
 	
-	@Title("1.3.10")
 	public static void question10(String str){
 		if(str == null){
 			str = "((1+2)*((3-4)*(5-6)))";  //与1.3.9要求一致
@@ -185,7 +169,6 @@ public class Chapter1_3Exercises  extends BaseChapter{
 		println(new InfixToPostfix(str).execute());
 	}
 	
-	@Title("1.3.11")
 	public static void question11(String str){
 		if(str == null){
 			str = "((12+)((34-)(96-)*)*)";
@@ -193,7 +176,6 @@ public class Chapter1_3Exercises  extends BaseChapter{
 		println(EvaluatePostfix.execute(str));
 	}
 	
-	@Title("1.3.12")
 	public static void question12(){
         FixedCapacityStackOfStrings stack = new FixedCapacityStackOfStrings(100);
         stack.push("java");
@@ -215,13 +197,11 @@ public class Chapter1_3Exercises  extends BaseChapter{
         println();
 	}
 	
-	@Title("1.3.13")
 	public static void question13(){
 		print("a可以实现    ：    ");queueTest("0 1 2 3 4 5 6 7 8 9 * * * * * * * * * *"); 
 		println("剩下的都不能实现。队列出栈的结果只有可能为a一种情况");
 	}
 	
-	@Title("1.3.14")
 	public static void question14(){
         ResizingArrayQueueOfStrings resizingArrayQueueOfStrings = new ResizingArrayQueueOfStrings();
         for(int i = 0;i<10;i++){
@@ -236,7 +216,6 @@ public class Chapter1_3Exercises  extends BaseChapter{
         }
 	}
 
-	@Title("1.3.15")
 	public static void question15(String args1,String args2){
 		int count = 5;
 		String[] array = new String[20];
@@ -278,7 +257,6 @@ public class Chapter1_3Exercises  extends BaseChapter{
 		println(queue);
 	}
 
-	@Title("1.3.16")
 	public static void question16(String dataStr){
 		if(dataStr == null){
 			dataStr = "1/1/2016,1/2/2016,1/3/2016";
@@ -296,7 +274,6 @@ public class Chapter1_3Exercises  extends BaseChapter{
 		println(Arrays.toString(dates));
 	}
 
-	@Title("1.3.17")
 	public static void question17(String str){
 		ChapterUtil.questionNo();  //嫌麻烦，先不做了
 	}

@@ -3,17 +3,14 @@ package chapter1;
 import static edu.princeton.cs.algs4.StdOut.print;
 import static edu.princeton.cs.algs4.StdOut.printf;
 import static edu.princeton.cs.algs4.StdOut.println;
-import Answer.BaseChapter;
-import edu.princeton.cs.algs4.StdDraw;
-import framework.Title;
+
 import util.ChapterUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Chapter1_1Creative extends BaseChapter{
+public class Chapter1_1Creative {
 	
-	@Title("1.1.26")
 	public static void question26(){
 		println("int a = 4,b = 2,c = 6,t;");
 		println("if(a > b){t = a;a = b;b = t;}  //此次步骤结束后,a必然小于等于b");
@@ -21,7 +18,6 @@ public class Chapter1_1Creative extends BaseChapter{
 		println("if(b > c){t = b;b = c;c = t;}  //b小于等于c，排序结束");
 	}
 
-	@Title("1.1.27")
 	public static void question27(){
 		int N = 100,k = 50;
 		double p = 0.25;
@@ -30,7 +26,6 @@ public class Chapter1_1Creative extends BaseChapter{
 		print("估计调用次数：");ChapterUtil.questionNo();
 	}
 
-	@Title("1.1.28")
 	public static void question28(){
         int a[] = {85,54,6,5,8,52,6,8,6,65,6,85,3};  //白名单
         int count = a.length;
@@ -50,7 +45,6 @@ public class Chapter1_1Creative extends BaseChapter{
         println(Arrays.toString(a));
     }
 
-    @Title("1.1.29")
     public static void question29(){
         int num[] = {1,1,1,1,2,2,2,3,3,3,5,6,7,7,7,7,8,8,8};
         int key = 9;
@@ -80,7 +74,6 @@ public class Chapter1_1Creative extends BaseChapter{
         }
     }
 
-    @Title("1.1.30")
     public static void question30(String str){
         int N = 10;
         if(str != null){
@@ -101,17 +94,14 @@ public class Chapter1_1Creative extends BaseChapter{
         }
     }
 
-    @Title("1.1.31")
     public static void question31(){
         ChapterUtil.questionNo();
     }
 
-    @Title("1.1.32")
     public static void question32(){
         ChapterUtil.questionNo();
     }
 
-    @Title("1.1.33")
     public static void question33(){
         {
             println("测试向量点乘");
@@ -184,7 +174,6 @@ public class Chapter1_1Creative extends BaseChapter{
         }
     }
 
-    @Title("1.1.34")
     public static void question34(){
 //        double a[] = {0.2,0.7,0.8,0.5,0.9,0.6,0.3,0.2,0.7,0.4,0.8,0.6,0.1,0.4,0.5,0.2,0.3,0.6};
         println("打印出最大和最小值。  //需要两个变量，参考MaxAndMinFilter");

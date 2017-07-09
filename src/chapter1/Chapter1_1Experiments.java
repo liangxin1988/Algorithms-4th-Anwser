@@ -1,12 +1,9 @@
 package chapter1;
 
-import Answer.BaseChapter;
 import framework.Fixme;
-import framework.Title;
-import util.ChapterUtil;
 
 @Fixme
-public class Chapter1_1Experiments extends BaseChapter {
+public class Chapter1_1Experiments {
 
     /**1.1.35中初始化骰子概率方法*/
     private static double[] initdist(){

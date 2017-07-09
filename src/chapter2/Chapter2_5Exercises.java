@@ -1,26 +1,20 @@
 package chapter2;
 
-import Answer.BaseChapter;
-import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Quick;
 import edu.princeton.cs.algs4.Selection;
 import edu.princeton.cs.algs4.StdRandom;
-import framework.Title;
+
 import static edu.princeton.cs.algs4.StdOut.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-
-import javax.swing.text.html.HTMLDocument.HTMLReader.ParagraphAction;
 
 import util.ChapterUtil;
 
 
 
-public class Chapter2_5Exercises extends BaseChapter {
+public class Chapter2_5Exercises {
 
-	@Title("2.5.3")
 	public static void question3(){
 		Balance a = new Balance();
 		Balance b = new Balance();
@@ -35,7 +29,6 @@ public class Chapter2_5Exercises extends BaseChapter {
 		println("修改方法：去掉加减0.005的代码");
 	}
 	
-	@Title("2.5.5")
 	public static void question5(){
 		IndexNode[] ins = new IndexNode[5];
 		for(int i = 0;i<ins.length;i++){
@@ -55,7 +48,6 @@ public class Chapter2_5Exercises extends BaseChapter {
 		println();
 	}
 	
-	@Title("2.5.6")
 	public static void question6(){
 		Integer[] is = new Integer[10];
 		for(int i = 0;i < is.length;i++){
@@ -67,7 +59,6 @@ public class Chapter2_5Exercises extends BaseChapter {
 		}
 	}
 	
-	@Title("2.5.8")
 	public static void question8(String str){
 		if(str == null){
 			str = "a,b,c,d,d,d,e,e,d,a,d";
@@ -91,7 +82,6 @@ public class Chapter2_5Exercises extends BaseChapter {
 		println(Arrays.toString(scs));
 	}
 	
-	@Title("2.5.10")
 	public static void question10(){
 		Version v1 = new Version("115.1.1");
 		Version v2 = new Version("115.10.1");

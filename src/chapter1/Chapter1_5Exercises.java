@@ -1,32 +1,22 @@
 package chapter1;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.ObjectInputStream.GetField;
 import java.util.Arrays;
 
-import util.FileUtil;
-
 import edu.princeton.cs.algs4.Counter;
-import framework.Title;
-import Answer.BaseChapter;
 
 import static edu.princeton.cs.algs4.StdOut.println;
 
 
-public class Chapter1_5Exercises extends BaseChapter {
+public class Chapter1_5Exercises {
 
-	@Title("1.5.1")
 	public static void question1(){
 		executeUF(new QuickFindUF(10));
 	}
 	
-	@Title("1.5.2")
 	public static void question2(){
 		executeUF(new QuickUnionUF(10));
 	}
 	
-	@Title("1.5.3")
 	public static void question3(){
 		executeUF(new WeightQuickUnionUF(10));
 	}
