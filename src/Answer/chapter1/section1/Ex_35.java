@@ -1,11 +1,18 @@
-package chapter1;
+package Answer.chapter1.section1;
 
+import Answer.base.Answer0;
 import framework.Fixme;
+import util.ChapterUtil;
 
+/**
+ */
 @Fixme
-public class Chapter1_1Experiments {
+public class Ex_35 extends Answer0 {
+    @Override
+    public void answer() {
+        ChapterUtil.questionNo();
+    }
 
-    /**1.1.35中初始化骰子概率方法*/
     private static double[] initdist(){
         int SIDES = 6;
         double[] dist = new double[2 * SIDES + 1];

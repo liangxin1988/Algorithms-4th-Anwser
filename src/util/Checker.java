@@ -18,4 +18,16 @@ public class Checker {
             checkPlus(x);
         }
     }
+
+    public static void checkStringNull(String str){
+        if(str == null || str.length() == 0){
+            throw new RuntimeException("字符串不能为空");
+        }
+    }
+
+    public static void checkStringNull(String ... strs){
+        for(String s : strs){
+            checkStringNull(s);
+        }
+    }
 }

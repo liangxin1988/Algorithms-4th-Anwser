@@ -2,6 +2,7 @@ package Answer.chapter1.section1;
 
 import Answer.base.Answer0;
 import Answer.base.Answer1;
+import Answer.base.convert.ArgsConvert;
 
 import java.util.Arrays;
 
@@ -35,6 +36,16 @@ public class Ex_23 extends Answer1 {
             }
         }
         println();
+    }
+
+    @Override
+    protected ArgsConvert[] getConverts() {
+        return new ArgsConvert[]{null};
+    }
+
+    @Override
+    public String getArgs1() {
+        return ""+super.getArgs1();
     }
 
     @Override

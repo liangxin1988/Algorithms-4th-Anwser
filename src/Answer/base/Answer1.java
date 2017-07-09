@@ -11,12 +11,7 @@ public abstract class Answer1 extends BaseArgsAnswer {
         super(1);
     }
 
-    public String getArgs1(){
-        return mArgs[0] + "";
-    }
-
-    @Override
-    protected ArgsConvert[] getConverts() {
-        return new ArgsConvert[]{null};
+    public Object getArgs1(){
+        return mArgs[0];
     }
 }
