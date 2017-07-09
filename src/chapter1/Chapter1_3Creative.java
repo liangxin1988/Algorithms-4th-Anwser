@@ -10,11 +10,14 @@ import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdRandom;
 import framework.Title;
 import linked.LinkedSteque;
+import queue.CircularLinkedQueue;
 import queue.JsephusQueue;
+import queue.Queue;
 import queue.RandomQueue;
 import stack.LinkedStack;
 import util.ChapterUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.TreeSet;
@@ -166,6 +169,39 @@ public class Chapter1_3Creative extends BaseChapter {
         }
         println("原始栈："+linkedStack);
         println("复制的栈："+new LinkedStack<Integer>(linkedStack));
+    }
+
+    @Title("1.3.43")
+    public static void question43(String fileName){
+        if(fileName == null){
+            fileName = "d:\\";
+        }
+        File file = new File(fileName);
+        if(file.isFile() || !file.exists()){
+            println("给定文件不合法");
+        }else{
+            Queue<String> queue = new CircularLinkedQueue<>();
+            parserFileList(file,queue,0);
+            while(!queue.isEmpty()){
+                print(queue.dequeue());
+            }
+        }
+    }
+
+    private static void parserFileList(File file,Queue<String> queue,int level){
+        StringBuilder sb = new StringBuilder(ChapterUtil.getEmptyChar(2 * level));
+        sb.append(file.getName());
+        sb.append("\n");
+        queue.enqueue(sb.toString());
+        if(file.isDirectory()){
+            File[] files = file.listFiles();
+            if(files == null){
+                return;
+            }
+            for(File f : files){
+                parserFileList(f,queue,level + 1);
+            }
+        }
     }
 
     @Title("1.3.44")
