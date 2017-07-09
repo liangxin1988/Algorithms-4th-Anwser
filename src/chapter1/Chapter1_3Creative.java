@@ -8,8 +8,10 @@ import deque.DoubleLinkedDeque;
 import deque.ResizingArrayDeque;
 import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdRandom;
+import framework.Fixme;
 import framework.Title;
 import linked.LinkedSteque;
+import linked.MoveToFront;
 import queue.*;
 import stack.LinkedStack;
 import util.ChapterUtil;
@@ -155,6 +157,23 @@ public class Chapter1_3Creative extends BaseChapter {
         testGeneralizedQueue(new ArrayGeneralizedQueue<>());
         println("----------------------------");
         testGeneralizedQueue(new LinkedGeneralizedQueue<>());
+    }
+
+    @Title("1.3.39")
+    @Fixme
+    public static void question39(){
+        ChapterUtil.questionNo();
+    }
+
+    @Title("1.3.40")
+    public static void question40(){
+        MoveToFront<Integer> moveToFront = new MoveToFront<>();
+        for(int i = 0;i<20;i++){
+            int uniform = StdRandom.uniform(10);
+            moveToFront.insert(uniform);
+            print("插入数据"+uniform+"后得到:");
+            println(moveToFront);
+        }
     }
 
     private static void testGeneralizedQueue(GeneralizedQueue<Integer> queue){
