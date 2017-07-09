@@ -5,9 +5,18 @@ package Answer.base.convert;
  */
 public class ArgsConvertFactory {
     static IntegerArgsConvert integerArgsConvert = new IntegerArgsConvert();
+    static DoubleArgsConvert doubleArgsConvert = new DoubleArgsConvert();
+
+    public static DoubleArgsConvert[] createDoubleArgsConverts(int size){
+        DoubleArgsConvert[] doubleArgsConverts = new DoubleArgsConvert[size];
+        for(int i = 0;i<size;i++){
+            doubleArgsConverts[i] = doubleArgsConvert;
+        }
+        return doubleArgsConverts;
+    }
 
     /**获取指定数目的int类型转换器*/
-    public static IntegerArgsConvert[] integerArgsConvertFactory(int size){
+    public static IntegerArgsConvert[] createIntegerArgsConvert(int size){
         IntegerArgsConvert[] integerArgsConverts = new IntegerArgsConvert[size];
         for(int i = 0;i<size;i++){
             integerArgsConverts[i] = integerArgsConvert;

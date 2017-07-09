@@ -29,6 +29,6 @@ abstract public class Answer3Integer extends BaseArgsAnswer {
 
     @Override
     protected ArgsConvert[] getConverts() {
-        return ArgsConvertFactory.integerArgsConvertFactory(3);
+        return ArgsConvertFactory.createIntegerArgsConvert(3);
     }
 }

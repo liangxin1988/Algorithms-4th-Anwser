@@ -1,5 +1,6 @@
 package util;
 
+import static edu.princeton.cs.algs4.StdOut.print;
 import static edu.princeton.cs.algs4.StdOut.println;
 
 import java.awt.Color;
@@ -80,7 +81,7 @@ public class ChapterUtil {
 	 * 原书中包含答案，忽略掉的问题
 	 * */
 	public static void questionLue(){
-		println("原书中有，略");
+		print("原书中有，略");
 	}
 	
 	/**

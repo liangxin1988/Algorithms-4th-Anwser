@@ -6,7 +6,6 @@ import static edu.princeton.cs.algs4.StdOut.print;
 import static edu.princeton.cs.algs4.StdOut.println;
 
 /**
- * Created by liangxin on 2017/7/9.
  */
 public class Ex_3 extends Answer3Integer {
     @Override

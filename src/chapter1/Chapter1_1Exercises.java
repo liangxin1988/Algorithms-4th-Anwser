@@ -10,80 +10,20 @@ import edu.princeton.cs.algs4.StdRandom;
 
 //完成
 public class Chapter1_1Exercises {
-
-	public static void question1(){
-	}
-	
-	public static void question2(){
-		}
-	
-	public static void question3(String x,String y,String z){
-		}
-
-	public static void question4(){
-		int a = 0,b= 0,c = 0;
-		println("if(a > b) then c = 0;   //java中没有then关键字。应改为：if(a > b) c = 0;");
-		println("if a > b {c = 0;}  //if后面的判断条件，需要括号。应改为：if(a > b){c = 0;}");
-		println("if (a > b) c = 0;  //木有问题，if后面的代码块如果只有一句代码，则大括号可以省略");
-		println("if (a > b) c = 0 else b = 0;  //if后面的代码块中，c = 0是一条语句。java中的所有语句必须以“;”结尾。应改为：if (a > b) c = 0; else b = 0;");
-	}
 	
 	public static void question5(String a,String b){
-		double num1 = 0,num2 = 0;
-		if(a != null && b != null){
-			num1 = Double.parseDouble(a);
-			num2 = Double.parseDouble(b);
 		}
-		println(num1 > 0 && num1 < 1 && num2 > 0 && num2 < 1);
-	}
 	
 	public static void question6(){
-		int f = 0;
-		int g = 1;
-		for(int i = 0;i<=15;i++){
-			println(f);  //斐波那契数列的前16(16为循环次数)个数
-			f = f + g;  //每次循环，得到的是当前数的下一个数
-			g = f - g;  //每次循环，得到的是上一次循环的f，也就是当前的数。
-		}
+
 	}
 	
 	public static void question7(){
-		{
-			println("a:");
-			double t = 9.0;
-			while(Math.abs(t - 9.0/t) > .001) //牛顿迭代法求平方根
-				t = (9.0/t + t)/2.0;
-			printf("%.5f\n",t);
-		}
 
-		{
-			println("b:");
-			int sum = 0;
-			for(int i = 1;i<1000;i++){  //外层循环执行999次
-				for(int j = 0;j<i;j++){  //内层循环执行次数与i一致
-					sum++;
-				}
-			}
-			println(sum);  //执行次数为1，2，3...999的等差数列，使用等差数列求和公式可得答案
-		}
-
-		{
-			println("c:");
-			int sum = 0;
-			for(int i = 1;i<1000;i*=2){  //外层循环执行10次（2的10次方为1024，从i=1(2^0)一直执行到i=512(2^9)，一共10次）
-				for(int j = 0;j<1000;j++){  //内层循环每次固定执行1000次。
-					sum++;
-				}
-			}
-			println(sum);  //内外层循环相乘，等于10000
-		}
 	}
 	
 	public static void question8(){
-		println('b');
-		println('b'+'c');  //字符型变量，在java编译器中也是按照int类型来看待的，所以两个char相加，等价于两个char的ascii码相加，即98(b)+99(c)=197
-		println((char)('a'+4));  //同上，char也可以直接与int相加，得到的结果再转为char，则表示了该结果通过ascii反查到的char
-	}
+		}
 	
 	public static void question9(){
 		ChapterUtil.questionLue();
