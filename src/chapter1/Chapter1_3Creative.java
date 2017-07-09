@@ -6,11 +6,13 @@ import bag.RandomBag;
 import deque.Deque;
 import deque.DoubleLinkedDeque;
 import deque.ResizingArrayDeque;
+import edu.princeton.cs.algs4.Stack;
 import edu.princeton.cs.algs4.StdRandom;
 import framework.Title;
 import linked.LinkedSteque;
 import queue.JsephusQueue;
 import queue.RandomQueue;
+import stack.LinkedStack;
 import util.ChapterUtil;
 
 import java.util.ArrayList;
@@ -147,6 +149,44 @@ public class Chapter1_3Creative extends BaseChapter {
         }
         println();
     }
+
+    @Title("1.3.42")
+    public static void question42(){
+        LinkedStack<Integer> linkedStack = new LinkedStack<>();
+        for(int i = 0;i<20;i++){
+            boolean bernoulli = StdRandom.bernoulli();
+            if(bernoulli){
+                linkedStack.push(i);
+            }else{
+                if(!linkedStack.isEmpty()){
+                    linkedStack.pop();
+                }
+            }
+//            print(bernoulli?("push:"+i):("pop   "));println(linkedStack);  //打印轨迹
+        }
+        println("原始栈："+linkedStack);
+        println("复制的栈："+new LinkedStack<Integer>(linkedStack));
+    }
+
+    @Title("1.3.44")
+    public static void question44(){
+        Buffer buffer = new Buffer();
+        buffer.insert("My name is java");
+        println(buffer);
+            print("删除以下字符:");
+        for(int i = 0;i<4;i++){
+            print(buffer.delete());
+        }
+        println();
+        buffer.insert("kotlin");
+        println(buffer);
+        buffer.left(14);
+        buffer.insert("program ");
+        println(buffer);
+        buffer.right(4);
+        buffer.insert("eeeeeeee");
+        println(buffer);
+    }
 }
 
 /**
@@ -207,5 +247,69 @@ class Card implements Comparable<Card>{
         public String toString() {
             return name;
         }
+    }
+}
+
+/**
+ * 文件缓冲区
+ * 1.3.44
+ * */
+class Buffer{
+    private LinkedStack<Character> left = new LinkedStack<>();
+    private LinkedStack<Character> right = new LinkedStack<>();
+    /**
+     * 在光标位置插入字符
+     * */
+    void insert(char c){
+        left.push(c);
+    }
+
+    void insert(String str){
+        for(char c : str.toCharArray()){
+            insert(c);
+        }
+    }
+
+    /**刪除光标位置的字符*/
+    char delete(){
+        if(!left.isEmpty())
+            return left.pop();
+        throw new RuntimeException("已经没有字符可删除");
+    }
+
+    /**将光标左移k位*/
+    void left(int k){
+        for(int i = 0;i<k;i++){
+            if(left.size() != 0)
+                right.push(left.pop());
+        }
+    }
+
+    /**将光标右移k位*/
+    void right(int k){
+        for(int i = 0;i<k;i++){
+            if(right.size() != 0){
+                left.push(right.pop());
+            }
+        }
+    }
+
+    /**缓冲区中字符数量*/
+    int size(){
+        return left.size() + right.size();
+    }
+
+    @Override
+    public String toString() {
+        LinkedStack<Character> cacheRightStack = new LinkedStack<>(right);
+        LinkedStack<Character> cacheLeftStack = new LinkedStack<>(left);
+        while(!cacheLeftStack.isEmpty()){
+            cacheRightStack.push(cacheLeftStack.pop());
+        }
+        StringBuilder stringBuilder = ChapterUtil.getStringBuilder();
+        while(!cacheRightStack.isEmpty()){
+            stringBuilder.append(cacheRightStack.pop());
+        }
+        return stringBuilder.toString();
     }
 }
