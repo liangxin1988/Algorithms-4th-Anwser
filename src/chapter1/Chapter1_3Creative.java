@@ -29,6 +29,7 @@ import static util.ChapterUtil.iterableToString;
 /**
  * 1.3提高题
  */
+@Fixme
 public class Chapter1_3Creative extends BaseChapter {
 
     @Title("1.3.32")
@@ -191,6 +192,17 @@ public class Chapter1_3Creative extends BaseChapter {
         println(queue);
         print("删除:"+queue.delete(5)+" : ");
         println(queue);
+    }
+
+    @Title("1.3.41")
+    public static void question41(){
+        CircularLinkedQueue<Integer> circularLinkedQueue = new CircularLinkedQueue<Integer>();
+        for(int i = 0;i<10;i++){
+            circularLinkedQueue.enqueue(i);
+        }
+        CircularLinkedQueue<Integer> newQueue = new CircularLinkedQueue<>(circularLinkedQueue);
+        print("原队列:");println(circularLinkedQueue);
+        print("新队列:");println(newQueue);
     }
 
     @Title("1.3.42")

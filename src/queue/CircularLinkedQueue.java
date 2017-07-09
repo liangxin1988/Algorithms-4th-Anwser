@@ -11,6 +11,23 @@ import java.util.Iterator;
 
 public class CircularLinkedQueue<Item> implements Queue<Item> {
 
+    public CircularLinkedQueue(){
+
+    }
+
+    /**
+     * 队列的复制
+     * 1.3.41
+     * */
+    public CircularLinkedQueue(CircularLinkedQueue<Item> circularLinkedQueues){
+        int size = circularLinkedQueues.size();
+        for(int i = 0; i< size; i++){
+            Item item = circularLinkedQueues.dequeue();
+            circularLinkedQueues.enqueue(item);
+            this.enqueue(item);
+        }
+    }
+
     private Node last;
     private int count = 0;
 
