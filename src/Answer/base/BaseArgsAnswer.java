@@ -44,7 +44,11 @@ abstract class BaseArgsAnswer extends BaseAnswer {
         int count = 0;
         ArgsConvert[] converts = getConverts();
         for(ArgsConvert ac : converts){
-            count += ac.count();
+            if(ac == null){
+                count++;
+            }else{
+                count += ac.count();
+            }
         }
         if(args.length - 1 < count){
             return false;
@@ -57,8 +61,13 @@ abstract class BaseArgsAnswer extends BaseAnswer {
         int index = 0;
         for(int i = 0;i<argsCount;i++){
             ArgsConvert argsConvert = getConverts()[i];
-            mArgs[i] = argsConvert.convert(subArray(args,index,index + argsConvert.count()));
-            index += argsConvert.count();
+            if(argsConvert == null){
+                mArgs[i] = args[i];
+                index++;
+            }else{
+                mArgs[i] = argsConvert.convert(subArray(args,index,index + argsConvert.count()));
+                index += argsConvert.count();
+            }
         }
     }
 
