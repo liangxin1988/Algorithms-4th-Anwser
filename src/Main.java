@@ -1,9 +1,16 @@
 import framework.Executer;
+import framework.FixmeQuextionManager;
+import framework.bean.QuestionBank;
+
+import static edu.princeton.cs.algs4.StdOut.println;
 
 /**
  * 主类
  * */
 public class Main {
+
+	private void handler(String command){
+	}
 
 	public static void main(String[] args) {
 		try{
