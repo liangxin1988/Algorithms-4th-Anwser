@@ -49,7 +49,7 @@ public class ResizingArrayQueueOfStrings implements Queue<String> {
             start = 0;
         }
         count--;
-        if(count <= contents.length / 4){
+        if(count > 0 && count <= contents.length / 4){
             reSize(contents.length / 2);
         }
         return s;

@@ -15,6 +15,10 @@ public class ArgsConvertFactory {
         return doubleArgsConverts;
     }
 
+    public static IntegerArgsConvert createIntegerArgsConvert(){
+        return integerArgsConvert;
+    }
+
     /**获取指定数目的int类型转换器*/
     public static IntegerArgsConvert[] createIntegerArgsConvert(int size){
         IntegerArgsConvert[] integerArgsConverts = new IntegerArgsConvert[size];
