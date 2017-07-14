@@ -49,6 +49,12 @@ public class ChapterUtil {
 		}
 	}
 
+	public static void initRandomArray(int[] ints){
+		for(int i = 0;i<ints.length;i++){
+			ints[i] = StdRandom.uniform(10);
+		}
+	}
+
 	/**
 	 * 获取一个用随机数填充的数组
 	 * @param size 数组尺寸
@@ -57,6 +63,12 @@ public class ChapterUtil {
 		double[] doubles = new double[size];
 		initRandomArray(doubles);
 		return doubles;
+	}
+
+	public static int[] getRandomIntArray(int size){
+		int[] ints = new int[size];
+		initRandomArray(ints);
+		return ints;
 	}
 	
 	/**
@@ -110,6 +122,10 @@ public class ChapterUtil {
 	}
 
 	public static void printArray(double[] arr){
+		println(Arrays.toString(arr));
+	}
+
+	public static void printArray(int[] arr){
 		println(Arrays.toString(arr));
 	}
 
