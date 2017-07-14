@@ -11,7 +11,7 @@ public abstract class Answer1 extends BaseArgsAnswer {
         super(1);
     }
 
-    public Object getArgs1(){
+    protected Object getArgs1(){
         return mArgs[0];
     }
 }
