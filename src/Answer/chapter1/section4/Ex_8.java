@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 import static edu.princeton.cs.algs4.StdOut.println;
 
-@Fixme
 public class Ex_8 extends Answer0 {
     @Override
     public void answer() {
