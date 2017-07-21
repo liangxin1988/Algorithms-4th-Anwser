@@ -28,7 +28,7 @@ public class Ex_14 extends Answer0 {
         int[] a = ChapterUtil.getRandomIntArray(size);
         for(int i = 0;i<a.length;i++){
             if(StdRandom.bernoulli()){
-                a[i] = -a[i];
+                a[i] = -a[i];  //随机变化符号，不然都是正数相加不可能为0
             }
         }
         long time = System.currentTimeMillis();
@@ -50,7 +50,6 @@ public class Ex_14 extends Answer0 {
                 for(int k = j + 1;k < a.length;k++){
                     for(int l = k + 1;l < a.length;l++){
                         if(a[i] + a[j] + a[k] + a[l] == 0){
-//                            println(a[i]+","+a[j]+","+a[k]+","+a[l]);
                             count++;
                         }
                     }
@@ -60,7 +59,9 @@ public class Ex_14 extends Answer0 {
         return count;
     }
 
-    /**名字叫fast，但是貌似并不快，希望有其他人提供更好的思路*/
+    /**
+     * 逻辑太复杂了，而且提升了内存使用，希望有其他人提供更好的思路
+     * */
     private long sum_4_fast(int a[]){
         long count = 0;
         final int n = a.length;
@@ -69,7 +70,7 @@ public class Ex_14 extends Answer0 {
         int[] index1 = new int[arrayLength];
         int[] index2 = new int[arrayLength];
         int num1 = 0,num2 = 1;
-        //执行（n - 1）* n / 2次初始化，先计算两两和
+        //执行（n - 1）* n / 2次初始化，先计算两两和，并保存两个数的索引，方便后续判断数字有效性
         for(int i = 0;i<arrayLength;i++){
             value[i] = a[num1] + a[num2];
             index1[i] = num1;
@@ -80,45 +81,25 @@ public class Ex_14 extends Answer0 {
                 num2 = num1 + 1;
             }
         }
-//        printArray(value);
-//        printArray(index1);
-//        printArray(index2);
+        //下面要进行二分法查找，所以这里需要对其进行排序（注意索引数组也要一起参与排序）
         sort(value,index1,index2,0,value.length - 1);
-//        printArray(value);
-//        printArray(index1);
-//        printArray(index2);
+
         for(int i = 0;i<arrayLength;i++){
             int keyIndex = value[i];
+            //参考1.4.11题，用来获取当前key的最小索引和最大索引
             int rankLeft = rankLeft(-keyIndex,value,i + 1,arrayLength - 1);
             int rankRight = rankRight(-keyIndex,value,i + 1,arrayLength- 1);
-//            println("keyIndex = "+keyIndex+",rankLeft = "+rankLeft+",rankRight = "+rankRight);
             int rank = rankLeft;
             while(rank <= rankRight && rank != -1){
+                //算法上无法规避，需要单独处理。四个元素中有重合的现象
                 if(!intersect(index1,index2,i,rank)){
                     count++;
-//                    println("***"+value[i]+"("+index1[i]+","+index2[i]+")"+
-//                            value[rank]+"("+index1[rank]+","+index2[rank]+")");
-//                    int[] sortArray = new int[]{index1[i],index1[rank],index2[i],index2[rank]};
-//                    Arrays.sort(sortArray);
-//                    println(Arrays.toString(sortArray));
-//                    println(a[sortArray[0]]+","+a[sortArray[1]]+","+a[sortArray[2]]+","+a[sortArray[3]]);
                 }
                 rank++;
             }
         }
         return count / 3;  //由于这种算法，每种组合（4个数）都会计算3遍（C(4,3)）所以需要除以3
     }
-//
-//    private void printArray(int[] a){
-//        print("[");
-//        for(int i = 0;i<a.length;i++){
-//            if(i != 0){
-//                print(",");
-//            }
-//            printf("%5d",a[i]);
-//        }
-//        println("]");
-//    }
 
     /**
      * 自己写的快速排序
