@@ -50,7 +50,7 @@ public class Ex_11 extends Answer0 {
                 return rankLeft(key,mid + 1,end);
             }else if(a[mid] > key){
                 return rankLeft(key,start,mid - 1);
-            }else if(mid > 0 && a[mid - 1] == key){
+            }else if(mid > start && a[mid - 1] == key){
                 return rankLeft(key,start,mid - 1);
             }else {
                 return mid;
@@ -67,7 +67,7 @@ public class Ex_11 extends Answer0 {
                 return rankRight(key,mid + 1,end);
             }else if(a[mid] > key){
                 return rankRight(key,start,mid - 1);
-            }else if(mid < a.length - 1 && a[mid + 1] == key){
+            }else if(mid < end && a[mid + 1] == key){
                 return rankRight(key,mid + 1,end);
             }else{
                 return mid;
