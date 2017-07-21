@@ -7,13 +7,13 @@ import util.ChapterUtil;
 import java.util.Arrays;
 
 import static edu.princeton.cs.algs4.StdOut.print;
+import static edu.princeton.cs.algs4.StdOut.printf;
 import static edu.princeton.cs.algs4.StdOut.println;
 
 public class Ex_14 extends Answer0 {
     @Override
     public void answer() {
-//        int[] a = {1, 2,-1,-2};
-//        int[] a = {1, 2, -2, -1, 2, -1, 1, -2};
+
         int a = 10;
         for(int i = 0;i<10;i++){
             test(a);
@@ -22,6 +22,9 @@ public class Ex_14 extends Answer0 {
     }
 
     private void test(int size) {
+//        int[] a = {1, 2,-1,-2};
+//        int[] a = {1, 2, -2, -1, 2, -1, 1, -2};
+
         int[] a = ChapterUtil.getRandomIntArray(size);
         for(int i = 0;i<a.length;i++){
             if(StdRandom.bernoulli()){
@@ -57,110 +60,154 @@ public class Ex_14 extends Answer0 {
         return count;
     }
 
-    /*
-    * 写了好久，逻辑不算简单，但是运行时间反而更长，灰常崩溃，待我慢慢优化
-    * 第一个优化思路，不使用对象Key，而是直接使用3个数组
-    * 第二个优化思路，自己写快速排序，非系统默认
-    * */
+    /**名字叫fast，但是貌似并不快，希望有其他人提供更好的思路*/
     private long sum_4_fast(int a[]){
         long count = 0;
-        int n = a.length;
-        Key[] keys = new Key[(n - 1) * n / 2];
+        final int n = a.length;
+        final int arrayLength = (n - 1) * n / 2;
+        int[] value = new int[arrayLength];
+        int[] index1 = new int[arrayLength];
+        int[] index2 = new int[arrayLength];
         int num1 = 0,num2 = 1;
         //执行（n - 1）* n / 2次初始化，先计算两两和
-        for(int i = 0;i<keys.length;i++){
-            keys[i] = new Key(a[num1] + a[num2],num1,num2);
+        for(int i = 0;i<arrayLength;i++){
+            value[i] = a[num1] + a[num2];
+            index1[i] = num1;
+            index2[i] = num2;
             num2++;
             if(num2 == n){
                 num1++;
                 num2 = num1 + 1;
             }
         }
-
-        Arrays.sort(keys);
-        for(int i = 0;i<keys.length;i++){
-            Key keyIndex = keys[i];
-            int rankLeft = rankLeft(-keyIndex.key,keys,i + 1,keys.length - 1);
-            int rankRight = rankRight(-keyIndex.key,keys,i + 1,keys.length - 1);
+//        printArray(value);
+//        printArray(index1);
+//        printArray(index2);
+        sort(value,index1,index2,0,value.length - 1);
+//        printArray(value);
+//        printArray(index1);
+//        printArray(index2);
+        for(int i = 0;i<arrayLength;i++){
+            int keyIndex = value[i];
+            int rankLeft = rankLeft(-keyIndex,value,i + 1,arrayLength - 1);
+            int rankRight = rankRight(-keyIndex,value,i + 1,arrayLength- 1);
 //            println("keyIndex = "+keyIndex+",rankLeft = "+rankLeft+",rankRight = "+rankRight);
             int rank = rankLeft;
             while(rank <= rankRight && rank != -1){
-                Key keyRank = keys[rank];
-                if(!keyRank.intersect(keyIndex)){
+                if(!intersect(index1,index2,i,rank)){
                     count++;
-//                    println("***"+a[keyRank.index1]+"("+keyRank.index1+","+keyRank.index2+")"+","+
-//                            a[keyRank.index2]+"("+keyRank.index1+","+keyRank.index2+")"+","+
-//                            a[keyIndex.index1]+"("+keyIndex.index1+","+keyIndex.index2+")"+","+
-//                            a[keyIndex.index2]+"("+keyIndex.index1+","+keyIndex.index2+")");
+//                    println("***"+value[i]+"("+index1[i]+","+index2[i]+")"+
+//                            value[rank]+"("+index1[rank]+","+index2[rank]+")");
+//                    int[] sortArray = new int[]{index1[i],index1[rank],index2[i],index2[rank]};
+//                    Arrays.sort(sortArray);
+//                    println(Arrays.toString(sortArray));
+//                    println(a[sortArray[0]]+","+a[sortArray[1]]+","+a[sortArray[2]]+","+a[sortArray[3]]);
                 }
                 rank++;
             }
         }
         return count / 3;  //由于这种算法，每种组合（4个数）都会计算3遍（C(4,3)）所以需要除以3
     }
+//
+//    private void printArray(int[] a){
+//        print("[");
+//        for(int i = 0;i<a.length;i++){
+//            if(i != 0){
+//                print(",");
+//            }
+//            printf("%5d",a[i]);
+//        }
+//        println("]");
+//    }
+
+    /**
+     * 自己写的快速排序
+     * */
+    private void sort(int[] a,int[] index1,int[] index2,int start,int end){
+        if(end <= start){
+            return;
+        }
+        int mid = partetion(a,index1,index2, start, end);
+        sort(a,index1,index2,start,mid - 1);
+        sort(a,index1,index2,mid + 1,end);
+    }
+
+    private int partetion(int[] a,int[] index1,int[] index2,int start,int end){
+        int i = start,j = end + 1;
+        while(true){
+            while(a[++i]<a[start]){
+                if(i == end){
+                    break;
+                }
+            }
+            while(a[start]<a[--j]){
+                if(j == start){
+                    break;
+                }
+            }
+            if(i >= j){
+                break;
+            }
+            exch(a,index1,index2, i, j);
+        }
+        exch(a,index1,index2, start, j);
+        return j;
+    }
+
+    /**同时交换3个数组的元素*/
+    private void exch(int[] a,int[] index1,int[] index2,int x,int y){
+        exch(a,x,y);
+        exch(index1,x,y);
+        exch(index2,x,y);
+    }
+
+    /**交换单个数组的元素*/
+    private void exch(int[] a,int x,int y){
+        int temp = a[x];
+        a[x] = a[y];
+        a[y] = temp;
+    }
+
+    /**判断点是否重复使用了元素*/
+    private boolean intersect(int[]a,int[]b,int x,int y){
+        if(a[x] == b[x] || a[y] == b[y] ||
+                a[x] == b[y] || a[y] == b[x] ||
+                a[x] == a[y] || b[x] == b[y]){
+            return true;
+        }
+        return false;
+    }
 
     //1.4.10中使用的优化版的二分法查找，只找最左边的
-    private int rankLeft(int key,Key[] a,int start,int end){
+    private int rankLeft(int key,int[] a,int start,int end){
         if(start > end){
             return -1;
         }
         int mid = (start + end) / 2;
-        if(a[mid].key < key){
+        if(a[mid] < key){
             return rankLeft(key,a,mid + 1,end);
-        }else if(a[mid].key > key){
+        }else if(a[mid] > key){
             return rankLeft(key,a,start,mid - 1);
-        }else if(mid > start && a[mid - 1].key == key){
+        }else if(mid > start && a[mid - 1] == key){
             return rankLeft(key,a,start,mid - 1);
         }else {
             return mid;
         }
     }
 
-    private int rankRight(int key,Key[] a,int start,int end){
+    private int rankRight(int key,int[] a,int start,int end){
         if(start > end){
             return -1;
         }
         int mid = (start + end) / 2;
-        if(a[mid].key < key){
+        if(a[mid] < key){
             return rankRight(key,a,mid + 1,end);
-        }else if(a[mid].key > key){
+        }else if(a[mid] > key){
             return rankRight(key,a,start,mid - 1);
-        }else if(mid < end && a[mid + 1].key == key){
+        }else if(mid < end && a[mid + 1] == key){
             return rankRight(key,a,mid + 1,end);
         }else{
             return mid;
-        }
-    }
-
-    private class Key implements Comparable<Key>{
-        int key;
-        int index1;
-        int index2;
-
-        Key(int key,int index1,int index2){
-            this.key = key;
-            this.index1 = index1;
-            this.index2 = index2;
-        }
-
-        /**两个key是否公用了同一个元素*/
-        public boolean intersect(Key o){
-            if(this.index1 == o.index1 || this.index2 == o.index1
-                    || this.index1 == o.index2 || this.index2 == o.index2){
-                return true;
-            }
-            return false;
-        }
-
-        @Override
-        public int compareTo(Key o) {
-            return key - o.key;
-        }
-
-        @Override
-        public String toString() {
-            return ""+key;
-//            return "("+"key = "+key+",index1 = "+index1+",index2 = "+index2+")\n";
         }
     }
 }
