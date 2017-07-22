@@ -31,4 +31,9 @@ public abstract class UF implements IUF{
 
     @Override
     public abstract void union(int p,int q);
+
+
+    public int[] getId(){
+        return id;
+    }
 }

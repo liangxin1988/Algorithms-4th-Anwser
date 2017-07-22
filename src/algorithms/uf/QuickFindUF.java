@@ -38,7 +38,13 @@ public class QuickFindUF extends UF {
                 id[k] = j;
             }
         }
+        count--;
 
-        println("id[] = "+ Arrays.toString(id)+",操作数组次数："+c);
     }
+
+    public long getC() {
+        return c;
+    }
+
+
 }
