@@ -3,12 +3,13 @@ package Answer.chapter1.section5;
 import Answer.base.Answer0;
 import algorithms.uf.IUF;
 import algorithms.uf.QuickUnionUF;
+import framework.Fixme;
 
 import java.util.Arrays;
 
 import static edu.princeton.cs.algs4.StdOut.print;
 import static edu.princeton.cs.algs4.StdOut.println;
-
+@Fixme(info = "暂时不考虑程序绘图")
 public class Ex_2 extends Answer0 {
     @Override
     public void answer() {
