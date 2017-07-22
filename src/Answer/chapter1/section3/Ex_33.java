@@ -1,9 +1,9 @@
 package Answer.chapter1.section3;
 
 import Answer.base.Answer0;
-import deque.Deque;
-import deque.DoubleLinkedDeque;
-import deque.ResizingArrayDeque;
+import data_structure.deque.Deque;
+import data_structure.deque.DoubleLinkedDeque;
+import data_structure.deque.ResizingArrayDeque;
 import edu.princeton.cs.algs4.StdRandom;
 
 import static edu.princeton.cs.algs4.StdOut.print;

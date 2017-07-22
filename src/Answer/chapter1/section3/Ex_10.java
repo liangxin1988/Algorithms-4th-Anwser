@@ -57,7 +57,7 @@ public class Ex_10 extends Answer1String {
                     default:
                         break;
                 }
-//				println("stack = "+opt);  //打印轨迹
+//				println("data_structure.stack = "+opt);  //打印轨迹
             }
             index = opt.pop();  //注意：这里用了最容易理解的机制找index，缺点是每次递归都要遍历字符串。其实可以考虑用一次遍历找到所有符号位，有兴趣的小伙伴可以优化一下
             start = str.substring(0,index);  //以运算符为分界，将左右部分进行切割

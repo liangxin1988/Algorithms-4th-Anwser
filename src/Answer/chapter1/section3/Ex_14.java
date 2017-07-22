@@ -2,7 +2,7 @@ package Answer.chapter1.section3;
 
 import Answer.base.Answer0;
 import edu.princeton.cs.algs4.StdRandom;
-import queue.ResizingArrayQueueOfStrings;
+import data_structure.queue.ResizingArrayQueueOfStrings;
 
 import static edu.princeton.cs.algs4.StdOut.println;
 

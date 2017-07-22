@@ -1,7 +1,7 @@
 package chapter3;
 
 import edu.princeton.cs.algs4.StdRandom;
-import st.BST;
+import data_structure.st.BST;
 
 public class Chapter3_2Exercises {
 

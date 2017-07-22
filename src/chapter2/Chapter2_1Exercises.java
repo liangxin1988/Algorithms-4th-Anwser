@@ -2,8 +2,8 @@ package chapter2;
 
 import static edu.princeton.cs.algs4.StdOut.println;
 
-import sort.SortDrawable;
-import sort.SortDrawableState;
+import algorithms.sort.SortDrawable;
+import algorithms.sort.SortDrawableState;
 import util.ChapterUtil;
 
 public class Chapter2_1Exercises {

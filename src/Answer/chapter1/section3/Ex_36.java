@@ -1,7 +1,7 @@
 package Answer.chapter1.section3;
 
 import Answer.base.Answer0;
-import queue.RandomQueue;
+import data_structure.queue.RandomQueue;
 
 import static edu.princeton.cs.algs4.StdOut.println;
 

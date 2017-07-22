@@ -1,7 +1,7 @@
 package chapter3;
 import static edu.princeton.cs.algs4.StdOut.println;
-import st.ArrayST;
-import st.BinarySearchST;
+import data_structure.st.ArrayST;
+import data_structure.st.BinarySearchST;
 import edu.princeton.cs.algs4.Accumulator;
 import edu.princeton.cs.algs4.StdRandom;
 

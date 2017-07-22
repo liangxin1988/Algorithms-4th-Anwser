@@ -1,9 +1,8 @@
 package Answer.chapter1.section3;
 
-import Answer.base.Answer0;
 import Answer.base.Answer1String;
-import queue.CircularLinkedQueue;
-import queue.Queue;
+import data_structure.queue.CircularLinkedQueue;
+import data_structure.queue.Queue;
 import util.ChapterUtil;
 import util.Checker;
 

@@ -1,8 +1,7 @@
 package Answer.chapter1.section3;
 
-import Answer.base.Answer0;
 import Answer.base.Answer2Integer;
-import queue.JsephusQueue;
+import data_structure.queue.JsephusQueue;
 import util.Checker;
 
 import static edu.princeton.cs.algs4.StdOut.print;

@@ -1,6 +1,6 @@
 package chapter2;
 
-import sort.SortCompare;
+import algorithms.sort.SortCompare;
 
 public class Chapter2_2Experiments {
 

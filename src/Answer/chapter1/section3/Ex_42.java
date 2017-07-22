@@ -2,7 +2,7 @@ package Answer.chapter1.section3;
 
 import Answer.base.Answer0;
 import edu.princeton.cs.algs4.StdRandom;
-import stack.LinkedStack;
+import data_structure.stack.LinkedStack;
 
 import static edu.princeton.cs.algs4.StdOut.print;
 import static edu.princeton.cs.algs4.StdOut.println;

@@ -1,7 +1,7 @@
 package Answer.chapter1.section3;
 
 import Answer.base.Answer0;
-import linked.DoubleLinked;
+import data_structure.linked.DoubleLinked;
 
 import static edu.princeton.cs.algs4.StdOut.print;
 import static edu.princeton.cs.algs4.StdOut.printf;

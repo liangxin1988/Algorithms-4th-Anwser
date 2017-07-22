@@ -1,7 +1,7 @@
 package Answer.chapter1.section3;
 
 import Answer.base.Answer1String;
-import stack.FixedCapacityStackOfStrings;
+import data_structure.stack.FixedCapacityStackOfStrings;
 
 import static edu.princeton.cs.algs4.StdOut.println;
 

@@ -1,13 +1,9 @@
 package Answer.chapter1.section3;
 
-import Answer.base.Answer0;
 import Answer.base.Answer2;
-import Answer.base.Answer2String;
 import Answer.base.convert.ArgsConvert;
 import Answer.base.convert.ArgsConvertFactory;
-import queue.FixedLengthQueue;
-
-import java.util.Arrays;
+import data_structure.queue.FixedLengthQueue;
 
 import static edu.princeton.cs.algs4.StdOut.println;
 

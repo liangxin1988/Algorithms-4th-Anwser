@@ -1,8 +1,7 @@
 package Answer.chapter1.section3;
 
 import Answer.base.Answer0;
-import Answer.base.BaseAnswer;
-import linked.SimpleLinked;
+import data_structure.linked.SimpleLinked;
 
 import static edu.princeton.cs.algs4.StdOut.println;
 

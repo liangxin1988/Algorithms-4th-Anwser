@@ -1,8 +1,8 @@
 package Answer.chapter1.section3;
 
 import Answer.base.Answer0;
-import stack.FixedCapacityStackOfStrings;
-import stack.StackTestHelper;
+import data_structure.stack.FixedCapacityStackOfStrings;
+import data_structure.stack.StackTestHelper;
 
 import static edu.princeton.cs.algs4.StdOut.print;
 

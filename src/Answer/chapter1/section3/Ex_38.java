@@ -1,9 +1,9 @@
 package Answer.chapter1.section3;
 
 import Answer.base.Answer0;
-import queue.ArrayGeneralizedQueue;
-import queue.GeneralizedQueue;
-import queue.LinkedGeneralizedQueue;
+import data_structure.queue.ArrayGeneralizedQueue;
+import data_structure.queue.GeneralizedQueue;
+import data_structure.queue.LinkedGeneralizedQueue;
 
 import static edu.princeton.cs.algs4.StdOut.print;
 import static edu.princeton.cs.algs4.StdOut.println;
