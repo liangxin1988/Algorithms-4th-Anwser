@@ -1,21 +1,23 @@
 package algorithms.uf;
 
-import java.util.Arrays;
-
 import static edu.princeton.cs.algs4.StdOut.println;
 
 /**
  */
 public class WeightedQuickUnionUF extends QuickUnionUF {
 
-    private int[] treeSize;
+    public int[] getSz() {
+        return sz;
+    }
+
+    private int[] sz;
     private int tc = 0;
 
     public WeightedQuickUnionUF(int N) {
         super(N);
-        treeSize = new int[N];
+        sz = new int[N];
         for(int i = 0;i<N;i++){
-            treeSize[i] = 1;
+            sz[i] = 1;
         }
     }
 
@@ -29,16 +31,16 @@ public class WeightedQuickUnionUF extends QuickUnionUF {
         }
 
         tc+=2;
-        if(treeSize[i] < treeSize[j]){
+        if(sz[i] < sz[j]){
             c++;
             id[i] = j;
             tc+=2;
-            treeSize[j] += treeSize[i];
+            sz[j] += sz[i];
         }else{
             c++;
             id[j] = i;
             tc+=2;
-            treeSize[i] += treeSize[j];
+            sz[i] += sz[j];
         }
 
         count--;
