@@ -4,6 +4,10 @@ import edu.princeton.cs.algs4.StdDraw;
 import util.canvas.shape.Rect;
 
 import java.awt.*;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.Rectangle2D;
+
+import static edu.princeton.cs.algs4.StdOut.println;
 
 /**
  * 提供一个绘图框架。封装stdDraw中的逻辑，并更换一些不习惯的逻辑（比如允许按照像素绘制图像）
@@ -42,6 +46,15 @@ public class MyCanvas {
     /**设置画笔颜色*/
     public void setColor(Color color){
         StdDraw.setPenColor(color);
+    }
+
+    /**以给定坐标作为左下角绘制文字*/
+    public void drawText(String text,int x,int y){
+        FontRenderContext frc = new FontRenderContext(null, false, false);
+        Rectangle2D stringBounds = StdDraw.getFont().getStringBounds(text, new FontRenderContext(null,false,true));
+        println(stringBounds);
+        StdDraw.text(px2Ratio((int) (x + stringBounds.getWidth() / 2),true),
+                px2Ratio((int) (y + stringBounds.getHeight() / 2),false),text);
     }
 
     /**

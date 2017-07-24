@@ -18,6 +18,7 @@ public class Ex_5 extends Answer0 {
         MyCanvas myCanvas = new MyCanvas(100,500);
         myCanvas.setColor(Color.RED);
         myCanvas.drawRect(new Rect(1,1,50,50));
+        myCanvas.drawText("hehe",0,0);
 //        double x = 0.05,y = 0.05;
 //        StdDraw.clear();
 //        StdDraw.setCanvasSize(100,500);
