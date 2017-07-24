@@ -2,8 +2,6 @@ package chapter2;
 
 import static edu.princeton.cs.algs4.StdOut.println;
 
-import algorithms.sort.SortDrawable;
-import algorithms.sort.SortDrawableState;
 import util.ChapterUtil;
 
 public class Chapter2_1Exercises {
@@ -26,57 +24,6 @@ public class Chapter2_1Exercises {
 	
 	public static void question5(){
 		println("[0,1,2,3,4,5,6,7,8,9]");
-	}
-	
-	//辅助绘制排序轨迹的类
-	private static class SortDrawGridHelper{
-
-		private SortDrawable sd;
-		
-		private static final String topFormat = "%2s %4s";
-		private static final String itemFormat = "%6s";
-			
-		public SortDrawGridHelper(SortDrawable sd){
-			this.sd = sd;
-		}
-		
-		public void draw(){
-			drawTitle();
-			sd.execute();
-			drawItem();
-		}
-		
-		public void drawItem(){
-			for(int i = 0;i<sd.getCount();i++){
-				SortDrawableState sortDrawableState = sd.getState(i);
-				String str = String.format(topFormat, ""+i,""+sortDrawableState.getBold());
-				str += arrayToString(sortDrawableState.getArrays());
-				drawLineStr(str);
-			}
-		}
-		
-		private void drawTitle(){
-			String str = String.format(topFormat, "i","min");
-			for(int i = 0;i<sd.getCount();i++){
-				str+=String.format(itemFormat, i+"");
-			}
-			drawLineStr(str);
-			str = String.format(topFormat,"","");
-			str += arrayToString(sd.getArray());
-			drawLineStr(str);
-		}
-		
-		private String arrayToString(Comparable[] a){
-			String str = "";
-			for(Comparable c : a){
-				str += String.format(itemFormat, c+"");
-			}
-			return str;
-		}
-		
-		private void drawLineStr(String str){
-			println(str);
-		}
 	}
 	
 
