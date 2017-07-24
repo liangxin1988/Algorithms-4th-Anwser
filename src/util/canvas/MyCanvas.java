@@ -1,31 +1,71 @@
 package util.canvas;
 
 import edu.princeton.cs.algs4.StdDraw;
+import util.canvas.shape.Rect;
 
 import java.awt.*;
 
 /**
- * Created by liangxin on 2017/7/3.
+ * 提供一个绘图框架。封装stdDraw中的逻辑，并更换一些不习惯的逻辑（比如允许按照像素绘制图像）
  */
 public class MyCanvas {
 
-    private int width,height;
+    /**默认画笔的宽度*/
+    private static final double DEFAULT_PEN_RADIUS = 0.001;
+    /**画布的默认宽度*/
+    private static final int DEFAULT_WIDTH = 500;
+    /**画布的默认高度*/
+    private static final int DEFAULT_HEIGHT = 500;
+    /**画板的宽度*/
+    private int width = DEFAULT_WIDTH;
+    /**画板的高度*/
+    private int height = DEFAULT_HEIGHT;
 
     /**构造画板，并初始化画板的宽高*/
     public MyCanvas(int width,int height){
         this.width = width;
         this.height = height;
-        StdDraw.setCanvasSize(width,height);
+        init();
+    }
+    /**使用默认参数构造画板*/
+    public MyCanvas(){
+        init();
     }
 
-    public void drawRect(Rect rect,Color color){
+    /**对画板参数执行初始化操作*/
+    private void init(){
+        StdDraw.clear();
+        StdDraw.setCanvasSize(width,height);
+        StdDraw.setPenRadius(DEFAULT_PEN_RADIUS);
+    }
+
+    /**设置画笔颜色*/
+    public void setColor(Color color){
+        StdDraw.setPenColor(color);
+    }
+
+    /**
+     * 使用指定颜色绘制矩形
+     * */
+    public void drawRect(Rect rect, Color color){
         cacheStdStatus();
         StdDraw.setPenColor(color);
-        RatioRect ratioRect = new RatioRect(rect);
-        StdDraw.rectangle(ratioRect.left,ratioRect.top,ratioRect.right,ratioRect.bottom);
+        drawRect(rect);
         restoreStdStatus();
     }
 
+    /**
+     * 绘制矩形
+     * */
+    public void drawRect(Rect rect){
+        //stdDraw的绘制方式是指定中心点和宽度/高度的一般，不太使用，这里直接修改为绘制给定的矩形对象
+        RatioRect ratioRect = new RatioRect(rect);
+        StdDraw.rectangle(ratioRect.getCenterX(),ratioRect.getCenterY(),
+                (ratioRect.right - ratioRect.left) / 2,
+                (ratioRect.top - ratioRect.bottom) / 2);
+    }
+
+    /**将坐标指定为比例*/
     private double px2Ratio(int px,boolean isWidth){
         return  px * 1.0 / (isWidth?this.width:this.height);
     }
@@ -33,40 +73,18 @@ public class MyCanvas {
     private class RatioRect{
         double left,top,right,bottom;
         public RatioRect(Rect rect){
-            left = px2Ratio(rect.left,true);
-            top = px2Ratio(rect.top,false);
-            right = px2Ratio(rect.right,true);
-            bottom = px2Ratio(rect.bottom,false);
-        }
-    }
-
-    public static class Rect{
-        private int left,top,right,bottom;
-        public Rect(){
-
+            left = px2Ratio(rect.getLeft(),true);
+            top = px2Ratio(rect.getTop(),false);
+            right = px2Ratio(rect.getRight(),true);
+            bottom = px2Ratio(rect.getBottom(),false);
         }
 
-        public int getLeft() {
-            return left;
+        public double getCenterX(){
+            return (left + right) / 2 + left;
         }
 
-        public int getTop() {
-            return top;
-        }
-
-        public int getRight() {
-            return right;
-        }
-
-        public int getBottom() {
-            return bottom;
-        }
-
-        public Rect(int left, int top, int right, int bottom){
-            this.left = left;
-            this.top = top;
-            this.right = right;
-            this.bottom = bottom;
+        public double getCenterY(){
+            return (top + bottom) / 2 + bottom;
         }
     }
 
