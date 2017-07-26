@@ -17,29 +17,20 @@ public class Ex_17 extends Answer1Integer {
         println(count(N));
     }
 
-    private static int count(int N){
-        return new ErdosRenyi(N,new WeightedQuickUnionUF(N)).execute();
+    public static int count(int N){
+        return ErdosRenyi.count(N,new WeightedQuickUnionUF(N));
     }
 
     private static class ErdosRenyi{
-        private int N;
-        private IUF uf;
 
-        ErdosRenyi(int N,IUF uf){
-            this.N = N;
-            this.uf = uf;
-        }
-
-        int execute(){
+        static int count(int N,IUF uf){
             int count = 0;
             while(uf.count() != 1){
                 int a = StdRandom.uniform(N);
                 int b = StdRandom.uniform(N);
 
-                if(!uf.connected(a,b)){
-                    count++;
-                    uf.union(a,b);
-                }
+                count++;
+                uf.union(a,b);
             }
             return count;
         }
