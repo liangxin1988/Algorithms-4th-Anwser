@@ -70,6 +70,15 @@ public class ChapterUtil {
 		initRandomArray(ints);
 		return ints;
 	}
+
+	/**获取用来排序的随机数组*/
+	public static Comparable<Double>[] getRandomSortArray(int size){
+		Comparable<Double>[] ints = (Comparable<Double>[]) new Comparable[size];
+		for(int i = 0;i<ints.length;i++){
+			ints[i] = StdRandom.uniform();
+		}
+		return ints;
+	}
 	
 	/**
 	 * 在一些需要格式化的操作中，快速获得由count个空格组成的字符串
