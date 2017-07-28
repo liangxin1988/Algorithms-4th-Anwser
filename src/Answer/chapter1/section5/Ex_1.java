@@ -22,5 +22,6 @@ public class Ex_1 extends Answer0 {
             uf.union(a[i],b[i]);
             println("id[] = "+ Arrays.toString(uf.getId())+",操作数组次数："+uf.getC());
         }
+        println("链接个数："+uf.count());
     }
 }
