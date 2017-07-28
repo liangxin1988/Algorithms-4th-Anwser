@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.Stopwatch;
 
 /**
- * 比较靓噶算法，由第1和2个参数设定待比较的算法，第三个参数设置数据量，而第四个参数指定重复次数（用来消除误差）
+ * 比较算法，由第1和2个参数设定待比较的算法，第三个参数设置数据量，而第四个参数指定重复次数（用来消除误差）
  * */
 public class SortCompare {
 	public static double time(String alg, Comparable[] a) {
