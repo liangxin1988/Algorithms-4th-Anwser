@@ -18,6 +18,8 @@ public class SortCompare {
 			baseSort = new SentryInsertSort(a);
 		}else if(alg.equals("InsertionSort")){
 			baseSort = new InsertionSort(a);
+		}else if(alg.equals("WithoutExchangeInsertiongSort")){
+			baseSort = new WithoutExchangeInsertiongSort(a);
 		}
 		Stopwatch timer = new Stopwatch();
 		baseSort.sort();
