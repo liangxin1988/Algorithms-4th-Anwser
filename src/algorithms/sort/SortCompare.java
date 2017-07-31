@@ -9,13 +9,18 @@ import edu.princeton.cs.algs4.Stopwatch;
  * */
 public class SortCompare {
 	public static double time(String alg, Comparable[] a) {
-		Stopwatch timer = new Stopwatch();
+		BaseSort baseSort = null;
 		if (alg.equals("mergeSort")){
-			new MergeSort(a);
+			baseSort = new MergeSort(a);
+		}else if (alg.equals("mergeSortNewCache")){
+			baseSort = new MergeSortNewCache(a);
+		}else if(alg.equals("SentryInsertSort")){
+			baseSort = new SentryInsertSort(a);
+		}else if(alg.equals("InsertionSort")){
+			baseSort = new InsertionSort(a);
 		}
-		if (alg.equals("mergeSortNewCache")){
-			new MergeSortNewCache(a);
-		}
+		Stopwatch timer = new Stopwatch();
+		baseSort.sort();
 		return timer.elapsedTime();
 	}
 
