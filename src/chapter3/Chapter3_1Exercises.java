@@ -1,7 +1,6 @@
 package chapter3;
 import static edu.princeton.cs.algs4.StdOut.println;
 import data_structure.st.ArrayST;
-import data_structure.st.BinarySearchST;
 import edu.princeton.cs.algs4.Accumulator;
 import edu.princeton.cs.algs4.StdRandom;
 
@@ -65,18 +64,18 @@ public class Chapter3_1Exercises {
 	}
 	
 	public static void question18(){
-		BinarySearchST<Integer, Integer> st = new BinarySearchST<>(20);
-		for(int i = 0;i<1000;i++){
-			int x = StdRandom.uniform(100000);
-			st.put(x, x);
-		}
-		for(int i = 0;i<st.size();i++){
-			if(i != st.rank(st.select(i))){
-				println("wrong");
-				return;
-			}
-		}
-		println("right");
+//		BinarySearchST<Integer, Integer> st = new BinarySearchST<>(20);
+//		for(int i = 0;i<1000;i++){
+//			int x = StdRandom.uniform(100000);
+//			st.put(x, x);
+//		}
+//		for(int i = 0;i<st.size();i++){
+//			if(i != st.rank(st.select(i))){
+//				println("wrong");
+//				return;
+//			}
+//		}
+//		println("right");
 	}
 	
 	public static void question19(){
