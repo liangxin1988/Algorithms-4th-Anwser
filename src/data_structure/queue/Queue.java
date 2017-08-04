@@ -3,7 +3,7 @@ package data_structure.queue;
 /**
  * 定义一个队列接口
  */
-public interface Queue<Item> extends Iterable<Item> {
+public interface Queue<Item> extends Iterable<Item>{
     /**入列*/
     void enqueue(Item item);
 

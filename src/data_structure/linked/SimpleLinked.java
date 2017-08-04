@@ -235,7 +235,11 @@ public class SimpleLinked<Item extends Comparable<Item>> implements Iterable<Ite
     /**
      * 链表中的节点
      * */
-    private class Node{
+    public class Node{
+        public Item getItem() {
+            return item;
+        }
+
         private Item item;
         private Node next;
 
