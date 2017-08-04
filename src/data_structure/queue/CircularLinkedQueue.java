@@ -28,7 +28,7 @@ public class CircularLinkedQueue<Item> implements Queue<Item> {
         }
     }
 
-    private Node last;
+    public Node last;
     private int count = 0;
 
     @Override
@@ -54,6 +54,9 @@ public class CircularLinkedQueue<Item> implements Queue<Item> {
         index.next = last.next;
         last = index;
         count--;
+        if(count == 0){
+            last = null;
+        }
         return item;
     }
 
@@ -94,7 +97,11 @@ public class CircularLinkedQueue<Item> implements Queue<Item> {
         }
     }
 
-    private class Node{
+    public class Node{
+        public Item getItem() {
+            return item;
+        }
+
         private Item item;
         private Node next;
 

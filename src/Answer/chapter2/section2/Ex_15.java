@@ -1,7 +1,7 @@
 package Answer.chapter2.section2;
 
 import Answer.base.Answer0;
-import data_structure.queue.LinkedQueue;
+import data_structure.queue.CircularLinkedQueue;
 import data_structure.queue.Queue;
 import data_structure.queue.QueueUtil;
 import util.ChapterUtil;
@@ -15,9 +15,9 @@ public class Ex_15 extends Answer0 {
     public void answer() {
         int[] array = ChapterUtil.getRandomIntArray(10);
         println(Arrays.toString(array));
-        Queue<Queue<Integer>> queue = new LinkedQueue();
+        Queue<Queue<Integer>> queue = new CircularLinkedQueue<>();
         for(int i : array){
-            Queue<Integer> q = new LinkedQueue<>();
+            Queue<Integer> q = new CircularLinkedQueue<>();
             q.enqueue(i);
             queue.enqueue(q);
         }
