@@ -77,4 +77,12 @@ public class HeapMaxPQ<Key extends Comparable<Key>> extends AbsMaxPQ<Key> {
         }
         contents = cache;
     }
+
+    public Key[] getContents(){
+        Key[] cache = (Key[]) new Comparable[count];
+        for(int i = 0;i<count;i++){
+            cache[i] = contents[i + 1];
+        }
+        return cache;
+    }
 }
