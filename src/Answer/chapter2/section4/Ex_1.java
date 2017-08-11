@@ -14,6 +14,6 @@ public class Ex_1 extends Answer1String {
 
     @Override
     protected Object[] getDefault() {
-        return new Object[]{"a b c * * *"};
+        return new Object[]{"P R I O * R * * I * T * Y * * * Q U E * * * U * E"};
     }
 }
