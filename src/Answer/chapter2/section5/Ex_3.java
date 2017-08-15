@@ -1,7 +1,6 @@
 package Answer.chapter2.section5;
 
 import Answer.base.Answer0;
-import chapter2.Chapter2_5Exercises;
 
 import static edu.princeton.cs.algs4.StdOut.print;
 import static edu.princeton.cs.algs4.StdOut.println;
