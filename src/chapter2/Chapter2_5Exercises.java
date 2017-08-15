@@ -20,22 +20,7 @@ public class Chapter2_5Exercises {
 	}
 	
 	public static void question5(){
-		IndexNode[] ins = new IndexNode[5];
-		for(int i = 0;i<ins.length;i++){
-			IndexNode in = new IndexNode();
-			in.index = i;
-			in.content = i % 2;
-			ins[i] = in;
-		}
-		for(int i = 0;i<ins.length;i++){
-			println(ins[i]);
-		}
-		println();
-		Selection.sort(ins);
-		for(int i = 0;i<ins.length;i++){
-			println(ins[i]);
-		}
-		println();
+
 	}
 	
 	public static void question6(){
@@ -186,22 +171,7 @@ public class Chapter2_5Exercises {
         a[j] = swap;
     }
     
-	public static class IndexNode implements Comparable<IndexNode>{
-		int index;
-		int content;
-		@Override
-		public int compareTo(IndexNode o) {
-			return content - o.content;
-		}
-		
-		@Override
-		public String toString() {
-			StringBuilder sb = ChapterUtil.getStringBuilder();
-			sb.append("index = ").append(index);
-			sb.append("content = ").append(content);
-			return sb.toString();
-		}
-	}
+
 
 	
 
