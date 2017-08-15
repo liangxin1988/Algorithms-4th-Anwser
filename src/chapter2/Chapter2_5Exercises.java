@@ -28,26 +28,7 @@ public class Chapter2_5Exercises {
 	}
 	
 	public static void question8(String str){
-		if(str == null){
-			str = "a,b,c,d,d,d,e,e,d,a,d";
-		}
-		String[] strs = str.split(",");
-		
-		ArrayList<StringCounter> al = new ArrayList<>();
-		outer:
-		for(String s : strs){
-			for(StringCounter sc : al){
-				if(sc.str.equals(s)){
-					sc.count++;
-					continue outer;
-				}
-			}
-			al.add(new StringCounter(s));
-		}
-		StringCounter[] scs = new StringCounter[al.size()];
-		al.toArray(scs);
-		Quick.sort(scs);
-		println(Arrays.toString(scs));
+
 	}
 	
 	public static void question10(){
@@ -83,29 +64,7 @@ public class Chapter2_5Exercises {
 		
 	}
 	
-	public static class StringCounter implements Comparable<StringCounter>{
-		String str;
-		int count;
-		
-		public StringCounter(String str){
-			this.str = str;
-			count = 1;
-		}
 
-		@Override
-		public int compareTo(StringCounter o) {
-			return o.count - this.count;
-		}
-		
-		@Override
-		public String toString() {
-			StringBuilder sb = ChapterUtil.getStringBuilder();
-			sb.append("str = ").append(str);
-			sb.append(",count = ").append(count);
-			sb.append("\n");
-			return sb.toString();
-		}
-	}
 	
 
 	
