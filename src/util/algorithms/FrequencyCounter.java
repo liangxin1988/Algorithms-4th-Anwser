@@ -47,7 +47,7 @@ abstract public class FrequencyCounter {
             }
         }
         
-        Queue<String> queue = null;
+        Queue<String> queue = new Queue<>();
 
         String max = "";
         st.put(max, 0);
