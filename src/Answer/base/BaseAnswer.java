@@ -1,6 +1,8 @@
 package Answer.base;
 
 
+import java.io.FileNotFoundException;
+
 /**
  * Created by liangxin on 2017/7/9.
  */
@@ -11,7 +13,7 @@ public abstract class BaseAnswer {
     /**
      * 展示答案的方法，需要各个答案子类具体实现
      * */
-    public abstract void answer();
+    public abstract void answer() throws FileNotFoundException;
 
     /**
      * 解析控制台参数
