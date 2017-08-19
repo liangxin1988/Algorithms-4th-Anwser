@@ -1,42 +1,28 @@
 package data_structure.st;
 
-import util.ChapterUtil;
+/**
+ * 标准的符号表API.所有的符号表都要实现这个接口
+ */
+public interface ST<Key,Value> {
 
-public abstract class ST<Key extends Comparable<Key> , Value> {
+    /**插入键值对*/
+    void put(Key key, Value value);
 
-	public void delete(Key key){
-		put(key,null);  
-	}
-	
-	public abstract void put(Key key,Value val);
-	
-	public boolean contains(Key key){
-		return get(key) != null;  
-	}
+    /**获取键对应的值*/
+    Value get(Key key);
 
-	public abstract Value get(Key key);
-	
-	public boolean isEmpty(){
-		return size() == 0;
-	}
-	
-	public abstract int size();
-	
-	public abstract Iterable<Key> keys();
-	
-	
-	@Override
-	public String toString() {
-		if(isEmpty()){
-			return "";
-		}
-		StringBuilder sb = ChapterUtil.getStringBuilder("[");
-		for(Key k : keys()){
-			sb.append("(").append(k).append(",").append(get(k)).append(")");
-			sb.append(",");
-		}
-		sb.replace(sb.length() - 1, sb.length(), "]");
-		return sb.toString();
-	}
-	
+    /**通过键删除键值对*/
+    void delete(Key key);
+
+    /**判断符号表中是否存在给定的键*/
+    boolean contains(Key key);
+
+    /**判断符号表是否为空*/
+    boolean isEmpty();
+
+    /**获取符号表中键值对的个数*/
+    int size();
+
+    /**给定所有键的集合，用来遍历符号表*/
+    Iterable<Key> keys();
 }

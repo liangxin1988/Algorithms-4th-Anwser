@@ -1,142 +1,106 @@
 package data_structure.st;
 
+import java.util.Iterator;
+
 /**
- * 通过链表实现无序的符号表
- * */
-public class SequentialSearchST<Key extends Comparable<Key> , Value> extends ST<Key,Value>{
-	
-	private Node first;
-	private int count;
+ * 基于无序链表实现的符号表
+ */
+public class SequentialSearchST<Key,Value> extends AbsST<Key,Value> {
 
-	@Override
-	public void put(Key key, Value val) {
-		Node node = getNode(key);
-		if(node != null){
-			node.value = val;
-			return;
-		}
-		Node oldFirst = first;
-		first = new Node(key,val);
-		first.next = oldFirst;
-		count++;
-	}
+    private Node first;
+    private int count;
 
-	@Override
-	public Value get(Key key) {
-		Node node = getNode(key);
-		if(node != null){
-			return node.value;
-		}
-		return null;
-	}
-	
-	private Node getNode(Key key){
-		if(first == null){
-			return null;
-		}
-		Node node = first;
-		do{
-			if(node.isKeyEqual(key)){
-				return node;
-			}
-			node = node.next;
-		}while(node != null);
-		return null;
-	}
+    @Override
+    public void delete(Key key) {
+        if(first == null){
+            throw new RuntimeException("空符号表不能删除");
+        }
+        if(first.key.equals(key)){
+            first = first.next;
+            count--;
+            return;
+        }
+        for(Node index = first;index.next != null;index = index.next){
+            if(index.next.key.equals(key)){
+                index.next = index.next.next;
+                count--;
+                return;
+            }
+        }
+    }
 
-	@Override
-	public int size() {
-		return count;
-	}
-	
-	@Override
-	public void delete(Key key) {
-		if(isEmpty()){
-			throw new RuntimeException("符号表为空，不能删除");
-		}
-		
-		if(first.key.equals(key)){
-			first = first.next;
-			count--;
-			return;
-		}
-		
-		Node node = first;
-		while(node.next != null){
-			if(node.next.isKeyEqual(key)){
-				node.next = node.next.next;
-				count--;
-				return;
-			}
-			node = node.next;
-		}
-	}
+    @Override
+    public void put(Key key, Value value) {
+        if(value == null){
+            delete(key);
+            return;
+        }
+        for(Node index = first;index != null;index = index.next){
+            if(index.key.equals(key)){
+                index.value = value;
+                return;
+            }
+        }
+        first = new Node(key,value,first);
+        count++;
+    }
 
-	@Override
-	public Iterable<Key> keys() {
-		return new STIterable();
-	}
-	
-	private class STIterable implements Iterable<Key>{
+    @Override
+    public Value get(Key key) {
+        for(Node index = first;index != null;index = index.next){
+            if(index.key.equals(key)){
+                return index.value;
+            }
+        }
+        return null;
+    }
 
-		@Override
-		public java.util.Iterator iterator() {
-			return new STIterator();
-		}
-		
-	}
-	
-	private class STIterator implements java.util.Iterator<Key>{
-		
-		Node node = first;
+    @Override
+    public int size() {
+        return count;
+    }
 
-		@Override
-		public boolean hasNext() {
-			return node != null;
-		}
+    @Override
+    public Iterable<Key> keys() {
+        return new SequentialSearchSTKeys();
+    }
 
-		@Override
-		public Key next() {
-			Key key = node.key;
-			node = node.next;
-			return key;
-		}
-		
-	}
+    private class SequentialSearchSTKeys implements Iterable<Key>{
 
-	private class Node{
-		private Key key;
-		private Value value;
-		
-		private Node next;
-		
-		public Node(Key key,Value value){
-			this.key = key;
-			this.value = value;
-		}
-		
-		public boolean isKeyEqual(Key key){
-			if(key == null){
-				return false;
-			}
-			return key.compareTo(this.key) == 0;
-		}
-	}
-	
-	public static void main(String[] args) {
-		SequentialSearchST<Integer, Integer> st = new SequentialSearchST<>();
-		System.out.println(st);
-		for(int i = 0;i<20;i++){
-			st.put(i, i);
-		}
-		for(int i = 0;i<20;i+=2){
-			st.delete(i);
-		}
-		System.out.println(st);
-		for(int i = 1;i<20;i+=2){
-			st.delete(i);
-		}
-//		System.out.println(data_structure.st);
-	}
-	
+        @Override
+        public Iterator<Key> iterator() {
+            return new SequentialSearchSTKeysIterator();
+        }
+    }
+
+    private class SequentialSearchSTKeysIterator implements Iterator<Key>{
+
+        private Node index = first;
+
+        @Override
+        public boolean hasNext() {
+            return index != null;
+        }
+
+        @Override
+        public Key next() {
+            Key key = index.key;
+            index = index.next;
+            return key;
+        }
+    }
+
+    /**节点*/
+    private class Node{
+        Key key;
+        Value value;
+        Node next;
+
+        public Node(Key key, Value value,Node next) {
+            this.key = key;
+            this.value = value;
+            this.next = next;
+        }
+    }
+
 }

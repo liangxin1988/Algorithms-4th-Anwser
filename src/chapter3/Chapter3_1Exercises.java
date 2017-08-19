@@ -1,32 +1,10 @@
 package chapter3;
 import static edu.princeton.cs.algs4.StdOut.println;
-import data_structure.st.ArrayST;
 import edu.princeton.cs.algs4.Accumulator;
-import edu.princeton.cs.algs4.StdRandom;
 
 public class Chapter3_1Exercises {
 
-	public static void question1(String str){
-		if(str == null){
-			str = "a,1,a,2,a,4,b,3,b,3,d,1";
-		}
-		String[] strs = str.split(",");
-		ArrayST<String, Accumulator> st = new ArrayST<>(10);
-		for(int i = 0;i<strs.length;i+=2){
-			Accumulator accumulator = null;
-			if(st.contains(strs[i])){
-				accumulator = st.get(strs[i]);
-			}else{
-				accumulator = new Accumulator();
-			}
-			accumulator.addDataValue(Integer.parseInt(strs[i + 1]));
-			st.put(strs[i],accumulator);
-		}
-		
-		for(String s : st.keys()){
-			println("char : "+s+",score : "+st.get(s).mean());
-		}
-	}
+
 	
 	public static void question2(){
 		println("参考ArrayST代码");
@@ -64,13 +42,13 @@ public class Chapter3_1Exercises {
 	}
 	
 	public static void question18(){
-//		BinarySearchST<Integer, Integer> st = new BinarySearchST<>(20);
+//		BinarySearchST<Integer, Integer> st_old = new BinarySearchST<>(20);
 //		for(int i = 0;i<1000;i++){
 //			int x = StdRandom.uniform(100000);
-//			st.put(x, x);
+//			st_old.put(x, x);
 //		}
-//		for(int i = 0;i<st.size();i++){
-//			if(i != st.rank(st.select(i))){
+//		for(int i = 0;i<st_old.size();i++){
+//			if(i != st_old.rank(st_old.select(i))){
 //				println("wrong");
 //				return;
 //			}
