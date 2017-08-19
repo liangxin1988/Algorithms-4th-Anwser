@@ -13,7 +13,7 @@ public abstract class BaseAnswer {
     /**
      * 展示答案的方法，需要各个答案子类具体实现
      * */
-    public abstract void answer() throws FileNotFoundException;
+    public abstract void answer();
 
     /**
      * 解析控制台参数
