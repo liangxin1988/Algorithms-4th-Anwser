@@ -24,9 +24,9 @@ public class Ex_6 extends Answer0 {
             bst.put(i,i);
             bst2.put(i,i);
         }
-        int h1 = bst.height1();
-        int h2 = bst.height2();
-        int h3 = bst2.height();
+        int h1 = bst.height1();  //递归形式
+        int h2 = bst.height2();  //节点形式
+        int h3 = bst2.height();  //对比测试
 
         if(h1 != h2 || h2 != h3){
             throw new RuntimeException("测试失败");
