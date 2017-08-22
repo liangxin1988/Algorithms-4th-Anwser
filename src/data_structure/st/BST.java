@@ -3,6 +3,8 @@ package data_structure.st;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import static edu.princeton.cs.algs4.StdOut.print;
+
 
 /**
  * 以二叉查找树实现的有序符号表
@@ -11,6 +13,12 @@ public class BST<Key extends Comparable<Key>,Value> extends AbsOrderST<Key,Value
 
     /**当前二叉查找树的根节点*/
     private Node root;
+
+    public void setShowTrip(boolean showTrip) {
+        this.showTrip = showTrip;
+    }
+
+    private boolean showTrip = false;
 
     @Override
     public void put(Key key, Value value) {
@@ -42,6 +50,9 @@ public class BST<Key extends Comparable<Key>,Value> extends AbsOrderST<Key,Value
     private Value get(Key key,Node node){
         if(node == null){
             return null;
+        }
+        if(showTrip){
+            print(node.key+",");
         }
         int cmp = node.key.compareTo(key);
         if(cmp == 0){
