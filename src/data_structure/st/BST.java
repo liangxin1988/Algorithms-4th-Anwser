@@ -27,7 +27,7 @@ public class BST<Key extends Comparable<Key>,Value> extends AbsOrderST<Key,Value
 
     private Node put(Key key,Value value,Node node){
         if(node == null){
-            return new Node(key,value,1);
+            return new Node(key,value,1,0);
         }
         int cmp = node.key.compareTo(key);
         if(cmp < 0){
@@ -38,6 +38,9 @@ public class BST<Key extends Comparable<Key>,Value> extends AbsOrderST<Key,Value
             node.value = value;
         }
         node.size = size(node.left) + size(node.right) + 1;
+        int leftHeight = height1(node.left);
+        int rightHeight = height1(node.right);
+        node.height = 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
         return node;
     }
 
@@ -205,6 +208,9 @@ public class BST<Key extends Comparable<Key>,Value> extends AbsOrderST<Key,Value
         }
         node.right = deleteMax(node.right);
         node.size = size(node.left) + size(node.right) + 1;
+        int leftHeight = height1(node.left);
+        int rightHeight = height1(node.right);
+        node.height = 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
         return node;
     }
 
@@ -222,6 +228,9 @@ public class BST<Key extends Comparable<Key>,Value> extends AbsOrderST<Key,Value
         }
         node.left = deleteMin(node.left);
         node.size = size(node.left) + size(node.right) + 1;
+        int leftHeight = height1(node.left);
+        int rightHeight = height1(node.right);
+        node.height = 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
         return node;
     }
 
@@ -251,6 +260,9 @@ public class BST<Key extends Comparable<Key>,Value> extends AbsOrderST<Key,Value
             node.left = t.left;
         }
         node.size = size(node.left) + size(node.right) + 1;
+        int leftHeight = height1(node.left);
+        int rightHeight = height1(node.right);
+        node.height = 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
         return node;
     }
 
@@ -291,11 +303,31 @@ public class BST<Key extends Comparable<Key>,Value> extends AbsOrderST<Key,Value
         /**以当前节点为跟节点的树的大小*/
         private int size;
 
-        public Node(Key key, Value value, int size) {
+        private int height;
+
+        public Node(Key key, Value value, int size,int height) {
             this.key = key;
             this.value = value;
             this.size = size;
         }
+    }
+
+    //通过递归的方式计算高度
+    public int height1(){
+        return height1(root);
+    }
+
+    private int height1(Node node){
+        if(node == null){
+            return -1;
+        }
+        int left = height1(node.left);
+        int right = height1(node.right);
+        return (left > right ? left : right) + 1;
+    }
+
+    public int height2(){
+        return root.height;
     }
 
 }
