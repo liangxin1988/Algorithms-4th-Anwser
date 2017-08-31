@@ -94,4 +94,18 @@ public class Graph implements IGraph{
         }
         return false;
     }
+
+    /**生成一个图的字符串表示法*/
+    public String toString(){
+        Graph g = this;
+        String s = g.V() + " vertices," + g.E() + " edges\n";
+        for(int v = 0;v < g.V();v++){
+            s += v + ": ";
+            for(int w : g.adj(v)){
+                s += w + " ";
+            }
+            s += "\n";
+        }
+        return s;
+    }
 }
