@@ -1,5 +1,6 @@
 package data_structure.graph;
 
+import com.sun.org.apache.bcel.internal.generic.ISHL;
 import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.In;
 import jdk.nashorn.internal.ir.annotations.Ignore;
@@ -65,6 +66,12 @@ public class Graph implements IGraph{
 
     @Override
     public void addEdge(int v, int w) {
+        if(v == w){
+            return;  //不允许存在平行边
+        }
+        if(hasEdge(v,w)){
+            return;  //不允许存在闭环
+        }
         bags[v].add(w);
         bags[w].add(v);
         count++;
