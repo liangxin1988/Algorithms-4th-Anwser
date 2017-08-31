@@ -5,6 +5,8 @@ import edu.princeton.cs.algs4.Bag;
 import edu.princeton.cs.algs4.In;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 
+import static edu.princeton.cs.algs4.StdOut.println;
+
 /**
  * 通过邻接表实现一个无向图
  */
@@ -30,10 +32,24 @@ public class Graph implements IGraph{
     public Graph(In in){
         this(in.readInt());  //第一个int表示v的个数
         int e = in.readInt();  //第二个int表示边的个数
-        for(int i = 0;i<e;i++){  //剩下的e对整数表示e条边
-            int v = in.readInt();
-            int w = in.readInt();
-            addEdge(v,w);
+//        for(int i = 0;i<e;i++){  //剩下的e对整数表示e条边
+//            int v = in.readInt();
+//            int w = in.readInt();
+//            addEdge(v,w);
+//        }
+        while(in.hasNextLine()){
+            String s = in.readLine();
+            if("".equals(s)){
+                continue;
+            }
+            String[] strs = s.split(" ");
+            int[] tops = new int[strs.length];
+            for(int i = 0;i<tops.length;i++){
+                tops[i] = Integer.parseInt(strs[i]);
+            }
+            for(int i = 1;i<strs.length;i++){
+                addEdge(tops[0],tops[i]);
+            }
         }
     }
 
