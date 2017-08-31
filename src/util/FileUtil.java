@@ -26,7 +26,13 @@ public class FileUtil {
 	}
 
 	/**获取测试文件对应的输入流*/
-	public static Scanner getScanner(String filename) throws FileNotFoundException {
-		return new Scanner(getTestFile(filename));
+	public static Scanner getScanner(String filename) {
+		try {
+			return new Scanner(getTestFile(filename));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			throw new RuntimeException("找不到文件");
+		}
+
 	}
 }

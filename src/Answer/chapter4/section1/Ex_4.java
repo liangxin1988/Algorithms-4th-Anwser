@@ -7,24 +7,20 @@ import util.FileUtil;
 
 import java.io.FileNotFoundException;
 
-import static edu.princeton.cs.algs4.StdOut.print;
 import static edu.princeton.cs.algs4.StdOut.println;
 
 /**
  */
-public class Ex_3 extends Answer0 {
+public class Ex_4 extends Answer0 {
     @Override
     public void answer() {
         Graph graph = new Graph(new In(FileUtil.getScanner("tinyG.txt")));
-        Graph graph2 = new Graph(graph);
-
-        println("v = "+graph2.V()+",e = "+graph2.E());
-        for(int i = 0;i<graph2.V();i++){
-            print("i = "+i+": ");
-            for(int x : graph2.adj(i)){
-                print(x + " ");
+        for(int i = 0;i<graph.V();i++){
+            for(int j = 0;j<graph.V();j++){
+                if(graph.hasEdge(i,j)){
+                    println(i + "与" + j + "相连");
+                }
             }
-            println();
         }
     }
 }

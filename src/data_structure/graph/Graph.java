@@ -74,4 +74,17 @@ public class Graph implements IGraph{
     public Iterable<Integer> adj(int v) {
         return bags[v];
     }
+
+    /**
+     * 判断给定两个顶点之间是否有边连接
+    * */
+    public boolean hasEdge(int v,int w){
+        //查询任意一个点的邻接表，判断邻接表中是否存在另一个顶点即可
+        for(int x : bags[v]){
+            if(x == w){
+                return true;
+            }
+        }
+        return false;
+    }
 }
