@@ -82,4 +82,21 @@ public class Digraph {
 
         return s.toString();
     }
+
+    public boolean hasEdge(int v,int w){
+        for(int x : adj[v]){
+            if(x == w){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int V(){
+        return v;
+    }
+
+    public int E(){
+        return e;
+    }
 }
