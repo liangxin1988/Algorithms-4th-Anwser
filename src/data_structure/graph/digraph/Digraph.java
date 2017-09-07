@@ -105,4 +105,14 @@ public class Digraph {
     public int E(){
         return e;
     }
+
+    public Digraph reverse(){
+        Digraph d = new Digraph(v);
+        for(int i = 0;i<v;i++){
+            for(int w : adj[i]){
+                d.addEdge(w,i);
+            }
+        }
+        return d;
+    }
 }
