@@ -56,6 +56,12 @@ public class Digraph {
     }
 
     public void addEdge(int v,int w){
+        if(v == w){ //不允许存在自环
+            return;
+        }
+        if(hasEdge(v,w)){  //不允许存在平行边
+            return;
+        }
         adj[v].add(w);
         e++;
     }
